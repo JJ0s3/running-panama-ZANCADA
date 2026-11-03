@@ -11,3 +11,12 @@
 
 ## Iteraciones siguientes
 Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado y pendientes.
+
+## 2026-11-03 — Incremento UI/UX y tour interactivo
+- Rama `feat/zancada-guided-onboarding-ux` desde `feat/zancada-identity-fasty-docs`.
+- Sistema de botones con feedback de hover/press, jerarquía de acciones y motion tokens CSS; sin librería nueva.
+- Recorrido de Fasty: 10 paradas, spotlight real, scroll, navegación entre Inicio, Mi plan, Explorar y Asistente.
+- Primera visita: recorrido automático; omitir/cerrar guarda preferencia `zancada-tour-v2`; reinicio desde Mi perfil.
+- Feedback al registrar actividades; explicaciones contextualizadas en progreso.
+- Pendientes explícitos: sesiones completables enlazadas al plan, módulo Aprende, eventos reales, avatar definitivo y revisión manual en móvil.
+- Validar CI, Vercel preview y experiencia táctil antes de fusionar; no confundir compilación con pruebas end-to-end.
