@@ -1,23 +1,19 @@
-# ZANCADA — Sistema visual v0.1
+# ZANCADA — Design System 0.2
 
-## Personalidad
-Deportiva, editorial, clara, motivadora sin exceso de gamificación. Enfoque **mobile-first**.
+## Decisiones aprobadas
+- Identidad enérgica para principiantes, no dashboard administrativo.
+- Paleta: Ink `#111115`, Orange `#FF5A1F`, Bone `#F4F1EB`, White `#FFFFFF`, Secondary `#707078`.
+- Tipografía objetivo: Barlow Condensed (títulos) + Inter (cuerpo), con fallback del sistema.
+- Jerarquía del Inicio: saludo/perfil, Fasty, entrenamiento hoy, objetivo, agenda, progreso, eventos.
+- Fasty es coach educativo y asistente con confirmación (motor demo por reglas).
+- Onboarding proactivo de primera visita, omisible y reabrible desde Perfil.
+- Gráficos con semántica de movimiento: carril, ruta, zancada, meta, hito; sin saturación.
+- Acciones móviles >=44px, contraste probado, `prefers-reduced-motion`, navegación con teclado.
 
-## Tokens
-- Ink: `#172019`
-- Forest: `#275d47`
-- Lime: `#d9fa63`
-- Canvas: `#f6f6f0`
-- White: `#ffffff`
-- Text secundario: `#59685f`
+## Aún por decidir
+Monograma Z final (cinco conceptos documentados) y avatar Fasty final (tres conceptos). No introducir activos definitivos sin elección consciente.
 
-## Reglas
-- Priorizar acción siguiente, no dashboards densos.
-- Navegación inferior de cuatro destinos en móvil.
-- Acciones táctiles de al menos 44 px.
-- Contraste legible y foco visible en teclado.
-- Mostrar explícitamente los eventos sintéticos y no inventar enlaces de inscripción.
-- Formularios breves; feedback inmediato; empty states y recorrido guiado opcional.
-
-## Referencias
-DesignMD para expresar decisiones en Markdown y Google Stitch para exploración de interfaz. No copiar plantillas ni interfaces de terceros.
+## Referencias vivas
+- [Conceptos de identidad](docs/design/IDENTITY-CONCEPTS.md)
+- [Onboarding](docs/design/ONBOARDING.md)
+- [Arquitectura Fasty](docs/architecture/ASSISTANT-FASTY.md)
