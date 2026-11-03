@@ -13,6 +13,7 @@ const stops:Stop[]=[
 {id:'calendar',page:'plan',title:'Tu calendario',message:'Elige los días disponibles y consulta las sesiones sugeridas. La recuperación es parte del proceso, no un fracaso.'},
 {id:'events',page:'explorar',title:'Descubre carreras',message:'Guarda eventos y explora distancias. Las carreras actuales son ficticias y no disponen de inscripción oficial.'},
 {id:'coach',page:'asistente',title:'Puedes preguntarme',message:'Prueba con «¿Qué tengo esta semana?» o «¿Cómo voy?». Para modificar tus datos, pediré confirmación.'},
+{id:'profile',page:'inicio',title:'Tu espacio personal',message:'Edita tu nombre y nivel desde Mi perfil. En Ayuda encontrarás la opción para repetir este recorrido cuando quieras.'},
 {id:'finish',page:'inicio',title:'¡Tu primera zancada!',message:'Ya sabes dónde encontrar tu meta, tu plan, el registro y mi ayuda. Ahora explora a tu ritmo.'}
 ];
 export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Section)=>void;onClose:()=>void}){
