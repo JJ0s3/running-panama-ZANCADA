@@ -26,3 +26,10 @@ La funcionalidad funciona con datos reales del estado de la demo, no solo tarjet
 
 ## Próximo hito
 Persistencia multiusuario con Supabase, catálogo curado y asistente de herramientas conectado a un proveedor configurable.
+
+## Iteración v0.2 — Fasty y diseño propio
+- Paleta aprobada: tinta, naranja y blanco hueso; ver `DESIGN.md`.
+- Coach nombrado **Fasty**, con identidad final aún en exploración.
+- Mejoras planeadas: inicio «qué hago hoy», sesiones con explicaciones, progreso basado en actividades reales, onboarding spotlight, iconografía Z propia.
+- Investigación de planes y decisiones en [documentación](docs/README.md).
+- Verificación requerida: pruebas unitarias, TypeScript, build y smoke test móvil. No confundir «CI correcto» con «UX validada».
