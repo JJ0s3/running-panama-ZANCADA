@@ -68,3 +68,5 @@
 .tour-root button:focus-visible{outline:3px solid #111115;outline-offset:2px}
 @media(max-width:680px){.tour-panel{bottom:12px!important;top:auto!important;left:12px!important;width:calc(100vw - 24px)!important;max-width:none;padding:18px}.tour-panel h2{font-size:24px}.tour-panel p{font-size:13px;margin-bottom:15px}.tour-spotlight{border-radius:11px}.tour-fasty{width:42px;height:42px;min-width:42px}}
 @media(prefers-reduced-motion:reduce){.tour-spotlight,.tour-track div,.primary,.outline,.fasty-action,.race{transition:none!important}.success-toast,.tour-panel{animation:none!important}}
+
+.learn-terms{margin-top:18px;background:#FFFFFF;border:1px solid #E5E1DB;border-radius:14px;padding:15px 18px;line-height:1.6}.learn-terms summary{cursor:pointer;font-weight:850;color:#111115;min-height:35px}.learn-terms p{font-size:13px;color:#55545A;margin:12px 0 0}
