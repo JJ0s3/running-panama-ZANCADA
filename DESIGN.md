@@ -17,3 +17,11 @@ Monograma Z final (cinco conceptos documentados) y avatar Fasty final (tres conc
 - [Conceptos de identidad](docs/design/IDENTITY-CONCEPTS.md)
 - [Onboarding](docs/design/ONBOARDING.md)
 - [Arquitectura Fasty](docs/architecture/ASSISTANT-FASTY.md)
+
+## Dirección 0.2.2 — ZANCADA editorial iOS
+- **Principio:** la aplicación debe parecer un producto editorial de running, no una suma de tarjetas repetidas.
+- Uso de proporciones asimétricas, pista representada en arcos, sesiones protagonistas y agrupación semanal.
+- iOS como referencia de interacción: superficies táctiles, dock translúcido, legibilidad y continuidad; no copiar UI de Apple.
+- Fuentes: Barlow Condensed, DM Sans, Instrument Serif; fallbacks en CSS. Jerarquía clara y textos accesibles.
+- Paleta invariable; fotografía futura solo con licencia y justificación narrativa.
+- Revisión pendiente: Safari móvil, teclado, reduced motion y 320-390px.
