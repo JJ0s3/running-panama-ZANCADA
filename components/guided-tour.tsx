@@ -51,7 +51,7 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
  const top=mobile?Math.max(12,view.height-275):rect?Math.max(15,Math.min(view.height-295,above?rect.top-278:rect.top+rect.height+22)):Math.max(20,(view.height-290)/2);
  const left=mobile?16:rect?Math.max(16,Math.min(view.width-cardWidth-16,rect.left)):Math.max(16,(view.width-cardWidth)/2);
  return <div className="tour-root" role="dialog" aria-modal="true" aria-labelledby="fasty-tour-title" aria-describedby="fasty-tour-copy">
-  <div className="tour-dim" aria-hidden="true"/>
+  {!rect&&<div className="tour-dim" aria-hidden="true"/>}
   {rect&&<div className="tour-spotlight" aria-hidden="true" style={{top:rect.top,left:rect.left,width:rect.width,height:rect.height}}/>}
   <section className="tour-panel" style={{top,left,width:cardWidth}}>
    <div className="tour-top"><div className="tour-fasty" aria-hidden="true">F<span>•</span></div><div><span className="tour-eyebrow">FASTY TE GUÍA</span><div className="tour-count">PASO {index+1} / {stops.length}</div></div><button className="tour-close" onClick={end} aria-label="Cerrar recorrido">×</button></div>
