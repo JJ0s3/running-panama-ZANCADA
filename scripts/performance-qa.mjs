@@ -90,7 +90,7 @@ try{
    await page.screenshot({path:'qa/performance-390-light-dorsal.png',fullPage:true});
   }
   await page.reload({waitUntil:'domcontentloaded'});
-  if(await page.locator('.ep-app').getAttribute('data-theme')!=='light')throw Error('Light theme lost on reload '+width);
+  await page.waitForFunction(()=>document.querySelector('.ep-app')?.getAttribute('data-theme')==='light',{timeout:5000});
   await page.getByRole('button',{name:'Cambiar al tema oscuro'}).click();
   if(await page.locator('.ep-app').getAttribute('data-theme')!=='dark')throw Error('Dark theme cannot be restored '+width);
   if(await page.evaluate(()=>localStorage.getItem('zancada-theme-v1'))!=='dark')throw Error('Dark theme preference not saved '+width);
