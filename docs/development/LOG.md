@@ -55,3 +55,12 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Acento nuevo amarillo cálido `#FFD85A` en señales, estados seleccionados y ayudas de Fasty. El violeta sigue siendo la acción principal.
 - Guía Fasty aislada con clases `zt-*` y rediseñada para violeta/amarillo; conserva `zancada-tour-v2` para no reiniciar automáticamente recorridos ya terminados.
 - Añadidas pruebas de regresión estática. **CI no constituye una prueba de layout iPhone**: queda pendiente prueba manual en Safari iOS de 375/390 px, orientación, teclado y zoom.
+
+## 2026-11-03 — Corrección real de tour y tipografía (video 19:52)
+- Causa encontrada: el tour buscaba `data-zt-id` mientras los elementos de Inicio, Mi Plan, Carreras y Fasty están marcados con `data-tour-id`. El error se produjo al renombrar indiscriminadamente clases CSS; dejó la guía con fondo oscurecido sin spotlight funcional.
+- Solución: selector correcto, re-medición de posición al cambiar sección, movimiento de scroll al objetivo, observación de scroll y resize, y timeout de búsqueda tras el render.
+- Corregido el conflicto de cascada: se elimina `globals.css` del layout activo (era el tema naranja de versiones anteriores) y se establece un reset y tipografía uniforme en `iphone-polish.css`.
+- Menos textos en mayúsculas en Inicio; navegación de etiquetas más legibles. Estadísticas de Mi Plan ahora pasan de tres columnas estrechas a dos, con una tercera fila ancha en móvil.
+- Violeta y amarillo mantenidos como acentos coherentes.
+- Tests de regresión revisan que los destinos marcados coincidan con los selectores y que no vuelva a cargarse el CSS del tema anterior.
+- Verificación pendiente: iPhone Safari real; no considerar CI prueba visual.
