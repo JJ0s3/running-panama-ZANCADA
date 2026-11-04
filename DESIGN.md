@@ -36,3 +36,14 @@ Monograma Z final (cinco conceptos documentados) y avatar Fasty final (tres conc
 - Arte original en CSS para promocionales y eventos ficticios; no se utilizan capturas Stitch como interfaz ni fotografías sin licencia.
 - Las pantallas del ZIP tienen contenido de ejemplo como Z2 y RPE, calorías, inscritos y zonas de pulso; **no se copia esa telemetría** porque la demo no la registra.
 - Se mantiene tour funcional para secciones existentes. Revisar spotlight y acceso con VoiceOver/manual Safari.
+
+## 0.4 — Refinamiento iOS de Mi Plan
+- Referencia principal proporcionada por el propietario: pantalla de calendario y carga semanal de running, con tipografía iOS limpia, barras verticales y resumen compacto.
+- Se rechazan el saludo y la estructura del dashboard de fitness RB como base visual para ZANCADA.
+- **Tipografía:** pila nativa `-apple-system`, `BlinkMacSystemFont`, `Helvetica Neue`, `Arial`. No empaquetar ni redistribuir SF Pro.
+- **Mi Plan:** jerarquía contextual y gráfica de distancia de los siete días de la semana; lista de sesiones y edición como contenido secundario.
+- **Integridad:** únicamente distancia, duración y sesiones marcadas. No mostrar potencia (CP), estrés (RSB), elevación, frecuencia cardíaca ni zonas si no existen fuentes de datos reales.
+- **Fasty:** breve nota contextual dentro de la sesión, no un gran panel de chat invadiendo la planificación.
+- **Interacción:** navegación entre semanas, selección de días, sesión completada explícitamente, configuración de objetivo y disponibilidad.
+- **Estados:** días sin actividad muestran indicador vacío (no barra inventada), y progreso del plan cuenta solo sesiones marcadas, no es una puntuación fisiológica.
+- El estilo se encapsula en `app/plan-ios.css` y la pantalla en `components/plan-experience.tsx`, para evitar reescribir el resto de ZANCADA.
