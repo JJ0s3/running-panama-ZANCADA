@@ -30,3 +30,11 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - No se agregaron librerías de animación ni componentes externos; conservar controles existentes y tour.
 - Limitación: la franja semanal informa de días configurados, no de sesiones completadas. No simular progreso no registrado.
 - Pendiente: captura y revisión visual en iPhone/Android, optimización de recursos de fuentes y accesibilidad.
+
+## 2026-11-03 — Reconstrucción Ultraviolet desde Stitch
+- Recepción del ZIP de diseño con Inicio y Mi Plan (light/dark), código HTML de referencia y dos DESIGN.md.
+- Decisión: construir implementación React propia en `components/ultraviolet-runner.tsx` y `app/ultraviolet.css`, preservando la implementación anterior para comparar.
+- Pantallas: Inicio con Fasty, sesión del día, progreso y registro; Mi Plan con calendario, configuración, sesiones marcables y ayuda; Carreras con filtros y guardados; Fasty como pantalla protagonista y propuestas confirmables.
+- Compatibilidad con `zancada-demo-v1` y `zancada-tour-v2` para preservar datos y onboarding.
+- Datos sintéticos identificados, sin inventar telemetría o inscripciones reales.
+- Revisión pendiente: pruebas CI, preview y evaluación visual en móvil antes de fusionar.
