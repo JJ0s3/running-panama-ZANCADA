@@ -1,6 +1,6 @@
 'use client';
 import {useCallback,useEffect,useMemo,useState} from 'react';
-import {Route,ArrowLeft,ArrowRight,ArrowUpRight,Bookmark,CalendarDays,Check,CheckCircle2,ChevronRight,ClipboardCheck,Clock3,Compass,ExternalLink,Flag,Footprints,Info,MapPin,Search,Send,Ticket,UserRound,X} from 'lucide-react';
+import {Route,ArrowLeft,ArrowRight,ArrowUpRight,Bookmark,CalendarDays,Check,CheckCircle2,ChevronRight,ClipboardCheck,Clock3,Compass,ExternalLink,Flag,Footprints,Info,MapPin,Search,Send,Ticket,UserRound,X,House,Activity} from 'lucide-react';
 import {events,eventById,emptyPassport,STORAGE_KEY,dateLabel,daysToEvent,distanceLabel,eventChecklist,participationFor,recordParticipation,sanitizedPassport,toggleChecklist,toggleSaved} from '../lib/event-passport';
 import type {EventRecord,PassportState,Participation} from '../lib/event-passport';
 import EventTour from './event-tour';
@@ -18,7 +18,7 @@ const editorialPhotos=[
  {src:'https://images.unsplash.com/photo-1781029102793-9b435d7c1cca?auto=format&fit=crop&w=1200&q=77',credit:'Miguel A Amutio',page:'https://unsplash.com/photos/a-group-of-people-running-in-an-urban-marathon-QyhWAiNPIX8'}
 ] as const;
 // Photos are editorial illustrations of running, never photographs of the listed Panamanian events.
-const views:[EventTab,string,typeof Compass][]=[['inicio','Inicio',Compass],['eventos','Eventos',Flag],['resultados','Resultados',Trophy],['fasty','Preparación',Footprints],['dorsal','Mi dorsal',Ticket]];
+const views:[EventTab,string,typeof House][]=[['inicio','Inicio',House],['eventos','Eventos',CalendarDays],['resultados','Resultados',Clock3],['fasty','Preparación',Activity],['dorsal','Mi dorsal',Ticket]];
 const checkedLabel='Registro personal · No acredita inscripción';
 const pretty=(n:number)=>new Intl.NumberFormat('es-PA',{maximumFractionDigits:1}).format(n);
 function countdown(e:EventRecord){

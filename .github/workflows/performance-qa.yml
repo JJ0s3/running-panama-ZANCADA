@@ -1,0 +1,46 @@
+name: ZANCADA · Performance visual QA
+on:
+  pull_request:
+    paths:
+      - 'app/performance-dark.css'
+      - 'app/page.tsx'
+      - 'components/event-passport-app.tsx'
+      - 'scripts/performance-qa.mjs'
+      - 'tests/performance-dark.test.mjs'
+      - '.github/workflows/performance-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Validate static logic and production build
+        run: npm run typecheck && npm test && npm run build
+      - name: Start local production build
+        run: |
+          nohup npm run start -- -p 3000 >/tmp/zancada-performance.log 2>&1 &
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/zancada-performance.log
+          exit 1
+      - name: Verify visuals and existing app features
+        run: node scripts/performance-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zancada-performance-viewport-review
+          path: qa/performance-*.png
+          if-no-files-found: ignore
