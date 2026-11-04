@@ -3,7 +3,7 @@ name: ZANCADA Mobile Visual QA
 on:
   pull_request:
     branches:
-      - design/zancada-spatial-3d-direction
+      - fix/zancada-spatial-card-tour-qa
   workflow_dispatch:
 
 permissions:

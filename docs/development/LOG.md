@@ -82,3 +82,12 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Estabilidad visual: en pantallas estrechas se separa la escultura Z del titular y de la sesión; se limita su altura; se ajustan CTA, anchos y bordes de tarjetas y resumen semanal para evitar recortes.
 - Nuevas pruebas comprueban anclas semánticas en componentes y la geometría del foco. **Aún no equivalen a pruebas visuales automatizadas**; Safari real requiere revisión.
 - Rama `fix/zancada-spatial-card-tour-qa`, basada en Spatial Edition, sin alterar producción.
+
+## 2026-11-03 — Reorientación running-first tras video del usuario (20:47)
+- Se revisó el video de 36.2 s con problemas visibles de encabezado de Carreras fuera de pantalla, filtros «5K/10K» cortados, portada demasiado abstracta y un emoji verde alrededor del avatar de Fasty.
+- Causa del icono verde: carácter decorativo ✳ en `SpatialFastyLanding` que iOS dibuja como emoji; no corresponde a métricas ni a permisos de la aplicación.
+- Rama `fix/zancada-running-first-reset` desde `fix/zancada-spatial-card-tour-qa`. No modifica `main` ni producción.
+- Retirados los experimentos `components/spatial-zancada.tsx` y `app/spatial-edition.css` de la rama; se conserva la historia Git para regresar si fuera necesario.
+- Nuevo `components/running-focus.tsx`: portada deportiva con pista SVG, siguiente sesión, tiempo y acciones. Nuevo `app/running-first.css` para identidad responsive y correcciones de navegación, Carreras y Fasty.
+- Restaurado el avatar pequeño, geométrico, violeta de Fasty en Inicio y pantalla de asistente. Se conserva lógica de chat por reglas y onboarding.
+- Actualizados tests y browser QA para cuatro pestañas y dos pasos del tour. Aún requiere revisión con Safari real y feedback de diseño del propietario.

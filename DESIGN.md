@@ -58,3 +58,14 @@ Monograma Z final (cinco conceptos documentados) y avatar Fasty final (tres conc
 - Diferenciación de RB: portada de revista de running y arte de marca, sin titular de gimnasio, sin tres tarjetas iguales, sin electrocardiograma inventado; métricas en una banda editorial continua.
 - El tour mantiene los IDs `data-tour-id` de Inicio/Fasty después de extraer los componentes.
 - Pendiente: revisar contraste, Safari iPhone y calidad artística; valorar escena 3D real solo si justifica el rendimiento.
+
+## 0.6 — Running First Recovery (aprobación visual pendiente)
+- **Cambio de rumbo solicitado:** retirar la dirección escultórica abstracta de Spatial Edition, recuperar lenguaje de running y el avatar geométrico previo de Fasty.
+- **Base:** violeta oscuro, acento amarillo en ruta/acción, una familia tipográfica de sistema legible en Safari iOS.
+- **Inicio:** ilustración SVG original de pista de atletismo, sesión y duración como datos protagonistas; no utilizar objetos 3D abstractos que compitan con el entrenamiento.
+- **Fasty:** regresar a la cara geométrica violeta de las versiones previas. El símbolo decorativo ✳ se elimina porque Safari lo renderizaba como emoji verde ajeno a la marca.
+- **Eventos:** encabezado de bloque vertical en móvil y chips de distancia con anchos mínimos para evitar letras cortadas.
+- **Métricas:** banda corrida, no una matriz de tarjetas independientes. Datos siempre derivados de actividad registrada o meta configurada.
+- **Mi Plan:** conservar la experiencia semanal y los gráficos con fuente de datos real.
+- **Onboarding:** mantener el recorrido por elementos concretos con cuatro capas de oscurecimiento y foco transparente.
+- **Validación requerida:** browser QA iPhone 384×832 para todas las pestañas y dos pasos de tour; revisión Safari real antes de fusionar.
