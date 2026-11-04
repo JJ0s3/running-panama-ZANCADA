@@ -77,6 +77,22 @@ try{
   const heading=await styles(page.locator('.ep-app h1').first());
   if(!heading.font.includes('Barlow Condensed'))throw Error('Wide display font still used for headlines '+width+': '+heading.font);
   if((await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth))>6)throw Error('Light theme horizontal overflow '+width);
+  // Contrast regressions raised in screenshot review: light metrics and navy dossier.
+  const contrast=(a,b)=>{const lum=hex=>{const nums=hex.match(/\\d+/g)?.slice(0,3).map(Number);if(!nums||nums.length<3)return 0;const linear=nums.map(v=>{const x=v/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4});return linear[0]*.2126+linear[1]*.7152+linear[2]*.0722};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+  if(width===390||width===1280){
+   const number=page.locator('.st-home-metrics button strong').first();
+   const nc=await number.evaluate(el=>getComputedStyle(el).color);
+   const nb=await page.locator('.st-home-metrics button').first().evaluate(el=>getComputedStyle(el).backgroundColor);
+   if(contrast(nc,nb)<4.5)throw Error('Light dashboard metric unreadable '+width+' '+nc+' on '+nb);
+   await page.locator(width===390?'.ep-bottom-nav button:has-text("Mi dorsal")':'.ep-sidebar button:has-text("Mi dorsal")').click();
+   await page.locator('.ep-bib-body h2').waitFor();
+   const textColor=await page.locator('.ep-bib-body h2').evaluate(el=>getComputedStyle(el).color);
+   if(!textColor.includes('244, 248, 255'))throw Error('Bib name must be readable on dark pass: '+textColor);
+   const dateColor=await page.locator('.ep-bib-details strong').first().evaluate(el=>getComputedStyle(el).color);
+   if(!dateColor.includes('244, 248, 255'))throw Error('Bib details low contrast '+dateColor);
+   await page.screenshot({path:'qa/performance-'+width+'-light-dorsal-contrast.png',fullPage:true});
+   await page.locator(width===390?'.ep-bottom-nav button:has-text("Inicio")':'.ep-sidebar button:has-text("Inicio")').click();
+  }
   await page.screenshot({path:'qa/performance-'+width+'-light-home.png',fullPage:true});
   if(width===390){
    await page.locator('.ep-bottom-nav button').filter({hasText:'Resultados'}).click();
