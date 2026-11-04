@@ -1,3 +1,24 @@
+# Iteración activa — Referencia Carrera AVON (2026-11-03)
+
+**Inspiración:** [Carrera AVON — auditoría técnica y adaptación](docs/design/CARRERA_AVON_REFERENCE_2026.md). Esta rama es una propuesta no fusionada; las secciones históricas del documento describen versiones anteriores.
+
+**Nuestra identidad permanece violeta + amarillo.** Tonos activos: `#7550D5` (acento), `#FFD85A` (énfasis), `#211B37` (tinta), `#F5F3FB` (superficie).
+
+**Tipografía verificada en la web de referencia:** Archivo Black (titulares de impacto) y Nunito Sans (controles y lectura). Se utilizan de manera controlada para evitar recortes en Safari iPhone: Archivo Black solo en titulares grandes, Nunito Sans en componentes y párrafos. Se evita multiplicar tipografías.
+
+**Sistema de componentes:**
+- Hero con personas reales corriendo y un rótulo explícito de fotografía ilustrativa.
+- Tarjetas de evento con fotografías editoriales licenciadas, pictogramas y metadatos en orden visual.
+- Tarjetas de tres pasos, con iconos claros y navegación real.
+- Ficha de evento con bloques de inscripción externa, preparación y fuentes visualmente distinguibles.
+- Fasty conserva su rostro y su recorrido como guía del producto.
+- Las imágenes externas deben tener fallback y sus créditos/condiciones documentadas.
+- Movimiento: solo presión y elevación discreta, con `prefers-reduced-motion`.
+
+**Datos:** el sitio primario confirma AVON Panamá 5K y 10K, entrega de kits 7 de noviembre en Mall Multiplaza y registro externo por IPU; datos no confirmados permanecen opcionales.
+
+---
+
 # Diseño activo — ZANCADA Event Passport 1.0 (2026-11-03)
 
 **Estado:** nueva dirección aplicada únicamente en rama/PR de prueba. [ADR-0006](docs/decisions/ADR-0006-eventos-pasaporte.md). Los apartados previos de este archivo son decisiones **históricas**, no la paleta activa.
