@@ -5,13 +5,14 @@ const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const tour=read('components/guided-tour.tsx');
 const app=read('components/ultraviolet-runner.tsx');
 const plan=read('components/plan-experience.tsx');
+const spatial=read('components/spatial-zancada.tsx');
 const layout=read('app/layout.tsx');
 const mobile=read('app/iphone-polish.css');
 const stops=['today','fasty','goal','register','progress','calendar','events','coach','profile'];
 test('the guide queries real ZANCADA anchors rather than the renamed CSS prefix',()=>{
  assert.match(tour,/data-tour-id=/);
  assert.doesNotMatch(tour,/data-zt-id=/);
- for(const id of stops)assert.ok((app+plan).includes('data-tour-id="'+id+'"'),'Missing visible tour anchor: '+id);
+ for(const id of stops)assert.ok((app+plan+spatial).includes('data-tour-id="'+id+'"'),'Missing visible tour anchor: '+id);
 });
 test('tour keeps measuring after tab navigation',()=>{
  assert.match(tour,/setInterval\(/);
