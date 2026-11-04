@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'app/performance-dark.css'
+      - 'app/performance-themes.css'
       - 'app/page.tsx'
       - 'components/event-passport-app.tsx'
       - 'scripts/performance-qa.mjs'
