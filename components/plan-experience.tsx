@@ -31,7 +31,7 @@ export default function PlanExperience({goal,activities,sessions,completed,week,
   </header>
 
   <section className="zi-plan-overview" aria-label="Resumen del plan">
-    <div className="zi-overview-top"><span>PLAN ACTIVO · DEMOSTRACIÓN</span><span>{planDone} de {sessions.length} sesiones marcadas</span></div>
+    <div className="zi-overview-top"><span>PLAN DEMO</span><span aria-label={`${planDone} de ${sessions.length} sesiones marcadas`}>{planDone} / {sessions.length} sesiones</span></div>
     <div className="zi-overview-title"><div><p>Construyendo constancia</p><h2>Tu camino hacia los {goal.distance}K</h2></div><strong>{percent}%</strong></div>
     <div className="zi-progress-rail" role="progressbar" aria-valuenow={percent} aria-valuemin={0} aria-valuemax={100} aria-label="Sesiones marcadas del plan"><span style={{width:percent+'%'}}/></div>
     <div className="zi-progress-bottom"><span>{completedWeek} completadas esta semana</span><span>Plan orientativo · 4 semanas</span></div>
