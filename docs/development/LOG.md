@@ -46,3 +46,12 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Estilos nuevos `app/plan-ios.css`: pila de fuentes del sistema, superficies menos brillantes, alta legibilidad y barras propias; se elimina import de fuentes web anterior.
 - La métrica de sesiones es una marca manual del usuario; se diferencia de la distancia real guardada.
 - Antes de fusionar: revisar CI, preview Vercel y pruebas visuales Safari/iPhone, 360 px y escritorio.
+
+## 2026-11-03 — QA iPhone y acento amarillo controlado
+- Material revisado: video de navegación iPhone aportado por el usuario, con problemas visibles de textos comprimidos, tarjetas de métricas estrechas y estilos del tour heredados de la versión naranja.
+- Rama `fix/zancada-iphone-typography-tour` sobre `feat/zancada-plan-ios-v04`.
+- Unificación de tipografía: pila del sistema en todo ZANCADA, pesos moderados, encabezados con line-height y tracking moderados. Retirado import de fuentes web heredadas en `app/globals.css`.
+- Añadido `app/iphone-polish.css` importado al final: ajustes de etiquetas, formularios iOS (16px para evitar zoom involuntario), tarjetas de métricas reordenadas en móvil, botones, dock inferior y safe areas.
+- Acento nuevo amarillo cálido `#FFD85A` en señales, estados seleccionados y ayudas de Fasty. El violeta sigue siendo la acción principal.
+- Guía Fasty aislada con clases `zt-*` y rediseñada para violeta/amarillo; conserva `zancada-tour-v2` para no reiniciar automáticamente recorridos ya terminados.
+- Añadidas pruebas de regresión estática. **CI no constituye una prueba de layout iPhone**: queda pendiente prueba manual en Safari iOS de 375/390 px, orientación, teclado y zoom.
