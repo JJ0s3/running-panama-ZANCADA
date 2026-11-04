@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700;1,800&display=swap');
 /* ZANCADA Performance refinement: readable competition titles and a genuine light palette.
    Imported AFTER performance-dark.css. Only visual styles; no application logic changes. */
 
@@ -180,3 +181,160 @@ body:has(.ep-app[data-theme="light"]),html:has(.ep-app[data-theme="light"]){
 .ep-app[data-theme="light"] :is(.ep-fasty-options button,.ep-fasty-form button,
  .st-prep-choice,.st-resource-card){color:#172337!important}
 @media(prefers-reduced-motion:reduce){.ep-app .zp-theme-switch{transition:none}}
+
+/* REVISION 2 — editorial typography, consistent surfaces and explicit inverse cards. */
+.ep-app {
+ --zp-heading:'Saira Semi Condensed','Barlow',system-ui,sans-serif;
+}
+.ep-app :is(.ep-home-heading h1,.ep-list-heading h1,.ep-fasty-header h1,
+ .ep-bib-view>h1,.ep-detail-text h1,.zr-hero h1,.za-journey-heading h2,
+ .ep-section-heading h2,.zr-filter-head h2,.za-race-guide-heading h2,
+ .za-journey-step h3,.ep-event-card h3,.ep-next-info h2,
+ .st-prep-intro h2,.za-race-guide-step h3,.ep-bib-body h2,
+ .ep-empty-bib h2,.ep-side-note strong,.zr-home-title h2){
+ font-family:var(--zp-heading)!important;
+ font-weight:800!important;
+ font-style:normal!important;
+ letter-spacing:-.025em!important;
+ line-height:1.12!important;
+ -webkit-text-stroke:0!important;
+ text-transform:uppercase;
+ text-wrap:pretty;
+}
+.ep-app :is(.ep-home-heading h1,.ep-list-heading h1,.ep-fasty-header h1,
+ .ep-bib-view>h1,.zr-hero h1){
+ font-size:clamp(33px,4.1vw,55px)!important;
+ max-width:100%;
+}
+.ep-app :is(.ep-home-heading h1 em,.ep-list-heading h1 em,.ep-fasty-header h1 em,
+ .zr-hero h1 em){font-style:italic!important}
+.ep-app :is(.ep-countdown,.ep-bib-number,.ep-next-event .ep-hero-distance,
+ .st-home-metrics button strong,.zr-hero-foot strong){
+ font-family:var(--zp-heading)!important;
+ font-weight:800!important;font-style:normal!important;
+ -webkit-text-stroke:0!important;
+ font-variant-numeric:tabular-nums;
+}
+/* Numbers, metadata, buttons and labels are not display typography. */
+.ep-app :is(.ep-sidebar>button,.ep-bottom-nav button,.ep-event-meta,
+ .ep-bib-details strong,.ep-bib-details span,.ep-bib-caption,.ep-bib-event,
+ .ep-tag,.zr-hero-foot small,.st-home-metrics button span){
+ font-family:var(--zp-body)!important;
+ letter-spacing:.015em!important;
+}
+.ep-app .ep-sidebar>button{font-size:13px!important;font-weight:800!important}
+.ep-app .ep-sidebar>button:hover:not(.active){color:var(--zp-ink)!important}
+.ep-app .ep-sidebar>button.active{color:var(--zp-ink)!important}
+.ep-app :is(.ep-home-date,.ep-small-date,.zr-home-date) strong{
+ font-family:var(--zp-heading)!important;font-weight:800!important;color:#FFFFFF!important;
+}
+.ep-app :is(.ep-home-date,.ep-small-date,.zr-home-date) small{color:#E6F2FF!important}
+.ep-app :is(.ep-bib-body h2,.ep-bib-details strong){color:#F4F8FF!important}
+.ep-app .ep-bib-details span{color:#AFBED4!important}
+.ep-app .ep-bib-caption{color:#B9D7F5!important}
+.ep-app .ep-bib-event{color:#6EDAFF!important}
+.ep-app .ep-bib-details{border-top-color:#52657E!important}
+.ep-app .ep-bib-body{background:linear-gradient(145deg,#152943,#0B1829)!important;color:#F4F8FF!important}
+.ep-app .ep-bib-top,.ep-app .ep-bib-foot{color:#F6FAFF!important}
+.ep-app .ep-bib-number{color:#FF862F!important}
+.ep-app :is(.ep-bib-body h2,.ep-bib-details strong,.ep-bib-number){text-shadow:0 1px 1px rgba(0,0,0,.12)}
+/* Dark design: keep contrast on the dark results header and numerical counters. */
+.ep-app[data-theme="dark"] :is(.zr-hero h1,.zr-hero-foot strong){color:#FFFFFF!important}
+.ep-app[data-theme="dark"] .zr-hero>p{color:#D8E4F4!important}
+/* LIGHT THEME: special graphic cards remain intentionally navy, not white.
+   Every child on these cards uses the navy palette rather than inherited light text. */
+.ep-app[data-theme="light"] .ep-bib-object{
+ background:#102039!important;border-color:#314969!important;
+ box-shadow:0 16px 40px rgba(19,41,74,.18)!important;
+}
+.ep-app[data-theme="light"] .ep-bib-body{
+ background:linear-gradient(145deg,#162C47,#0A1728)!important;color:#F4F8FF!important;
+}
+.ep-app[data-theme="light"] :is(.ep-bib-body h2,.ep-bib-details strong,
+ .ep-bib-object .ep-bib-number){color:#F4F8FF!important}
+.ep-app[data-theme="light"] .ep-bib-object .ep-bib-number{color:#FF862F!important}
+.ep-app[data-theme="light"] .ep-bib-event{color:#6EDAFF!important}
+.ep-app[data-theme="light"] .ep-bib-caption{color:#B9D7F5!important}
+.ep-app[data-theme="light"] .ep-bib-details span{color:#AFBED4!important}
+.ep-app[data-theme="light"] .ep-bib-details{border-color:#52657E!important}
+.ep-app[data-theme="light"] :is(.ep-bib-top,.ep-bib-foot){background:linear-gradient(95deg,#0B1524,#10345A)!important;color:#F8FBFF!important}
+.ep-app[data-theme="light"] .zr-hero{
+ background:linear-gradient(122deg,#102039 0%,#143455 72%,#0E1C31 100%)!important;
+ color:#F7FAFF!important;border:1px solid #244E78!important;
+ box-shadow:0 16px 36px rgba(19,41,74,.14)!important;
+}
+.ep-app[data-theme="light"] :is(.zr-hero h1,.zr-hero-foot strong){color:#FFFFFF!important}
+.ep-app[data-theme="light"] .zr-hero h1 em{color:#FF842E!important}
+.ep-app[data-theme="light"] .zr-hero>p{color:#DCE9F7!important}
+.ep-app[data-theme="light"] .zr-hero .zr-eyebrow{color:#74D8FF!important}
+.ep-app[data-theme="light"] .zr-hero-foot small{color:#D8E5F4!important}
+.ep-app[data-theme="light"] .zr-hero-foot{border-color:#4A6886!important}
+.ep-app[data-theme="light"] .zr-hero-art{background:transparent!important}
+.ep-app[data-theme="light"] .zr-hero-art>svg{
+ background:linear-gradient(140deg,#FF822F,#F96B12)!important;
+ color:#102039!important;
+}
+.ep-app[data-theme="light"] .st-home-metrics button{
+ background:#FFFFFF!important;border:1px solid #D3DFEB!important;
+ color:#172337!important;box-shadow:0 9px 22px rgba(19,41,74,.075)!important;
+}
+.ep-app[data-theme="light"] .st-home-metrics button strong{color:#172337!important}
+.ep-app[data-theme="light"] .st-home-metrics button span{color:#4B5C73!important}
+.ep-app[data-theme="light"] .st-home-metrics button svg{color:#E85B0A!important}
+.ep-app[data-theme="light"] .ep-sidebar>button:hover:not(.active){
+ background:#E9F0F7!important;color:#192B43!important;
+}
+.ep-app[data-theme="light"] .ep-sidebar>button.active{
+ color:#15253A!important;border-color:#F5B08B!important;
+}
+.ep-app[data-theme="light"] .ep-sidebar>button.active svg{color:#E85B0A!important}
+.ep-app[data-theme="light"] .ep-sidebar>button svg{color:#0075B4!important}
+.ep-app[data-theme="light"] .ep-side-note{
+ background:#EDF4FA!important;color:#172337!important;border:1px solid #D4DFEA!important;
+}
+.ep-app[data-theme="light"] .ep-side-note strong{color:#172337!important}
+.ep-app[data-theme="light"] .ep-side-note span{color:#52627A!important}
+.ep-app[data-theme="light"] .ep-bib-disclaimer{
+ background:#EAF2F9!important;color:#344B63!important;border-color:#BED5E6!important;
+}
+.ep-app[data-theme="light"] .ep-fasty-chat{
+ background:#FFFFFF!important;border:1px solid #CDDAE8!important;
+ color:#172337!important;box-shadow:0 9px 25px rgba(19,41,74,.07)!important;
+}
+.ep-app[data-theme="light"] .ep-fasty-bubble p{
+ background:#EBF3FA!important;color:#243851!important;border:1px solid #D1DFED!important;
+}
+.ep-app[data-theme="light"] :is(.ep-fasty-question,.ep-primary,.ep-external-primary){
+ color:#FFFFFF!important;
+}
+.ep-app[data-theme="light"] :is(.ep-fasty-options button,.ep-fasty-form,
+ .ep-fasty-form input,.ep-fasty-form textarea){
+ background:#F1F5FA!important;color:#172337!important;border-color:#CCD8E5!important;
+}
+.ep-app[data-theme="light"] .ep-fasty-strip>div p{color:#172337!important}
+.ep-app[data-theme="light"] .ep-fasty-header{
+ background:linear-gradient(120deg,#FFFFFF,#E6F0FB)!important;
+ color:#172337!important;border:1px solid #CDDAE8!important;
+ box-shadow:0 9px 25px rgba(19,41,74,.07)!important;
+}
+.ep-app[data-theme="light"] .ep-fasty-header h1{color:#172337!important}
+.ep-app[data-theme="light"] .ep-fasty-header h1 em{color:#E85B0A!important}
+.ep-app[data-theme="light"] .ep-fasty-header>p{color:#4E6178!important}
+.ep-app[data-theme="light"] .zr-status-published,
+.ep-app[data-theme="light"] .zr-counter{
+ color:#005F95!important;background:#E0F2FC!important;
+}
+.ep-app[data-theme="light"] .zr-status-followup{
+ color:#A44205!important;background:#FFF0E5!important;
+}
+/* Keep the dark racing panels dark, not washed out by a generic white blanket. */
+.ep-app[data-theme="light"] :is(.ep-next-event .ep-next-visual,
+ .za-hero-visual,.ep-event-art,.za-detail-photo-cover){
+ color:#FFFFFF!important;
+}
+@media(max-width:540px){
+ .ep-app :is(.ep-home-heading h1,.ep-list-heading h1,.ep-fasty-header h1,.ep-bib-view>h1){
+  font-size:clamp(31px,8vw,40px)!important;line-height:1.14!important;
+ }
+ .ep-app .ep-logo{font-family:var(--zp-display)!important}
+}
