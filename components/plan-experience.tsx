@@ -1,6 +1,7 @@
 'use client';
 import {ChevronLeft,ChevronRight,Check,Footprints,ArrowUpRight,CalendarDays,Settings2} from 'lucide-react';
 import type {Activity,Goal} from '../lib/domain';
+import {weeklyActivitySummary,markedSessionProgress} from '../lib/plan-analytics';
 
 type Session={date:string;title:string;minutes:number};
 type WeekDay={key:string;day:number;label:string;training:boolean;complete:boolean};
@@ -15,14 +16,10 @@ function formatRange(week:WeekDay[]){if(!week.length)return 'Tu semana';const d1
 export default function PlanExperience({goal,activities,sessions,completed,week,selected,onSelect,onWeek,onMark,onGoal,onFasty}:Props){
  const weeklySessions=sessions.filter(s=>week.some(d=>d.key===s.date));
  const completedWeek=weeklySessions.filter(s=>completed.includes(s.date)).length;
- const weekActivities=activities.filter(a=>week.some(d=>d.key===a.date));
- const weekKm=weekActivities.reduce((v,a)=>v+a.distance,0);
- const weekMinutes=weekActivities.reduce((v,a)=>v+a.minutes,0);
- const dailyKm=week.map(d=>weekActivities.filter(a=>a.date===d.key).reduce((v,a)=>v+a.distance,0));
+ const summary=weeklyActivitySummary(week,activities);
+ const weekKm=summary.distance,weekMinutes=summary.minutes,dailyKm=summary.dailyKm;
  const maxKm=Math.max(...dailyKm,1);
- const plannedMinutes=weeklySessions.reduce((v,s)=>v+s.minutes,0);
- const planDone=sessions.filter(s=>completed.includes(s.date)).length;
- const percent=sessions.length?Math.round(planDone/sessions.length*100):0;
+ const {count:planDone,percent}=markedSessionProgress(sessions,completed);
  const picked=weeklySessions.find(s=>s.date===selected);
  const next=sessions.find(s=>s.date>=week[0]?.key&&!completed.includes(s.date))??sessions[0];
  const focus=picked??next;
