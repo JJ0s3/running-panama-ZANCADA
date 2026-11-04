@@ -22,7 +22,7 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
  const [view,setView]=useState({width:1200,height:800});
  const heading=useRef<HTMLHeadingElement>(null);
  const current=stops[index];
- const end=()=>{try{localStorage.setItem('zancada-zt-v2','done')}catch{}onClose()};
+ const end=()=>{try{localStorage.setItem('zancada-tour-v2','done')}catch{}onClose()};
  useEffect(()=>{onNavigate(current.page)},[index,current.page,onNavigate]);
  useLayoutEffect(()=>{
   let alive=true;
