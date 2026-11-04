@@ -12,7 +12,7 @@ type Props={
 };
 const shortDay=['L','M','X','J','V','S','D'];
 function shortDate(date:string){const d=new Date(date+'T12:00:00');return new Intl.DateTimeFormat('es-PA',{day:'numeric',month:'short'}).format(d)}
-function formatRange(week:WeekDay[]){if(!week.length)return 'Tu semana';const d1=new Date(week[0].key+'T12:00:00');const d2=new Date(week[6].key+'T12:00:00');const month=new Intl.DateTimeFormat('es-PA',{month:'long'});return `${d1.getDate()}–${d2.getDate()} de ${month.format(d2)}`}
+function formatRange(week:WeekDay[]){if(!week.length)return 'Tu semana';const d1=new Date(week[0].key+'T12:00:00');const d2=new Date(week[6].key+'T12:00:00');const month=new Intl.DateTimeFormat('es-PA',{month:'long'});return d1.getMonth()===d2.getMonth()?`${d1.getDate()}–${d2.getDate()} de ${month.format(d2)}`:`${d1.getDate()} ${month.format(d1)} – ${d2.getDate()} ${month.format(d2)}`}
 export default function PlanExperience({goal,activities,sessions,completed,week,selected,onSelect,onWeek,onMark,onGoal,onFasty}:Props){
  const weeklySessions=sessions.filter(s=>week.some(d=>d.key===s.date));
  const completedWeek=weeklySessions.filter(s=>completed.includes(s.date)).length;
