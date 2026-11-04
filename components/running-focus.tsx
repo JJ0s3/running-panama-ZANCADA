@@ -25,7 +25,7 @@ export function RunningHero({sessionName,minutes,onPlan,onFasty}:{sessionName:st
      <circle cx="173" cy="205" r="21" fill="#FFD85A" stroke="#161321" strokeWidth="8"/>
      <path d="M167 205 l5 5 9 -12" fill="none" stroke="#211B2F" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
      <circle cx="361" cy="195" r="5" fill="#D8D0F4"/>
-     <text x="263" y="290" fill="#F1E5C9" fontFamily="system-ui,sans-serif" fontWeight="750" fontSize="13" letterSpacing="3">KEEP MOVING</text>
+     
     </svg>
     <span className="run-track-legend"><Route size={15}/> TU RUTA EMPIEZA AQUÍ</span>
    </div>
