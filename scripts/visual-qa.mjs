@@ -7,7 +7,7 @@ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const issues=[];
 async function screenshot(page,name){
  const buffer=await page.screenshot({path:`qa/${name}.jpg`,type:'jpeg',quality:59,fullPage:false,animations:'disabled'});
- if(process.env.QA_INLINE==='1'&&(name==='home-iphone'||name==='tour-training')){
+ if(process.env.QA_INLINE==='1'&&['home-iphone','plan-iphone','fasty-iphone','tour-training','tour-fasty'].includes(name)){
   console.log(`QA_IMAGE_BEGIN ${name}\n${buffer.toString('base64')}\nQA_IMAGE_END ${name}`);
  }
 }
