@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import ts from 'typescript';
 const input=readFileSync(new URL('../lib/event-passport.ts',import.meta.url),'utf8');
-const output=ts.transpileModule(input,{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText;
+const output=ts.transpileModule(input,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
 const module={exports:{}};
 new Function('module','exports',output)(module,module.exports);
 const {events,emptyPassport,eventById,daysToEvent,recordParticipation,toggleSaved,toggleChecklist,sanitizedPassport,eventChecklist}=module.exports;
@@ -44,7 +44,6 @@ test('checklist is scoped to a specific event and never edits others',()=>{
 test('stored state rejects unknown identifiers, invalid distances and untrusted checklist codes',()=>{
  assert.ok(events.some(e=>e.id==='avon-2026'),'The source catalog must include AVON');
  const s=sanitizedPassport({savedIds:['avon-2026','fake','avon-2026'],participations:[{eventId:'santas-race-2026',distanceKm:5,declaredAt:'a'},{eventId:'avon-2026',distanceKm:100,declaredAt:'b'}],completedChecklist:{'avon-2026':['kit','danger'],'fake':['kit']}});
- console.log('SANITIZER_DIAGNOSTIC',JSON.stringify({saved:s.savedIds,ids:events.map(e=>e.id)}));
  assert.deepEqual(s.savedIds,['avon-2026']);
  assert.equal(s.participations.length,1);
  assert.deepEqual(s.completedChecklist['avon-2026'],['kit']);
