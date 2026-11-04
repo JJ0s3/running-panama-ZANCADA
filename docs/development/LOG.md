@@ -73,3 +73,12 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Métricas: banda continua en lugar de cuadrícula convencional. Mi Plan conserva cálculo real y recibe superficie con profundidad.
 - Sin frameworks adicionales ni promesas de WebGL: pseudo-3D CSS, compatible con reducción de movimiento.
 - Pruebas: comprobar montaje y continuidad del tour; CI, typecheck y build; revisión visual Safari pendiente.
+
+## 2026-11-03 — QA de recuadros y tutorial en iPhone (video 20:23)
+- Material revisado: video Safari iPhone de 12.5 segundos a 384×832. En el recorrido Fasty, el marco resaltado encuadraba regiones parciales de tarjetas mucho más altas que el espacio disponible; la Z se acercaba al título; el oscurecimiento del fondo competía con la explicación.
+- Corrección funcional: los destinos del tour ahora apuntan a elementos concretos (nombre y duración del entrenamiento; texto Fasty; métricas; distancia para registro; actividades; días del calendario; botones de evento; preguntas; perfil), no a bloques enormes.
+- Se reescribió la iluminación como cuatro capas exteriores con un hueco realmente transparente y borde separado; el usuario puede ver el contenido resaltado.
+- El scroll de pestañas se vuelve determinista al navegar y la geometría del foco se calcula y recorta en `lib/tour-geometry.ts`. Se añadieron pruebas de límites, targets fuera de pantalla y geometría desktop.
+- Estabilidad visual: en pantallas estrechas se separa la escultura Z del titular y de la sesión; se limita su altura; se ajustan CTA, anchos y bordes de tarjetas y resumen semanal para evitar recortes.
+- Nuevas pruebas comprueban anclas semánticas en componentes y la geometría del foco. **Aún no equivalen a pruebas visuales automatizadas**; Safari real requiere revisión.
+- Rama `fix/zancada-spatial-card-tour-qa`, basada en Spatial Edition, sin alterar producción.
