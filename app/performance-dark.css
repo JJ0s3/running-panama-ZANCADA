@@ -2,12 +2,12 @@
    Visual adaptation of the user's approved concept, with the real ZANCADA v2
    DOM/data, photos, results, GPX, Fasty and 10-step guide unchanged.
    Place last in app/page.tsx. No copying imaginary events or training metrics. */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&family=Racing+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&family=Fugaz+One&family=Racing+Sans+One&display=swap');
 :root {
  --zp-bg:#080D15;--zp-bg2:#0C1521;--zp-card:#111B2A;--zp-card2:#172438;
  --zp-mango:#FF721F;--zp-mango-light:#FFAD43;--zp-blue:#00C8FF;
  --zp-blue-deep:#0068DB;--zp-ink:#F3F7FF;--zp-muted:#BBC8D8;
- --zp-line:#324358;--zp-soft:#16243A;--zp-display:'Racing Sans One','Barlow Condensed',Impact,sans-serif;
+ --zp-line:#324358;--zp-soft:#16243A;--zp-display:'Fugaz One','Racing Sans One','Barlow Condensed',Impact,sans-serif;
  --zp-condensed:'Barlow Condensed','Arial Narrow',sans-serif;
  --zp-body:'Barlow',system-ui,sans-serif;
  --ep-bg:var(--zp-bg);--ep-navy:var(--zp-ink);--ep-muted:var(--zp-muted);
@@ -590,3 +590,96 @@ body:has(.ep-app){color-scheme:dark}
  background:linear-gradient(145deg,#FFBB45 0%,#FF721F 48%,#007AE5 100%)!important;
  border-color:rgba(255,255,255,.47)!important;
 }
+
+
+/* Visual screenshot audit 390px/desktop:
+   unify pale legacy islands and improve body copy contrast. */
+.ep-app :is(h1,h2,h3,h4){font-style:normal!important}
+.ep-app .ep-logo{font-style:normal!important;letter-spacing:-.065em!important}
+.ep-app .ep-home-heading h1{font-size:clamp(31px,3.9vw,55px)!important}
+.ep-app .ep-next-info h2{font:400 clamp(25px,3.1vw,40px)/1.09 var(--zp-display)!important}
+/* The GPX map itself stays readable on OpenStreetMap tiles. Only its shell is dark. */
+.ep-app .st-route-section{
+ background:linear-gradient(155deg,#13253B,#0A1626)!important;
+ border:1px solid rgba(0,200,255,.47)!important;
+ border-radius:18px!important;
+ color:var(--zp-ink)!important;
+ box-shadow:0 10px 25px rgba(0,0,0,.28)!important;
+}
+.ep-app .st-route-section .st-section-heading h2{
+ color:var(--zp-ink)!important;
+ font-family:var(--zp-display)!important;
+ font-weight:400!important;
+}
+.ep-app .st-route-section .st-section-heading p{color:var(--zp-muted)!important}
+.ep-app .st-distance-tabs button{
+ background:var(--zp-card2)!important;
+ color:var(--zp-ink)!important;
+ border-color:var(--zp-line)!important;
+ font-family:var(--zp-condensed)!important;
+ font-weight:800!important;
+}
+.ep-app .st-distance-tabs button.active,
+.ep-app .st-distance-tabs button[aria-pressed="true"]{
+ background:linear-gradient(110deg,var(--zp-mango),#FF9B32)!important;
+ color:#07101B!important;
+ border-color:var(--zp-mango)!important;
+}
+.ep-app .st-map-info{
+ background:#111F33!important;
+ color:var(--zp-ink)!important;
+ border-color:var(--zp-line)!important;
+}
+.ep-app .st-map-footer>span{color:var(--zp-muted)!important}
+.ep-app .st-map-footer :is(a,button){color:var(--zp-blue)!important}
+.ep-app .st-leaflet-map{background:#E2ECF8!important;border:1px solid var(--zp-line)!important}
+.ep-app .leaflet-control-attribution{color:#253548!important}
+/* Previously pastel race-day guide cards had white backgrounds and violet copy. */
+.ep-app .za-race-guide-brief,
+.ep-app .za-race-guide-brief-grid>div{
+ background:#17263A!important;
+ color:var(--zp-ink)!important;
+ border-color:var(--zp-line)!important;
+ box-shadow:none!important;
+}
+.ep-app .za-race-guide-brief-heading,
+.ep-app .za-race-guide-brief-heading strong,
+.ep-app .za-race-guide-brief-grid strong,
+.ep-app .za-race-guide-step h3{color:var(--zp-ink)!important}
+.ep-app .za-race-guide-brief-grid p,
+.ep-app .za-race-guide-brief-grid small,
+.ep-app .za-race-guide-step>p,
+.ep-app .za-race-guide-status,
+.ep-app .za-race-guide-caveat{
+ color:var(--zp-muted)!important;
+}
+.ep-app .za-race-guide-brief-icon{
+ background:rgba(0,200,255,.16)!important;
+ color:var(--zp-blue)!important;
+ border:1px solid rgba(0,200,255,.28)!important;
+}
+.ep-app .za-race-guide-brief-grid>div:nth-child(2) .za-race-guide-brief-icon{
+ background:rgba(255,114,31,.18)!important;color:var(--zp-mango)!important;
+}
+.ep-app .za-race-guide-number{color:var(--zp-mango)!important}
+.ep-app .za-race-guide-caveat{
+ background:rgba(0,200,255,.09)!important;border-color:var(--zp-line)!important;
+}
+/* Fasty preparation resources and chat text need true dark-mode contrast. */
+.ep-app .st-prep-intro>p,.ep-app .st-prep-next p{color:var(--zp-muted)!important}
+.ep-app .st-prep-choice>span:not(.st-prep-choice-icon){color:var(--zp-ink)!important}
+.ep-app .st-resource-org{color:var(--zp-blue)!important}
+.ep-app .st-resource-card>span:nth-last-child(2){color:var(--zp-muted)!important}
+.ep-app .st-resource-note,.ep-app .st-resource-note span{color:var(--zp-muted)!important}
+.ep-app .st-resources h3,.ep-app .st-prep-intro h2{color:var(--zp-ink)!important}
+.ep-app .st-resource-card strong,.ep-app .st-prep-next strong{color:var(--zp-ink)!important}
+/* Results' publisher disclaimer must not remain white/pale. */
+.ep-app .zr-disclosure{
+ background:#15243A!important;
+ color:var(--zp-muted)!important;
+ border:1px solid rgba(0,200,255,.28)!important;
+ box-shadow:none!important;
+}
+.ep-app .zr-disclosure>svg{color:var(--zp-mango)!important}
+.ep-app .zr-disclosure a{color:var(--zp-blue)!important}
+.ep-app .zr-disclosure small,.ep-app .zr-filter-foot>span{color:var(--zp-muted)!important}

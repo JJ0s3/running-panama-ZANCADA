@@ -45,10 +45,10 @@ export default function RouteViewer({event}:{event:EventRecord}){
    if(!current)return;
    current.eachLayer(layer=>{if(!(layer instanceof L.TileLayer))current.removeLayer(layer)});
    if(route?.points?.length){
-    const line=L.polyline(route.points,{color:'#D72638',weight:5,opacity:.95,lineJoin:'round'}).addTo(current);
+    const line=L.polyline(route.points,{color:'#FF721F',weight:5,opacity:.95,lineJoin:'round'}).addTo(current);
     const p=route.points[0],last=route.points[route.points.length-1];
-    L.circleMarker(p,{radius:9,color:'#FFFFFF',weight:3,fillColor:'#0D1D38',fillOpacity:1}).addTo(current).bindPopup('Inicio del GPX publicado');
-    L.circleMarker(last,{radius:7,color:'#FFFFFF',weight:3,fillColor:'#D72638',fillOpacity:1}).addTo(current).bindPopup('Final del GPX publicado');
+    L.circleMarker(p,{radius:9,color:'#FFFFFF',weight:3,fillColor:'#00C8FF',fillOpacity:1}).addTo(current).bindPopup('Inicio del GPX publicado');
+    L.circleMarker(last,{radius:7,color:'#FFFFFF',weight:3,fillColor:'#FF721F',fillOpacity:1}).addTo(current).bindPopup('Final del GPX publicado');
     current.fitBounds(line.getBounds().pad(.12),{animate:false,maxZoom:16});
    }else current.setView(centerForCity(event.city),12,{animate:false});
    requestAnimationFrame(()=>{if(alive)current.invalidateSize()});

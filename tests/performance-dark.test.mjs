@@ -12,7 +12,7 @@ test('Performance visual layer loads last, keeps original ZANCADA v2 pages',()=>
  assert.ok(page.indexOf("import './performance-dark.css';")>page.indexOf("import './zancada-mobile-fix.css';"));
  assert.match(page,/return <EventPassportApp\/>/);
  for(const color of ['#080D15','#FF721F','#00C8FF','#F3F7FF','#324358'])assert.ok(css.includes(color),color);
- assert.match(css,/--zp-display:'Racing Sans One'/);
+ assert.match(css,/--zp-display:'Fugaz One'/);
  assert.match(css,/--zp-condensed:'Barlow Condensed'/);
  assert.match(css,/--zp-body:'Barlow'/);
 });
@@ -41,6 +41,9 @@ test('The photograph-led home and demo functionality remain intact',()=>{
  assert.match(app,/className="ep-bib-object"/);
  assert.match(originalResults,/filterResultCatalog/);
  assert.match(originalResults,/Consultar en Papaya25/);
+ const routeViewer=read('components/route-viewer.tsx');
+ assert.match(routeViewer,/L\.polyline\(route\.points,\{color:'#FF721F'/);
+ assert.doesNotMatch(routeViewer,/#D72638/);
 });
 
 test('Fasty is recolored as a sporty character; no new AI or external data pipeline',()=>{
@@ -50,6 +53,8 @@ test('Fasty is recolored as a sporty character; no new AI or external data pipel
  assert.match(css,/\.ep-fasty-header/);
  assert.match(css,/\.ep-fasty-chat/);
  assert.match(css,/\.ep-fasty-form/);
+ assert.match(css,/\.st-resource-org/);
+ assert.match(css,/\.zr-disclosure/);
  assert.doesNotMatch(page,/performance-metrics|generated-fake-plan|training-ai-api/);
 });
 

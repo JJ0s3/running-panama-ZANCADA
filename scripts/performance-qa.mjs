@@ -19,7 +19,7 @@ try{
   const body=await styles(page.locator('.ep-app'));
   if(body.bg!=='rgb(8, 13, 21)')throw Error('Dark identity missing '+width+': '+JSON.stringify(body));
   const logo=await styles(page.locator('.ep-logo'));
-  if(!logo.font.includes('Racing Sans One'))throw Error('Sport logo type missing '+width+': '+logo.font);
+  if(!logo.font.includes('Fugaz One'))throw Error('Sport logo type missing '+width+': '+logo.font);
   if(width<=960){
    if(!await page.locator('.ep-bottom-nav').isVisible())throw Error('Dock missing at '+width);
    if(await page.locator('.ep-sidebar').isVisible())throw Error('Mobile sidebar visible at '+width);
@@ -42,13 +42,19 @@ try{
    await page.locator('.ep-event-footer button').first().click();
    await page.locator('.ep-event-detail').waitFor();
    await page.locator('#st-event-route').waitFor();
+   const routeShell=await styles(page.locator('.st-route-section'));
+   if(!routeShell.image.includes('gradient'))throw Error('Map shell is not in dark performance theme');
    await page.screenshot({path:'qa/performance-390-evento.png',fullPage:true});
    await page.locator('.ep-bottom-nav button').filter({hasText:'Resultados'}).click();
    await page.locator('.zr-card').first().waitFor();
+   const disclosure=await styles(page.locator('.zr-disclosure'));
+   if(disclosure.bg!=='rgb(21, 36, 58)')throw Error('Results disclosure light-theme leak: '+JSON.stringify(disclosure));
    await page.screenshot({path:'qa/performance-390-resultados.png',fullPage:true});
    await page.locator('.ep-bottom-nav button').filter({hasText:'Preparación'}).click();
    await page.locator('.st-prep-hub').waitFor();
    await page.locator('.ep-fasty-header .ep-avatar').waitFor();
+   const resource=await styles(page.locator('.st-resource-org').first());
+   if(resource.color!=='rgb(0, 200, 255)')throw Error('Fasty resources still use old colors: '+JSON.stringify(resource));
    const fasty=await styles(page.locator('.ep-fasty-header .ep-avatar'));
    if(!fasty.image.includes('gradient'))throw Error('Fasty recolor missing: '+JSON.stringify(fasty));
    await page.screenshot({path:'qa/performance-390-fasty.png',fullPage:true});

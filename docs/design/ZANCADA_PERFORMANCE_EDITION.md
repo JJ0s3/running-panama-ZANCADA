@@ -19,7 +19,7 @@
 | Línea de acero | \`#324358\` | Bordes |
 | Texto secundario | \`#BBC8D8\` | Fechas, explicaciones |
 
-Tipografía: **Racing Sans One** en marca y titulares, **Barlow Condensed** en estadísticas/acciones/etiquetas, **Barlow** para texto de lectura. Fallbacks disponibles cuando falle Google Fonts. Composición tipo carrera: diagonales discretas, profundidad y bordes de energía, sin introducir contenido engañoso.
+Tipografía: **Fugaz One** en marca y titulares, **Barlow Condensed** en estadísticas/acciones/etiquetas, **Barlow** para texto de lectura. Fallbacks disponibles cuando falle Google Fonts. Composición tipo carrera: diagonales discretas, profundidad y bordes de energía, sin introducir contenido engañoso.
 
 ## Lo que se conserva del código
 
