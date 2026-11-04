@@ -67,6 +67,33 @@ try{
    await page.getByText('PARADA 1 DE 10').waitFor({state:'visible',timeout:9000});
    await page.screenshot({path:'qa/performance-390-guia.png',fullPage:true});
   }
+  // New requirement: user can switch between real light/dark themes on every viewport.
+  const switcher=page.getByRole('button',{name:'Cambiar al tema claro'});
+  await switcher.click();
+  if(await page.locator('.ep-app').getAttribute('data-theme')!=='light')throw Error('Light theme not active '+width);
+  const light=await styles(page.locator('.ep-app'));
+  if(light.bg!=='rgb(245, 247, 251)')throw Error('Light background is incorrect '+width+': '+JSON.stringify(light));
+  if(await page.evaluate(()=>localStorage.getItem('zancada-theme-v1'))!=='light')throw Error('Theme preference not saved '+width);
+  const heading=await styles(page.locator('.ep-app h1').first());
+  if(!heading.font.includes('Barlow Condensed'))throw Error('Wide display font still used for headlines '+width+': '+heading.font);
+  if((await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth))>6)throw Error('Light theme horizontal overflow '+width);
+  await page.screenshot({path:'qa/performance-'+width+'-light-home.png',fullPage:true});
+  if(width===390){
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Resultados'}).click();
+   await page.locator('.zr-card').first().waitFor();
+   await page.screenshot({path:'qa/performance-390-light-resultados.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Preparación'}).click();
+   await page.locator('.st-prep-hub').waitFor();
+   await page.screenshot({path:'qa/performance-390-light-fasty.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Mi dorsal'}).click();
+   await page.locator('.ep-bib-object').waitFor();
+   await page.screenshot({path:'qa/performance-390-light-dorsal.png',fullPage:true});
+  }
+  await page.reload({waitUntil:'domcontentloaded'});
+  if(await page.locator('.ep-app').getAttribute('data-theme')!=='light')throw Error('Light theme lost on reload '+width);
+  await page.getByRole('button',{name:'Cambiar al tema oscuro'}).click();
+  if(await page.locator('.ep-app').getAttribute('data-theme')!=='dark')throw Error('Dark theme cannot be restored '+width);
+  if(await page.evaluate(()=>localStorage.getItem('zancada-theme-v1'))!=='dark')throw Error('Dark theme preference not saved '+width);
   if(errors.length)throw Error('JS runtime error '+width+': '+errors.join('; '));
   console.log('QA OK '+width+'px: sports skin, original UX and layout');
   await page.close();
