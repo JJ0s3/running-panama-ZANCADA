@@ -1,40 +1,40 @@
-# ZANCADA — Pasaporte del corredor en Panamá
+# ZANCADA · Pasaporte del corredor 🇵🇦
 
-**Nueva dirección (desde 2026-11-03):** descubre carreras, conoce sus detalles, guárdalas, organiza una participación ya inscrita por medios externos y conserva tu dorsal digital **personal** y su preparación. No es otro tracker GPS.
+**Descubre la carrera. Conoce la ruta. Prepárate. Guarda tu historia.**
 
-## Estado de la rama de desarrollo
-Primera vertical **eventos + inscripción declarada + dorsal + checklist + Fasty**. No se realizan pagos ni inscripciones, no se crean dorsales/QR oficiales y ninguna fuente pública equivale a una alianza con organizadores.
+ZANCADA v2 es una aplicación web *mobile-first* para descubrir carreras en Panamá, consultar rutas y referencias de resultados, organizar preparativos y conservar un pasaporte personal del corredor.
 
-## Ejecutar
-Node.js 22+.
+> **Estado:** versión v2 validada en la PC del proyecto, aún **sin publicar desde la rama local** `chore/zancada-quality-gates`. Esta rama documental no contiene los nuevos componentes de la aplicación.
+
+## Cinco espacios
+
+| Sección | Qué puedes hacer |
+|---|---|
+| **Inicio** | Ver la carrera destacada, tus guardados y accesos relevantes |
+| **Eventos** | Buscar eventos, filtrar distancias, revisar su ficha y consultar mapas integrados |
+| **Resultados** | Filtrar referencias de carreras y abrir sus resultados en la fuente |
+| **Preparación** | Consultar con Fasty, revisar checklist y recursos para el día de carrera |
+| **Mi dorsal** | Registrar una participación declarada y tu número, si lo conoces |
+
+**Importante:** ZANCADA no cobra inscripciones, no certifica resultados, no emite dorsales oficiales y no realiza seguimiento GPS. Las fuentes externas se atribuyen y pueden cambiar. Los datos del pasaporte se guardan en tu navegador, no en una cuenta.
+
+## Identidad visual
+
+Paleta deportiva panameña: marino `#0D1D38`, rojo `#D72638`, dorado `#D9901A`, azul claro `#E6EEFF` y superficies `#F4F6FA`. La versión móvil tiene marca centrada, cinco tarjetas de navegación estables y fondo difuminado. Referencias: Stitch suministrado por el proyecto y [Papaya25 Resultados](https://papaya25.info/resultados.php), sin afiliación.
+
+## Desarrollo
+
+- Next.js 16 / React 19 / TypeScript / CSS; Lucide.
+- Mapas integrados con Leaflet y OpenStreetMap; rutas GPX mediante una API del proyecto.
+- Node.js 22.x usado en CI/Vercel (en desarrollo local se comprobó con Node.js 26).
+- Pruebas: `npm run typecheck`, `npm test`, `npm run build`.
+
 ```bash
 npm install
 npm run dev
-npm test
-npm run typecheck
-npm run build
 ```
 
-## Incluye esta demo
-- Inicio con carrera destacada / próxima participación, fechas y Fasty.
-- Catálogo curado de **10 carreras reales anunciadas públicamente** en Panamá, con fecha de revisión 2026-11-03, enlaces a fuentes y filtros.
-- Ficha con información documentada, enlace de registro externo cuando se identificó y campos ausentes sin inventar.
-- Guardados independientes de participación personal.
-- Formulario explícito «Ya me inscribí afuera» (declaración del usuario, no verificada).
-- Mi Dorsal personal con número solamente si lo aporta el corredor; aviso visible «NO ACREDITA ACCESO» y sin QR oficial.
-- Checklist por participación, agenda inicial, historial personal, Fasty de preguntas frecuentes por reglas y onboarding guiado.
-- Estado local privado en `zancada-event-passport-v1`; no se sincroniza ni se solicitan documentos de identidad.
+**Documentación:** [Especificación v2](docs/product/ZANCADA_V2_ESPECIFICACION.md) · [Guía de usuario](docs/GUIA_USUARIO_ZANCADA_V2.md) · [Publicación](docs/RELEASE_ZANCADA_V2.md) · [Cambios](CHANGELOG.md).
 
-## Fuera de alcance en esta fase
-Inscripciones/pagos reales, verificación del organizador, chips, QR oficiales, clasificaciones verificadas, clima en vivo, fotografías sin licencia, mapas/GPX completos, cuentas multiusuario, portal de organizadores y tracking GPS.
-
-## Documentación técnica y de producto
-- [PROJECT.md](PROJECT.md): visión y prioridades actuales.
-- [ADR-0006](docs/decisions/ADR-0006-eventos-pasaporte.md): decisión formal y límites de confianza.
-- [Blueprint de producto](docs/product/EVENTS_PASSPORT_BLUEPRINT.md): flujos, IA, MVP, Fasty, modelo de datos y roadmap.
-- [Eventos y fuentes](docs/research/PANAMA_RUNNING_EVENTS_2026.md): catálogo curado con evidencias y pendientes.
-- [Revisión Stitch](docs/design/STITCH_2026_EVENT_PASSPORT_REVIEW.md): qué se adapta y qué se rechaza.
-- [DESIGN.md](DESIGN.md): sistema visual activo e historia.
-- [Pruebas automatizadas](.github/workflows/ci.yml) y [QA móvil de eventos](.github/workflows/event-passport-qa.yml).
-
-La implementación previa centrada en entrenamiento sigue disponible en el historial/ramas, pero no es el núcleo del nuevo MVP.
+**Código:** [JJ0s3/running-panama-ZANCADA](https://github.com/JJ0s3/running-panama-ZANCADA)  
+**Publicación prevista:** https://runningpanamajj.vercel.app — verificar SHA desplegada; un enlace existente no acredita que v2 esté en producción.
