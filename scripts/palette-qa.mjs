@@ -49,7 +49,7 @@ try {
    await page.locator('.ep-profile-button').click();
    await page.getByRole('button',{name:/Repetir recorrido/}).click();
    await page.locator('.ep-tour-panel').waitFor();
-   if(!await page.getByText('PARADA 1 DE 10').count())throw Error('Original 10 step tour missing');
+   await page.getByText('PARADA 1 DE 10').waitFor({state:'visible',timeout:9000});
    await page.screenshot({path:'qa/palette-390-guia.png',fullPage:true});
   }
   if(errors.length)throw Error('Runtime errors: '+errors.join('; '));
