@@ -64,3 +64,12 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Violeta y amarillo mantenidos como acentos coherentes.
 - Tests de regresión revisan que los destinos marcados coincidan con los selectores y que no vuelva a cargarse el CSS del tema anterior.
 - Verificación pendiente: iPhone Safari real; no considerar CI prueba visual.
+
+## 2026-11-03 — Diseño espacial derivado de DesignMD
+- Rama `design/zancada-spatial-3d-direction` desde `fix/zancada-tour-spotlight-mobile-v2`.
+- Fuente DesignMD 3D & Hyperrealism estudiada: tipografía nativa Apple, profundidad/material, sombras, composición irregular y motion. No se copia la web ni sus recursos protegidos.
+- Implementados `SpatialHero`, `FastyArtifact` y `SpatialFastyLanding` en componente propio; estilizados en `app/spatial-edition.css`.
+- Inicio reorganizado: titular editorial, escultura Z, sesión y acciones. Fasty pasa a panel narrativo de material distintivo.
+- Métricas: banda continua en lugar de cuadrícula convencional. Mi Plan conserva cálculo real y recibe superficie con profundidad.
+- Sin frameworks adicionales ni promesas de WebGL: pseudo-3D CSS, compatible con reducción de movimiento.
+- Pruebas: comprobar montaje y continuidad del tour; CI, typecheck y build; revisión visual Safari pendiente.
