@@ -1,35 +1,40 @@
-# ZANCADA · Running Panamá
+# ZANCADA — Pasaporte del corredor en Panamá
 
-Demo funcional mobile-first para explorar eventos de running, establecer objetivos, organizar entrenamientos, registrar actividades y consultar un asistente accionable de demostración.
+**Nueva dirección (desde 2026-11-03):** descubre carreras, conoce sus detalles, guárdalas, organiza una participación ya inscrita por medios externos y conserva tu dorsal digital **personal** y su preparación. No es otro tracker GPS.
 
-## Estado
-**v0.1 · Fundación de la demo**. Eventos sintéticos claramente identificados; información guardada en el navegador. No hay autenticación, IA generativa ni inscripciones reales todavía.
+## Estado de la rama de desarrollo
+Primera vertical **eventos + inscripción declarada + dorsal + checklist + Fasty**. No se realizan pagos ni inscripciones, no se crean dorsales/QR oficiales y ninguna fuente pública equivale a una alianza con organizadores.
 
-## Empezar
-Requiere Node.js 22 o superior.
-
+## Ejecutar
+Node.js 22+.
 ```bash
 npm install
 npm run dev
+npm test
+npm run typecheck
+npm run build
 ```
 
-Abrir http://localhost:3000. Pruebas: `npm test`; comprobación de tipos: `npm run typecheck`; compilación: `npm run build`.
+## Incluye esta demo
+- Inicio con carrera destacada / próxima participación, fechas y Fasty.
+- Catálogo curado de **10 carreras reales anunciadas públicamente** en Panamá, con fecha de revisión 2026-11-03, enlaces a fuentes y filtros.
+- Ficha con información documentada, enlace de registro externo cuando se identificó y campos ausentes sin inventar.
+- Guardados independientes de participación personal.
+- Formulario explícito «Ya me inscribí afuera» (declaración del usuario, no verificada).
+- Mi Dorsal personal con número solamente si lo aporta el corredor; aviso visible «NO ACREDITA ACCESO» y sin QR oficial.
+- Checklist por participación, agenda inicial, historial personal, Fasty de preguntas frecuentes por reglas y onboarding guiado.
+- Estado local privado en `zancada-event-passport-v1`; no se sincroniza ni se solicitan documentos de identidad.
 
-## Qué incluye
-- Dashboard con actividades y progreso real del estado local.
-- Perfil editable, objetivo 5K/10K/media maratón y agenda de cuatro semanas.
-- Registro manual de actividad con kilómetros, tiempo, esfuerzo y notas.
-- Catálogo de **cuatro eventos ficticios** con filtros y favoritos.
-- Asistente de reglas: preguntas sobre progreso y agenda, propuestas de registro, meta y favoritos con confirmación.
-- Recorrido guiado opcional y navegación adaptativa a móviles.
+## Fuera de alcance en esta fase
+Inscripciones/pagos reales, verificación del organizador, chips, QR oficiales, clasificaciones verificadas, clima en vivo, fotografías sin licencia, mapas/GPX completos, cuentas multiusuario, portal de organizadores y tracking GPS.
 
-## Límites importantes
-- El progreso vive en `localStorage` de ese navegador: no hay sincronización entre dispositivos ni cuentas reales. No introducir información sensible.
-- Los eventos son ficticios. No son convocatorias reales ni incluyen enlaces oficiales de inscripción.
-- Los planes son demostrativos y no constituyen indicaciones médicas o entrenamiento individual validado.
-- La integración Supabase y el asistente con modelo de IA se incorporarán en fases posteriores.
+## Documentación técnica y de producto
+- [PROJECT.md](PROJECT.md): visión y prioridades actuales.
+- [ADR-0006](docs/decisions/ADR-0006-eventos-pasaporte.md): decisión formal y límites de confianza.
+- [Blueprint de producto](docs/product/EVENTS_PASSPORT_BLUEPRINT.md): flujos, IA, MVP, Fasty, modelo de datos y roadmap.
+- [Eventos y fuentes](docs/research/PANAMA_RUNNING_EVENTS_2026.md): catálogo curado con evidencias y pendientes.
+- [Revisión Stitch](docs/design/STITCH_2026_EVENT_PASSPORT_REVIEW.md): qué se adapta y qué se rechaza.
+- [DESIGN.md](DESIGN.md): sistema visual activo e historia.
+- [Pruebas automatizadas](.github/workflows/ci.yml) y [QA móvil de eventos](.github/workflows/event-passport-qa.yml).
 
-## Documentación
-- [PROJECT.md](PROJECT.md): alcance, arquitectura, criterios y ciclo de desarrollo.
-- [DESIGN.md](DESIGN.md): identidad y reglas de UX.
-- [CI](.github/workflows/ci.yml): pruebas, typecheck y build en GitHub Actions.
+La implementación previa centrada en entrenamiento sigue disponible en el historial/ramas, pero no es el núcleo del nuevo MVP.
