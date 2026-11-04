@@ -43,7 +43,7 @@ test('The new navigation has five accessible icon targets and a floating ink pil
 
 test('Generic race photos are removed while routes, sources, Fasty and passport persist',()=>{
  assert.doesNotMatch(app,/images\.unsplash\.com|za-detail-event-photo|za-race-photo/);
- assert.match(app,/className="zb-detail-cover"/);
+ assert.match(app,/className="ep-detail-cover zb-detail-cover"/);
  assert.match(app,/<RouteViewer event=\{selectedEvent\}/);
  assert.match(app,/<PreparationHub event=\{eventForFasty\}/);
  assert.match(app,/Ya me inscribí afuera/);
