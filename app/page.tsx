@@ -1,3 +1,4 @@
+import UltraRunner from '../components/ultraviolet-runner';
 import EventPassportApp from '../components/event-passport-app';
 import './ultraviolet.css';
 import './plan-ios.css';
@@ -10,5 +11,5 @@ import './race-day-guide.css';
 import './tactile-overhaul.css';
 import './results-v2.css';
 import './zancada-mobile-fix.css';
-import './option-b.css';
+import './palette-refresh.css';
 export default function Home(){ return <EventPassportApp/>; }

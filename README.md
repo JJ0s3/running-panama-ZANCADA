@@ -1,45 +1,40 @@
-# zancada.
+# ZANCADA · Pasaporte del corredor 🇵🇦
 
-**Mañana de carrera.**
+**Descubre la carrera. Conoce la ruta. Prepárate. Guarda tu historia.**
 
-Tu pasaporte de carreras en Panamá: descubre eventos, consulta recorridos documentados, encuentra resultados publicados y organiza tus preparativos.
+ZANCADA v2 es una aplicación web *mobile-first* para descubrir carreras en Panamá, consultar rutas y referencias de resultados, organizar preparativos y conservar un pasaporte personal del corredor.
 
-> **Rediseño propuesto — Opción B:** tema Papel + Mango + Pacífico basado en la guía PDF entregada por el proyecto. Está en revisión: **producción mantiene ZANCADA v2 hasta que la preview sea aprobada**.
+> **Estado:** versión v2 validada en la PC del proyecto, aún **sin publicar desde la rama local** `chore/zancada-quality-gates`. Esta rama documental no contiene los nuevos componentes de la aplicación.
 
 ## Cinco espacios
 
-| Pantalla | Función |
+| Sección | Qué puedes hacer |
 |---|---|
-| Inicio | Próxima carrera, cuenta regresiva, próximas, resultados y guardadas |
-| Eventos | Carreras curadas, filtros, fechas, mapas GPX y registro externo |
-| Resultados | Fuentes públicas de carreras y filtros, no tiempos inventados |
-| Plan | Fasty y recursos generales para preparar tu siguiente salida |
-| Dorsal | Historial personal y participaciones autodeclaradas, no oficiales |
+| **Inicio** | Ver la carrera destacada, tus guardados y accesos relevantes |
+| **Eventos** | Buscar eventos, filtrar distancias, revisar su ficha y consultar mapas integrados |
+| **Resultados** | Filtrar referencias de carreras y abrir sus resultados en la fuente |
+| **Preparación** | Consultar con Fasty, revisar checklist y recursos para el día de carrera |
+| **Mi dorsal** | Registrar una participación declarada y tu número, si lo conoces |
 
-Los guardados y checklist se almacenan solo en este navegador. No hay pagos, inscripción propia, dorsales oficiales ni GPS de seguimiento.
+**Importante:** ZANCADA no cobra inscripciones, no certifica resultados, no emite dorsales oficiales y no realiza seguimiento GPS. Las fuentes externas se atribuyen y pueden cambiar. Los datos del pasaporte se guardan en tu navegador, no en una cuenta.
 
-## Diseño Opción B
+## Identidad visual
 
-**Papel** \`#F5F1E8\` · **Mango** \`#FF6B2C\` · **Pacífico** \`#1E4FD8\` · **Tinta** \`#15171C\`. Archivo y DM Mono. Tarjetas redondeadas, botones en píldora, fechas azules, navegación inferior oscura de cinco iconos y un onboarding breve.
+Paleta deportiva panameña: marino `#0D1D38`, rojo `#D72638`, dorado `#D9901A`, azul claro `#E6EEFF` y superficies `#F4F6FA`. La versión móvil tiene marca centrada, cinco tarjetas de navegación estables y fondo difuminado. Referencias: Stitch suministrado por el proyecto y [Papaya25 Resultados](https://papaya25.info/resultados.php), sin afiliación.
 
-- [Decisiones y trazabilidad del rediseño](docs/design/ZANCADA_OPTION_B_2026.md)
-- [Especificación funcional v2](docs/product/ZANCADA_V2_ESPECIFICACION.md)
-- [Manual de usuario](docs/GUIA_USUARIO_ZANCADA_V2.md)
-- [Registro de cambios](CHANGELOG.md)
+## Desarrollo
 
-## Tecnologías y desarrollo
+- Next.js 16 / React 19 / TypeScript / CSS; Lucide.
+- Mapas integrados con Leaflet y OpenStreetMap; rutas GPX mediante una API del proyecto.
+- Node.js 22.x usado en CI/Vercel (en desarrollo local se comprobó con Node.js 26).
+- Pruebas: `npm run typecheck`, `npm test`, `npm run build`.
 
-Next.js (App Router), React, TypeScript, Leaflet + OpenStreetMap, CSS y pruebas con \`node --test\`.
-
-\`\`\`bash
+```bash
 npm install
 npm run dev
-npm run typecheck
-npm test
-npm run build
-\`\`\`
+```
 
-**Repositorio:** https://github.com/JJ0s3/running-panama-ZANCADA  
-**Web de producción (v2 actual):** https://runningpanamajj.vercel.app
+**Documentación:** [Especificación v2](docs/product/ZANCADA_V2_ESPECIFICACION.md) · [Guía de usuario](docs/GUIA_USUARIO_ZANCADA_V2.md) · [Publicación](docs/RELEASE_ZANCADA_V2.md) · [Cambios](CHANGELOG.md).
 
-*Producto independiente. Catálogo y resultados con fuentes atribuidas. Fasty es una ayuda de preparación en modo demostración; no presta asesoría médica ni representa una IA remota.*
+**Código:** [JJ0s3/running-panama-ZANCADA](https://github.com/JJ0s3/running-panama-ZANCADA)  
+**Publicación prevista:** https://runningpanamajj.vercel.app — verificar SHA desplegada; un enlace existente no acredita que v2 esté en producción.

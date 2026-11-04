@@ -3,35 +3,36 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const app=read('components/event-passport-app.tsx');
-const theme=read('app/option-b.css');
+const theme=read('app/tactile-overhaul.css');
 const page=read('app/page.tsx');
+const base=read('app/event-passport.css');
 const model=read('lib/event-passport.ts');
-
-test('User-supplied Opción B overrides previous prototype visual layers',()=>{
- assert.ok(page.indexOf("import './option-b.css'")>page.indexOf("import './tactile-overhaul.css'"));
- assert.match(theme,/#F5F1E8/);
- assert.match(theme,/#FF6B2C/);
- assert.match(theme,/#1E4FD8/);
- assert.match(theme,/--zb-font:'Archivo'/);
+test('Stitch Tactile Light is the active theme and preserves event-first design',()=>{
+ assert.ok(page.indexOf("import './tactile-overhaul.css'")>page.indexOf("import './avon-inspiration.css'"));
+ assert.match(base,/Space\+Grotesk/);
+ assert.match(base,/Hanken\+Grotesk/);
+ assert.match(theme,/#D72638/);
+ assert.match(theme,/#0D1D38/);
+ assert.match(theme,/#E6EEFF/);
+ assert.match(theme,/#F4F6FA/);
 });
-
-test('Actual GPS routes remain inside ZANCADA',()=>{
+test('Actual GPS routes appear inside the app, not external-only redirection',()=>{
  assert.match(app,/import RouteViewer from '\.\/route-viewer'/);
  assert.match(app,/<RouteViewer event=\{selectedEvent\}/);
+ assert.match(app,/className="st-home-metrics"/);
  assert.match(read('components/route-viewer.tsx'),/L\.polyline\(route\.points/);
  assert.match(read('lib/route-sources.ts'),/papaya25\.info\/events\/carrera-avon\/routes\/15\/gpx/);
  assert.match(read('app\/api\/race-route\/route.ts'),/routeFor\(id,distance\)/);
 });
-
-test('Fasty is still in Plan and not displayed as a generic AI-led home block',()=>{
+test('Fasty remains focused within preparation, not elevated in the home',()=>{
  assert.match(app,/import PreparationHub/);
  assert.match(app,/<PreparationHub event=\{eventForFasty\}/);
- assert.match(app,/\['fasty','Plan',Activity\]/);
+ assert.match(app,/\['fasty','Preparación',Footprints\]/);
  assert.doesNotMatch(app,/className="ep-fasty-strip"/);
 });
-
-test('No illustrative event photos are falsely attributed; registration remains external',()=>{
- assert.doesNotMatch(app,/images\.unsplash\.com/);
+test('Photos are still illustrative and registration remains external',()=>{
+ assert.match(app,/images\.unsplash\.com/);
+ assert.match(app,/Fotografía ilustrativa/);
  assert.match(app,/Ya me inscribí afuera/);
  assert.match(model,/distancesKm:\[5,10\]/);
  assert.match(model,/Fuentes discrepan/);

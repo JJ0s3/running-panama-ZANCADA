@@ -1,16 +1,23 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {ArrowRight,ArrowLeft,Compass,Flag,ShieldCheck,X} from 'lucide-react';
+import {ArrowRight,ArrowLeft,Compass,Flag,Map,ShieldCheck,Ticket,X} from 'lucide-react';
 import {clipTourFocus} from '../lib/tour-geometry';
 
 export type EventTab='inicio'|'eventos'|'resultados'|'dorsal'|'fasty';
 type Step={target:string;tab:EventTab;eventId?:string;title:string;copy:string};
 const steps:Step[]=[
- {target:'intro',tab:'inicio',title:'Tu punto de partida',copy:'Descubre tu próxima carrera desde la tarjeta mango. Puedes guardar el evento sin inscribirte todavía.'},
- {target:'catalog',tab:'eventos',title:'Explora carreras reales',copy:'Revisa las fechas, filtra distancias y abre cada ficha. Los recorridos confirmados se muestran en el mapa dentro de ZANCADA.'},
- {target:'fasty',tab:'fasty',title:'Prepárate para la salida',copy:'Fasty te ayuda a organizar lo esencial. Después puedes consultar Resultados o guardar tu dorsal personal.'}
+ {target:'intro',tab:'inicio',title:'Tu punto de partida',copy:'Conoce ZANCADA: aquí descubres eventos, organizas tu asistencia y conservas tus carreras.'},
+ {target:'upcoming',tab:'inicio',title:'Tu próxima salida',copy:'La portada destaca una carrera documentada. Abre la ficha para descubrir su fecha, distancias y preparación.'},
+ {target:'catalog',tab:'eventos',title:'Explora tu calendario',copy:'Busca por ciudad o distancia. Desliza para explorar tarjetas e información de las carreras.'},
+ {target:'event-detail',tab:'eventos',eventId:'avon-2026',title:'Descubre los detalles',copy:'Fecha, lugar y distancias antes de inscribirte. Más abajo encontrarás un mapa interactivo del recorrido publicado.'},
+ {target:'save-event',tab:'eventos',eventId:'avon-2026',title:'Guárdala para después',copy:'Guardar una carrera crea un acceso rápido, pero nunca inscribe ni realiza pagos.'},
+ {target:'register-event',tab:'eventos',eventId:'avon-2026',title:'Tu inscripción es externa',copy:'Después de inscribirte con la organización, registra aquí tu participación personal.'},
+ {target:'bib',tab:'dorsal',title:'Tu dorsal de recuerdo',copy:'Conserva tu historial y el número que tú introduzcas. No es una acreditación oficial.'},
+ {target:'preparation',tab:'dorsal',title:'Todo listo para salir',copy:'Marca tu checklist y vuelve a consultar la ficha del evento cuando falten detalles.'},
+ {target:'calendar',tab:'inicio',title:'Organiza las fechas',copy:'Puedes guardar eventos y consultar tu agenda sin perderte en un registro de entrenamientos.'},
+ {target:'fasty',tab:'fasty',title:'Fasty vive en Preparación',copy:'Aquí puedes pedir orientación sobre cómo prepararte, revisar fuentes útiles y abrir el mapa de tu próxima carrera.'}
 ];
-const chapters=[{at:0,label:'Inicio',Icon:Compass},{at:1,label:'Carreras',Icon:Flag},{at:2,label:'Preparación',Icon:ShieldCheck}];
+const chapters=[{at:0,label:'Inicio',Icon:Compass},{at:2,label:'Explorar',Icon:Flag},{at:3,label:'Ficha y mapa',Icon:Map},{at:6,label:'Mi dorsal',Icon:Ticket},{at:9,label:'Preparación',Icon:ShieldCheck}];
 export default function EventTour({onNavigate,onClose}:{onNavigate:(tab:EventTab,eventId?:string)=>void;onClose:()=>void}){
  const [index,setIndex]=useState(0);
  const [focus,setFocus]=useState<{top:number;left:number;width:number;height:number}|null>(null);
@@ -63,7 +70,7 @@ export default function EventTour({onNavigate,onClose}:{onNavigate:(tab:EventTab
    <div className="ep-tour-outline" style={focus} aria-hidden="true"/>
   </>}
   <section ref={panel} className="ep-tour-panel st-tour-panel">
-   <div className="ep-tour-head"><div className="st-tour-symbol"><Compass size={22}/></div><div><strong>TU PRIMERA ZANCADA</strong><small>{moving?'DESPLAZANDO HACIA LA SECCIÓN':`PARADA ${index+1} DE ${steps.length}`}</small></div><button aria-label="Cerrar recorrido" type="button" onClick={close}><X size={20}/></button></div>
+   <div className="ep-tour-head"><div className="st-tour-symbol"><Compass size={22}/></div><div><strong>RECORRIDO INTERACTIVO</strong><small>{moving?'DESPLAZANDO HACIA LA SECCIÓN':`PARADA ${index+1} DE ${steps.length}`}</small></div><button aria-label="Cerrar recorrido" type="button" onClick={close}><X size={20}/></button></div>
    <nav className="st-tour-chapters" aria-label="Saltar entre capítulos">
     {chapters.map(({at,label,Icon})=><button key={label} type="button" aria-pressed={index===at} className={index===at?'active':''} onClick={()=>setIndex(at)}><Icon size={15}/><span>{label}</span></button>)}
    </nav>
