@@ -683,3 +683,36 @@ body:has(.ep-app){color-scheme:dark}
 .ep-app .zr-disclosure>svg{color:var(--zp-mango)!important}
 .ep-app .zr-disclosure a{color:var(--zp-blue)!important}
 .ep-app .zr-disclosure small,.ep-app .zr-filter-foot>span{color:var(--zp-muted)!important}
+
+
+/* Racing typography final pass: visual weight must survive Google Fonts failure.
+   Strong italic silhouettes like the approved athletic reference, with mobile fit. */
+.ep-app :is(
+ .ep-home-heading h1,.ep-list-heading h1,.ep-fasty-header h1,.ep-bib-view>h1,
+ .ep-detail-text h1,.zr-hero h1,.za-journey-heading h2,.ep-section-heading h2,
+ .zr-filter-head h2,.za-race-guide-heading h2
+){
+ font-family:'Fugaz One',Impact,'Arial Black','Barlow Condensed',sans-serif!important;
+ font-style:italic!important;
+ font-weight:900!important;
+ font-synthesis:weight style!important;
+ -webkit-text-stroke:.45px currentColor;
+ letter-spacing:-.02em!important;
+}
+.ep-app .ep-logo{
+ font-family:'Fugaz One',Impact,'Arial Black','Barlow Condensed',sans-serif!important;
+ font-style:italic!important;
+ font-weight:900!important;
+ font-synthesis:weight style!important;
+ -webkit-text-stroke:.25px currentColor;
+}
+.ep-app :is(.ep-bib-number,.ep-next-event .ep-hero-distance,.st-home-metrics button strong,.zr-hero-foot strong){
+ font-family:'Fugaz One',Impact,'Arial Black','Barlow Condensed',sans-serif!important;
+ font-style:italic!important;
+ font-weight:900!important;
+ font-synthesis:weight style!important;
+}
+@media(max-width:390px){
+ .ep-app .ep-home-heading h1{font-size:clamp(29px,8.1vw,37px)!important}
+ .ep-app .ep-logo{font-size:clamp(22px,5.8vw,28px)!important}
+}
