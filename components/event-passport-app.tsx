@@ -1,6 +1,6 @@
 'use client';
 import {useCallback,useEffect,useMemo,useState} from 'react';
-import {ArrowLeft,ArrowRight,ArrowUpRight,Bookmark,CalendarDays,Check,CheckCircle2,ChevronRight,ClipboardCheck,Clock3,Compass,ExternalLink,Flag,Footprints,Info,MapPin,Search,Send,Ticket,UserRound,X} from 'lucide-react';
+import {Route,ArrowLeft,ArrowRight,ArrowUpRight,Bookmark,CalendarDays,Check,CheckCircle2,ChevronRight,ClipboardCheck,Clock3,Compass,ExternalLink,Flag,Footprints,Info,MapPin,Search,Send,Ticket,UserRound,X} from 'lucide-react';
 import {events,eventById,emptyPassport,STORAGE_KEY,dateLabel,daysToEvent,distanceLabel,eventChecklist,participationFor,recordParticipation,sanitizedPassport,toggleChecklist,toggleSaved} from '../lib/event-passport';
 import type {EventRecord,PassportState,Participation} from '../lib/event-passport';
 import EventTour from './event-tour';
