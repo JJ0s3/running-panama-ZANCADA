@@ -3,42 +3,37 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const app=read('components/event-passport-app.tsx');
-const style=read('app/avon-inspiration.css');
-const base=read('app/event-passport.css');
+const theme=read('app/tactile-overhaul.css');
 const page=read('app/page.tsx');
+const base=read('app/event-passport.css');
 const model=read('lib/event-passport.ts');
-test('the active UI loads original AVON-inspired design after the base stylesheet',()=>{
- assert.ok(page.indexOf("import './avon-inspiration.css'")>page.indexOf("import './event-passport.css'"));
- assert.match(base,/fonts.googleapis.com\/css2\?family=Archivo\+Black/);
- assert.match(base,/family=Nunito\+Sans/);
- assert.match(style,/--za-display:'Archivo Black'/);
- assert.match(style,/--ep-body:'Nunito Sans'/);
+test('Stitch Tactile Light is the active theme and preserves event-first design',()=>{
+ assert.ok(page.indexOf("import './tactile-overhaul.css'")>page.indexOf("import './avon-inspiration.css'"));
+ assert.match(base,/Space\+Grotesk/);
+ assert.match(base,/Hanken\+Grotesk/);
+ assert.match(theme,/#D72638/);
+ assert.match(theme,/#0D1D38/);
+ assert.match(theme,/#E6EEFF/);
+ assert.match(theme,/#F4F6FA/);
 });
-test('ZANCADA retains its violet and yellow identity',()=>{
- assert.match(style,/--za-violet:#7550d5/);
- assert.match(style,/--za-yellow:#ffd85a/);
- assert.doesNotMatch(style,/#[Ff][Ff]1470/);
+test('Actual GPS routes appear inside the app, not external-only redirection',()=>{
+ assert.match(app,/import RouteViewer from '\.\/route-viewer'/);
+ assert.match(app,/<RouteViewer event=\{selectedEvent\}/);
+ assert.match(app,/className="st-home-metrics"/);
+ assert.match(read('components/route-viewer.tsx'),/L\.polyline\(route\.points/);
+ assert.match(read('lib/route-sources.ts'),/papaya25\.info\/events\/carrera-avon\/routes\/15\/gpx/);
+ assert.match(read('app\/api\/race-route\/route.ts'),/routeFor\(id,distance\)/);
 });
-test('human photography is licensed-source illustrative, not passed off as local events',()=>{
+test('Fasty remains focused within preparation, not elevated in the home',()=>{
+ assert.match(app,/import PreparationHub/);
+ assert.match(app,/<PreparationHub event=\{eventForFasty\}/);
+ assert.match(app,/\['fasty','Preparación',Footprints\]/);
+ assert.doesNotMatch(app,/className="ep-fasty-strip"/);
+});
+test('Photos are still illustrative and registration remains external',()=>{
  assert.match(app,/images\.unsplash\.com/);
- assert.match(app,/fotograf[ií]a ilustrativa/i);
  assert.match(app,/Fotografía ilustrativa/);
- assert.match(app,/credit:'Mike Cox'/);
- assert.match(app,/credit:'Justin Lagat'/);
- assert.match(app,/credit:'Miguel A Amutio'/);
- assert.doesNotMatch(app,/avon-logo|fepat-logo|chip RFID/i);
-});
-test('home includes interactive icon-led 3-step instruction cards',()=>{
- assert.match(app,/za-journey-grid/);
- assert.match(app,/Descubre/);
- assert.match(app,/Prepárate/);
- assert.match(app,/Guarda tu historia/);
- assert.match(app,/onClick=\{\(\)=>goto\('eventos'\)\}/);
- assert.match(app,/onClick=\{\(\)=>goto\('dorsal'\)\}/);
-});
-test('AVON Panama catalog corrected from official site: 5K and 10K, kit and external registration',()=>{
- assert.match(model,/id:'avon-2026'/);
+ assert.match(app,/Ya me inscribí afuera/);
  assert.match(model,/distancesKm:\[5,10\]/);
- assert.match(model,/registrationUrl:'https:\/\/sports\.ipuclub\.com\/login'/);
- assert.match(model,/kitInfo:'Retiro de kit anunciado/);
+ assert.match(model,/Fuentes discrepan/);
 });

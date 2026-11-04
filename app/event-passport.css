@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 :root{--ep-bg:#f5f7fc;--ep-navy:#14243a;--ep-muted:#5e6b80;--ep-red:#bc1939;--ep-red-dark:#8c102c;--ep-amber:#eccb8e;--ep-line:#dbe3ed;--ep-white:#fff;--ep-space:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;--ep-body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif}
 html{scroll-behavior:auto}
 body:has(.ep-app){background:var(--ep-bg)}
