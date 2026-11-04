@@ -99,3 +99,12 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Primera interfaz de desarrollo: `lib/event-passport.ts`, `components/event-passport-app.tsx`, `components/event-tour.tsx`, `app/event-passport.css`; flujo guardado → participación declarada → dorsal sin QR oficial → checklist.
 - Detección y solución de falsa falla de test: compilación test TypeScript a ES5 vaciaba `[...new Set(...)]`; se fijó target ES2022, correspondiente al entorno moderno de ejecución.
 - PR #12 en borrador. QA de iPhone/CI y revisión de fuentes/Safari antes de fusionar; producción no modificada.
+
+## 2026-11-03 — Inspección Carrera AVON y revisión human-centered
+- Se inspeccionó `https://carreraavon.com/` mediante Playwright en GitHub Actions: WordPress, Elementor/Pro, Hello Elementor, Archivo Black + Nunito Sans, jQuery, Swiper y GTM confirmados en sus recursos públicos.
+- No se migra de Next.js a WordPress: se toman composición, flujo paso a paso, iconografía y fotografía de personas como patrones, no dependencia técnica.
+- Se crean `docs/design/CARRERA_AVON_REFERENCE_2026.md`, `app/avon-inspiration.css`, `tests/avon-design.test.mjs` y QA móvil.
+- Home incorpora hero fotográfico y guía interactiva de tres pasos (Descubre → Prepárate → Guarda tu historia). Eventos usan fotografías genéricas licenciadas con aviso de que no pertenecen a la carrera.
+- Colores ZANCADA violeta/amarillo conservados; Google Fonts simplificadas a Archivo Black y Nunito Sans.
+- Los datos AVON Panamá se corrigen a 5K y 10K con fuente primaria y detalles de kit, sin atribuir inscripción local ni QR.
+- Pruebas 375/390 px y auditoría de navegación/persistencia en la rama. Revisar Safari real antes de aprobar PR.
