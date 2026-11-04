@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 body:has(.uv-app){margin:0;background:#121318;color:#e3e1e9}
 body:has(.uv-app) *{box-sizing:border-box}
 .uv-app{--uv-bg:#121318;--uv-card:#1e1f25;--uv-elevated:#292a2f;--uv-violet:#7628f9;--uv-light:#cfbdff;--uv-muted:#b5b0bc;--uv-line:#34343f;--uv-cyan:#7df4ff;min-height:100dvh;background:var(--uv-bg);color:#e3e1e9;font-family:Inter,system-ui,-apple-system,sans-serif;font-size:14px;letter-spacing:-.01em}
