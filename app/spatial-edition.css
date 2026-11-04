@@ -132,3 +132,37 @@
  .sp-action-primary,.sp-action-secondary{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.sp-object-main,.sp-object-depth,.sp-fasty-body,.sp-orbit{animation:none!important;transition:none!important}}
+
+/* One continuous training ledger, instead of a dashboard grid. */
+.uv-app .sp-metrics{display:grid;grid-template-columns:1.65fr 1fr 1fr;gap:0;border:1px solid #ffffff24;border-radius:11px;background:linear-gradient(110deg,#24223b,#171723);overflow:hidden;box-shadow:0 11px 27px #0005}
+.uv-app .sp-metrics .uv-metric{background:transparent;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;border:0;border-radius:0;padding:22px 26px;box-shadow:none;position:relative}
+.uv-app .sp-metrics .uv-metric:not(:first-child){border-left:1px solid #ffffff20}
+.uv-app .sp-metrics .uv-metric:first-child{background:radial-gradient(ellipse at 10% 0%,#dacaba27,transparent 70%)}
+.uv-app .sp-metrics .uv-metric>span{color:#d9d2dd;font-size:12px;letter-spacing:.015em;font-weight:620}
+.uv-app .sp-metrics .uv-metric strong{font-size:clamp(35px,5vw,60px);font-weight:630;letter-spacing:-.06em;color:#f5f1f7}
+.uv-app .sp-metrics .uv-metric:first-child strong{color:#ffdb79}
+.uv-app .sp-metrics .uv-metric small{font-size:11px;color:#bfb5c7;font-weight:560;line-height:1.3;letter-spacing:0}
+.uv-app .zi-plan-overview{background:linear-gradient(126deg,#201d32,#393149 52%,#1a1b2c);border:1px solid #ffffff2b;border-radius:13px;box-shadow:inset 0 1px 1px #ffffff26,0 14px 33px #0006;position:relative;overflow:hidden}
+.uv-app .zi-plan-overview:after{content:"";position:absolute;right:-140px;top:-100px;width:300px;height:300px;border:1px solid #ffffff2a;border-radius:50%;box-shadow:0 0 0 24px #ffffff07,0 0 0 48px #ffffff07;pointer-events:none}
+.uv-app .zi-progress-rail{background:#171621;border:1px solid #ffffff1f;height:9px;box-shadow:inset 0 1px 3px #0009}
+.uv-app .zi-progress-rail span{background:linear-gradient(90deg,#8975e3,#c6b2f0,#ffda64);box-shadow:0 0 10px #ecd8a755}
+.uv-app .zi-week-stats{background:#292433;border:1px solid #ffffff1c;border-radius:11px}
+.uv-app .zi-week-stats div{border-radius:8px}
+.uv-app .zi-week-stats div:first-child{background:linear-gradient(145deg,#f8edcc,#d8c0d5);color:#25202b}
+.uv-app .zi-focus{border-radius:12px;background:linear-gradient(136deg,#252135,#1a1924);box-shadow:inset 0 1px 0 #ffffff0b}
+.uv-app .zi-fasty-tip{background:#c5b6d626;border:1px solid #ffffff14;border-radius:11px}
+.uv-app .zi-main-action{background:var(--sp-gold);color:#201b26;border-radius:9px;font-weight:690}
+.uv-app .zi-sub-action{background:#ffffff0b;border-radius:9px}
+.uv-app .zi-session{transition:background .18s ease}
+.uv-app .zi-session:hover{background:#ffffff09}
+.uv-app .zi-day-picker button.active{background:#7060a8;border-color:#b9a6dd}
+@media(max-width:760px){
+ .uv-app .sp-metrics{grid-template-columns:1fr 1fr}
+ .uv-app .sp-metrics .uv-metric{min-height:119px;padding:17px}
+ .uv-app .sp-metrics .uv-metric:nth-child(2){border-left:1px solid #ffffff22}
+ .uv-app .sp-metrics .uv-metric:last-child{grid-column:1/-1;min-height:92px;border-top:1px solid #ffffff20;border-left:0}
+ .uv-app .sp-metrics .uv-metric strong{font-size:clamp(32px,9vw,43px)}
+ .uv-app .sp-metrics .uv-metric:last-child{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px}
+ .uv-app .sp-metrics .uv-metric:last-child small{grid-column:1/-1;max-width:none;text-align:left}
+ .uv-app .sp-metrics .uv-metric:last-child strong{grid-column:2;grid-row:1}
+}
