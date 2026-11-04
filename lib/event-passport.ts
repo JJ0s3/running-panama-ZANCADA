@@ -43,6 +43,7 @@ export function sanitizedPassport(value:unknown):PassportState{
  console.log('STATE_DEBUG',JSON.stringify({raw:value,isArr:Array.isArray(p.savedIds),some:events.some(e=>e.id==='avon-2026')}));
  const ids=new Set(events.map(e=>e.id));
  const saved=(Array.isArray(p.savedIds)?p.savedIds:[]).filter((id):id is string=>typeof id==='string'&&events.some(e=>e.id===id));
+ console.log('FILTER_DEBUG',JSON.stringify({saved,pred:(p.savedIds??[]).map(id=>({id,isString:typeof id==='string',same:events.some(e=>e.id===id)}))}));
  const participations=Array.isArray(p.participations)?p.participations.filter((x):x is Participation=>Boolean(x&&typeof x.eventId==='string'&&ids.has(x.eventId)&&typeof x.distanceKm==='number'&&eventById(x.eventId)?.distancesKm.includes(x.distanceKm)&&typeof x.declaredAt==='string')).map(x=>({...x,bibNumber:typeof x.bibNumber==='string'?x.bibNumber.slice(0,24):undefined})):[];
  const completedChecklist:Record<string,string[]>={};
  if(p.completedChecklist&&typeof p.completedChecklist==='object'){
