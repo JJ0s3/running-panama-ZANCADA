@@ -1,5 +1,5 @@
 'use client';
-import {ArrowUpRight,Timer,Footprints,Route,MapPin} from 'lucide-react';
+import {ArrowUpRight,Timer,Footprints,Route} from 'lucide-react';
 
 export function RunningHero({sessionName,minutes,onPlan,onFasty}:{sessionName:string;minutes:number;onPlan:()=>void;onFasty:()=>void}){
  return <section className="run-hero" aria-label="Tu próximo entrenamiento">
@@ -34,6 +34,6 @@ export function RunningHero({sessionName,minutes,onPlan,onFasty}:{sessionName:st
  </section>
 }
 
-export function RunningWeekLine({distance,activities,goal,children}:{distance:number;activities:number;goal:number;children?:React.ReactNode}){
+export function RunningWeekLine({distance,activities,goal,children}:{distance:number;activities:number;goal:number}){
  return <div className="run-ledger-title"><div><span>REGISTRO DEL CORREDOR</span><h2>Tus kilómetros cuentan<span>.</span></h2></div><p>{activities} {activities===1?'salida registrada':'salidas registradas'} · Objetivo {goal}K</p></div>
 }
