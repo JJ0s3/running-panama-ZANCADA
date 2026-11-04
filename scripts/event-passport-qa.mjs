@@ -51,6 +51,7 @@ try{
  await shot(page,'events-bib-iphone');
  await page.locator('.ep-checkrow').first().locator('input').check();
  await page.reload({waitUntil:'networkidle'});
+ await page.locator('.ep-bottom-nav').getByRole('button',{name:'Mi dorsal'}).click();
  assert.equal(await page.locator('.ep-bib-object').count(),1,'Participation not persisted');
  assert.ok(await page.locator('.ep-checkrow').first().locator('input').isChecked(),'Checklist not persisted');
  await page.locator('.ep-bottom-nav').getByRole('button',{name:'Fasty'}).click();
