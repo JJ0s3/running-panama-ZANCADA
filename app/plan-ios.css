@@ -1,0 +1,115 @@
+/* ZANCADA 0.4 · iOS-fluent editorial running interface.
+   Typography uses platform fonts; no proprietary fonts are bundled. */
+.uv-app{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;letter-spacing:-.012em;--zi-text:#f3f1f7;--zi-secondary:#aaa6b3;--zi-purple:#6951e8;--zi-outline:#2c2c32}
+.uv-app h1,.uv-app h2,.uv-app h3,.uv-app strong,.uv-wordmark{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;letter-spacing:-.04em}
+.uv-app button{touch-action:manipulation}
+.uv-app .uv-side{background:#09090c;border-color:#1b1b22}
+.uv-app .uv-top{background:#0c0b11f0;border-color:#1e1c24}
+.uv-app .uv-wordmark{font-size:23px;font-weight:800;letter-spacing:-.065em}
+.uv-app .uv-main{gap:25px}
+.uv-app .uv-hello h1{font-size:clamp(38px,4.8vw,58px);letter-spacing:-.055em;font-weight:720}
+.uv-app .uv-hello h1 em{color:#9c85f5;text-shadow:none}
+.uv-app .uv-hero{background:linear-gradient(155deg,#1a1923,#16141e);box-shadow:0 10px 35px #0b071b44}
+.uv-app .uv-metric.uv-gradient{background:linear-gradient(155deg,#6150d9,#342c67);box-shadow:none}
+.uv-app .uv-cta{background:#6c4fe9;box-shadow:none}
+.uv-app .uv-cta:hover{box-shadow:0 8px 22px #6c4fe933}
+.uv-app .uv-fasty-inline{background:#221d35;border-color:#332b4f}
+.uv-app .uv-fasty-landing{background:radial-gradient(circle at 50% 0%,#47337499,transparent 60%),#181721}
+.uv-app .uv-dock button.active{background:#6b4fe5;box-shadow:none}
+.uv-app .uv-mark{background:#28213e}
+
+/* Plan: document flow, not boxed administration. */
+.zi-plan{max-width:1000px;margin:0 auto;padding:30px 5% 135px;display:grid;gap:30px;background:transparent;color:var(--zi-text)}
+.zi-plan-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;padding-top:13px}
+.zi-eyebrow{color:#b3a4ec;font-size:11px;font-weight:650;letter-spacing:.10em;display:flex;align-items:center;gap:8px}
+.zi-status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7f69f5;box-shadow:0 0 0 3px #7f69f51e}
+.zi-plan-heading h1{font-size:clamp(39px,6vw,64px);line-height:1.05;font-weight:690;letter-spacing:-.06em;margin:10px 0}
+.zi-heading-dot{color:#7861e9}
+.zi-plan-heading p{font-size:15px;color:#aaa5b2;line-height:1.45}
+.zi-goal-tag{text-align:right;white-space:nowrap;display:grid;gap:3px;align-items:end}
+.zi-goal-tag span{color:#918d9a;font-size:12px}
+.zi-goal-tag strong{font-size:30px;font-weight:660;letter-spacing:-.05em;color:#d5cafe}
+.zi-plan-overview{padding:23px 25px 25px;background:linear-gradient(135deg,#231d3b,#17151f 90%);border:1px solid #2f2941;border-radius:27px}
+.zi-overview-top,.zi-progress-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;color:#9e99ad;font-size:11px}
+.zi-overview-top>span:first-child{letter-spacing:.085em;color:#bdb1eb;font-weight:660}
+.zi-overview-title{margin:21px 0 20px;display:flex;justify-content:space-between;gap:15px;align-items:end}
+.zi-overview-title p{color:#b5aeda;font-size:13px;margin:0 0 6px}
+.zi-overview-title h2{font-size:clamp(23px,3.3vw,35px);font-weight:620;line-height:1.1;max-width:360px}
+.zi-overview-title>strong{font-size:38px;color:#b7a5ff;line-height:1;font-weight:600}
+.zi-progress-rail{background:#3e3953;border-radius:99px;height:8px;overflow:hidden}
+.zi-progress-rail span{display:block;height:100%;background:linear-gradient(90deg,#745be6,#aa9cff);border-radius:99px;transition:width .45s ease}
+.zi-progress-bottom{margin-top:14px}
+.zi-week{padding:1px 1px 0}
+.zi-week-header{display:flex;justify-content:space-between;align-items:end;gap:15px}
+.zi-week-header h2{font-size:clamp(27px,3.3vw,38px);font-weight:580;letter-spacing:-.053em;margin:8px 0 0;line-height:1.08}
+.zi-week-arrows{display:flex;gap:8px}.zi-week-arrows button{border:1px solid #34323d;background:#232129;color:#ded9e6;border-radius:50%;width:39px;height:39px;display:grid;place-items:center}
+.zi-week-arrows button:active{transform:scale(.95)}
+.zi-week-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:20px 0 24px;gap:5px}
+.zi-week-days button{height:69px;border:0;border-radius:17px;background:transparent;color:#9a95a3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;position:relative}
+.zi-week-days button span{font-size:11px;font-weight:560}
+.zi-week-days button strong{font-size:22px;font-weight:570;font-variant-numeric:tabular-nums;color:#d4cfdf}
+.zi-week-days button i{font-size:14px;color:#55505c;height:12px;font-style:normal;display:flex;align-items:center}
+.zi-week-days button.active{background:#6e56de;color:#fff}
+.zi-week-days button.active strong,.zi-week-days button.active i{color:#fff}
+.zi-week-days button.done:not(.active) i{color:#8bedd9}
+.zi-chart-heading{display:flex;justify-content:space-between;gap:15px;align-items:center;border-top:1px solid #27242e;padding-top:23px}
+.zi-chart-heading h3{font-size:20px;letter-spacing:-.04em;font-weight:590}
+.zi-chart-heading p{font-size:12px;color:#908b98;margin-top:5px}
+.zi-chart-heading>strong{font-size:28px;font-weight:580;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.zi-chart-heading small{font-size:13px;font-weight:450;color:#aca6b8}
+.zi-bars{height:199px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:13px;align-items:end;padding-top:21px}
+.zi-bar-column{min-width:0;height:100%;display:flex;align-items:center;flex-direction:column;justify-content:flex-end;gap:13px}
+.zi-bar-region{height:147px;display:flex;align-items:end;justify-content:center;width:100%}
+.zi-bar{display:block;width:min(45px,74%);border-radius:25px;background:transparent;border:2px solid #6250c8;transition:height .35s cubic-bezier(.2,.8,.2,1),background .25s ease}
+.zi-bar.filled{background:linear-gradient(180deg,#7a65ec,#5345bb);border-color:transparent}
+.zi-bar.empty{width:15px;height:15px!important;border:2px solid #504388;border-radius:100%}
+.zi-bar.selected{border-color:#c3b8ff}
+.zi-bar-column small{font-size:11px;color:#9c97a5}
+.zi-week-bottom{display:flex;justify-content:space-between;gap:15px;margin-top:19px;font-size:11px;color:#9d98a6}
+.zi-week-bottom span{display:flex;align-items:center;gap:8px}
+.zi-key-dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.zi-key-dot.violet{background:#8975f4}.zi-key-dot.muted{border:1px solid #6e6878}
+.zi-week-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:7px;border-radius:22px;background:#242329;gap:5px}
+.zi-week-stats div{min-width:0;border-radius:17px;padding:18px 12px;text-align:center}
+.zi-week-stats div:first-child{background:#eeeaf4;color:#17151d}
+.zi-week-stats span{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:inherit;opacity:.78;margin-bottom:7px}
+.zi-week-stats strong{font-size:clamp(20px,2.6vw,28px);font-weight:570;font-variant-numeric:tabular-nums}
+.zi-week-stats small{font-size:12px;font-weight:420;color:inherit;opacity:.75}
+.zi-focus{padding:25px;background:#211f2a;border:1px solid #302c3b;border-radius:25px}
+.zi-focus-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.zi-date-chip{color:#bdb4ce;background:#33303d;border-radius:99px;padding:8px 12px;font-size:12px}
+.zi-focus h2{font-size:30px;font-weight:590;margin:20px 0 6px}
+.zi-focus>p{color:#b9b3c2;font-size:14px}
+.zi-fasty-tip{margin:22px 0;display:flex;align-items:center;gap:15px;background:#2c283b;padding:16px;border-radius:17px}
+.zi-fasty-tip>div{flex:1}
+.zi-fasty-tip strong{display:block;font-size:13px;font-weight:660;color:#e3d9ff;margin-bottom:4px}
+.zi-fasty-tip p{font-size:13px;color:#c0b9ce;line-height:1.55}
+.zi-fasty-orb{width:41px;height:41px;flex:0 0 41px;background:linear-gradient(135deg,#ad94ff,#624dd0);border-radius:15px 17px 13px 17px;display:flex;align-items:center;justify-content:center;gap:8px;transform:rotate(-8deg);box-shadow:0 4px 16px #715ce64a}
+.zi-fasty-orb i{display:block;width:5px;height:7px;background:#221636;border-radius:50%}
+.zi-focus-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zi-main-action,.zi-sub-action{min-height:49px;border-radius:14px;padding:12px 15px;font-size:13px;font-weight:620;display:flex;align-items:center;justify-content:center;gap:10px}
+.zi-main-action{background:#6c55e4;color:#fff;border:0}
+.zi-main-action:disabled{opacity:.5;cursor:not-allowed}
+.zi-sub-action{background:#32303b;color:#ded8e7;border:1px solid #3c3846}
+.zi-edit{border-top:1px solid #292631;padding:28px 2px 8px}
+.zi-edit-head{display:flex;align-items:center;justify-content:space-between;color:#aaa4b2}
+.zi-edit-head h2{margin:7px 0 0;font-size:29px;font-weight:580;color:#f1eff6}
+.zi-edit-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.zi-edit label{display:block;font-size:12px;color:#aaa5b3;letter-spacing:0;font-weight:560}
+.zi-edit input,.zi-edit select{background:#24232d;border:1px solid #383541;color:#f4f0f6;border-radius:14px;width:100%;margin-top:8px;min-height:48px;padding:12px}
+.zi-edit>p{font-size:13px;margin:22px 0 12px;color:#c4bfca}
+.zi-day-picker{display:flex;justify-content:space-between;gap:8px}
+.zi-day-picker button{width:45px;height:45px;flex:0 1 45px;border-radius:13px;background:#24232d;border:1px solid #3a3542;color:#bbb4c6}
+.zi-day-picker button.active{background:#6952dd;color:#fff;border-color:#6952dd}
+.zi-edit>small{display:block;font-size:12px;color:#8f889c;line-height:1.5;margin-top:13px}
+.zi-list{padding-bottom:15px}
+.zi-list-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
+.zi-list-title h2{font-size:27px;font-weight:570}.zi-list-title span{font-size:10px;letter-spacing:.09em;color:#95909e}
+.zi-session{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:17px 14px;border:0;border-bottom:1px solid #2b2831;background:transparent;color:#e9e5ef}
+.zi-tick{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#2a2734;color:#9687d7;flex:0 0 37px}
+.zi-tick.completed{background:#26443f;color:#8ae8d4}
+.zi-session-name{display:grid;gap:4px;flex:1}.zi-session-name strong{font-size:14px;font-weight:600}.zi-session-name small{color:#968f9e;font-size:12px}
+.zi-session-state{color:#8b8593;font-size:11px}
+@media(max-width:760px){.zi-plan{padding:22px 18px 125px;gap:26px}.zi-plan-heading{padding-top:7px}.zi-plan-heading h1{font-size:46px}.zi-plan-heading p{font-size:13px}.zi-goal-tag strong{font-size:25px}.zi-plan-overview{padding:22px 20px}.zi-overview-top{font-size:10px}.zi-overview-title h2{font-size:25px}.zi-overview-title>strong{font-size:32px}.zi-week-header h2{font-size:29px}.zi-bars{gap:9px}.zi-week-stats div{padding:17px 6px}.zi-week-stats span{font-size:11px}.zi-week-stats strong{font-size:22px}.zi-focus{padding:20px}.zi-focus-actions{grid-template-columns:1fr}.zi-day-picker{gap:6px}.zi-day-picker button{width:42px;height:42px}}
+@media(max-width:380px){.zi-plan{padding-left:13px;padding-right:13px}.zi-plan-heading h1{font-size:40px}.zi-plan-heading p{max-width:240px}.zi-goal-tag strong{font-size:23px}.zi-week-days{gap:2px}.zi-week-days button{height:63px;border-radius:13px}.zi-week-days button strong{font-size:19px}.zi-week-stats strong{font-size:19px}.zi-edit-fields{grid-template-columns:1fr}.zi-day-picker button{width:38px;height:42px}.zi-fasty-tip{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.zi-progress-rail span,.zi-bar{transition:none!important}}
