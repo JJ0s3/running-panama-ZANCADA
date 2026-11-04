@@ -9,6 +9,8 @@ on:
       - 'components/results-hub.tsx'
       - 'components/event-tour.tsx'
       - 'scripts/option-b-qa.mjs'
+      - 'tests/option-b-design.test.mjs'
+      - 'tests/avon-design.test.mjs'
       - '.github/workflows/option-b-qa.yml'
   workflow_dispatch:
 permissions:
