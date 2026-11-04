@@ -166,3 +166,68 @@
  .uv-app .sp-metrics .uv-metric:last-child small{grid-column:1/-1;max-width:none;text-align:left}
  .uv-app .sp-metrics .uv-metric:last-child strong{grid-column:2;grid-row:1}
 }
+
+/* Mobile composition audit: preserve sculpture as art, never on top of the session. */
+.uv-app :where(.sp-hero,.sp-fasty,.sp-metrics,.uv-panel,.uv-event-promo,.uv-activity-list,.uv-race,.uv-chat,.zi-plan-overview,.zi-week,.zi-focus,.zi-week-stats){min-width:0;max-width:100%}
+.uv-app :where(.sp-hero-copy,.sp-session,.sp-fasty-content,.uv-promo-copy,.uv-metric,.zi-week-header,.zi-chart-heading){min-width:0}
+.uv-app .uv-main:has(.sp-hero){gap:24px}
+.uv-app .sp-hero{border-radius:19px}
+.uv-app .sp-fasty{border-radius:19px}
+.uv-app .sp-metrics{border-radius:18px}
+.uv-app .uv-panel,.uv-app .uv-event-promo,.uv-app .uv-race{border-radius:18px}
+.uv-app .zi-plan-overview,.uv-app .zi-focus,.uv-app .zi-week-stats{border-radius:18px}
+.uv-app .sp-fasty-content>p{overflow-wrap:normal;word-break:normal}
+.uv-app .sp-session{scroll-margin-top:100px}
+.uv-app .sp-session strong{display:block;overflow-wrap:normal;word-break:normal;line-height:1.24}
+.uv-app .sp-session>span{display:block;line-height:1.4}
+.uv-app .sp-fasty-content{scroll-margin-top:85px}
+.uv-app .uv-race-buttons{scroll-margin-top:100px}
+.uv-app .uv-activity-list{scroll-margin-top:110px}
+.uv-app .uv-metrics{scroll-margin-top:95px}
+.uv-app .zi-week-days{scroll-margin-top:100px}
+.uv-app .uv-chat-prompts{scroll-margin-top:95px}
+.uv-app .uv-register label[data-tour-id="register"]{scroll-margin-top:110px}
+.uv-app :where(input,select){max-width:100%;min-width:0}
+.uv-app :where(.uv-hero-buttons,.sp-actions,.uv-race-buttons,.uv-register form){min-width:0}
+.uv-app .uv-heading h2{min-width:0}
+@media(max-width:760px){
+ .uv-app .sp-hero{min-height:0;padding:19px 19px 18px;overflow:hidden}
+ .uv-app .sp-hero-topline{font-size:9px;letter-spacing:.025em;flex-wrap:wrap;row-gap:4px}
+ .uv-app .sp-hero-topline span{white-space:normal}
+ .uv-app .sp-object-wrap{top:49px;right:1%;height:192px;width:98%;max-width:100%;overflow:hidden;opacity:.96}
+ .uv-app .sp-object-main,.uv-app .sp-object-depth{font-size:clamp(178px,50vw,210px);transform:rotate(-16deg) rotateY(-19deg) rotateX(11deg) translateX(-5%);letter-spacing:-.13em}
+ .uv-app .sp-object-depth{transform:rotate(-16deg) rotateY(-19deg) rotateX(11deg) translate(0%,14px)}
+ .uv-app .sp-object-shadow{width:65%;right:15%;bottom:0;height:17%;filter:blur(17px)}
+ .uv-app .sp-object-serial{right:14%;bottom:7%;font-size:8px}
+ .uv-app .sp-hero-copy{padding-top:196px;width:100%;position:relative;z-index:4}
+ .uv-app .sp-hero h2{font-size:clamp(44px,12vw,60px);line-height:.96;margin:11px 0 14px;letter-spacing:-.06em}
+ .uv-app .sp-meta{line-height:1.3}
+ .uv-app .sp-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:9px;margin-top:17px}
+ .uv-app .sp-action-primary,.uv-app .sp-action-secondary{width:100%;min-width:0;min-height:45px;font-size:13px;justify-content:space-between;padding:11px 14px}
+ .uv-app .sp-hero-footer{margin-top:17px;gap:10px;align-items:start}
+ .uv-app .sp-hero-footer span{font-size:9px;max-width:50%;line-height:1.35}
+ .uv-app .sp-fasty{grid-template-columns:1fr}
+ .uv-app .sp-fasty-sculpture{min-height:161px;max-height:161px}
+ .uv-app .sp-fasty-content{padding:19px 21px 41px}
+ .uv-app .sp-fasty-content h3{font-size:clamp(30px,9vw,37px);line-height:1.07;margin:8px 0 11px}
+ .uv-app .sp-fasty-content>p{font-size:13px;line-height:1.48}
+ .uv-app .sp-fasty-content button{margin-top:13px}
+ .uv-app .sp-metrics{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+ .uv-app .sp-metrics .uv-metric{padding:17px 14px;min-height:119px}
+ .uv-app .sp-metrics .uv-metric>span{font-size:11px;line-height:1.35}
+ .uv-app .sp-metrics .uv-metric small{font-size:10px;line-height:1.3}
+ .uv-app .sp-metrics .uv-metric strong{font-size:clamp(30px,9vw,40px);line-height:1.1}
+ .uv-app .sp-metrics .uv-metric:last-child{min-height:87px;grid-column:1/-1;gap:5px}
+ .uv-app .sp-metrics .uv-metric:last-child strong{grid-column:2;grid-row:1}
+ .uv-app .sp-metrics .uv-metric:last-child small{grid-column:1/-1;max-width:none;text-align:left}
+ .uv-app .zi-week-stats{overflow:hidden}
+}
+@media(max-width:390px){
+ .uv-app .sp-hero{padding:16px}
+ .uv-app .sp-object-wrap{top:44px;height:178px}
+ .uv-app .sp-object-main,.uv-app .sp-object-depth{font-size:180px}
+ .uv-app .sp-hero-copy{padding-top:188px}
+ .uv-app .sp-hero h2{font-size:44px}
+ .uv-app .sp-actions{gap:8px}
+ .uv-app .sp-action-primary,.uv-app .sp-action-secondary{font-size:12px}
+}
