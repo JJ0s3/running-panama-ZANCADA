@@ -91,3 +91,11 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Nuevo `components/running-focus.tsx`: portada deportiva con pista SVG, siguiente sesión, tiempo y acciones. Nuevo `app/running-first.css` para identidad responsive y correcciones de navegación, Carreras y Fasty.
 - Restaurado el avatar pequeño, geométrico, violeta de Fasty en Inicio y pantalla de asistente. Se conserva lógica de chat por reglas y onboarding.
 - Actualizados tests y browser QA para cuatro pestañas y dos pasos del tour. Aún requiere revisión con Safari real y feedback de diseño del propietario.
+
+## 2026-11-03 — ADR-0006 y primera vertical de pasaporte
+- Material entregado: texto de 28 secciones y ZIP Stitch (Inicio, Eventos, Mi Dorsal, DESIGN.md). Análisis completado y [ADR](../decisions/ADR-0006-eventos-pasaporte.md) aceptado.
+- Se reescribió `PROJECT.md`, se documentaron fuentes y riesgos, y se redefinieron arquitectura de información, modelo, MVP y Fasty en `docs/product/EVENTS_PASSPORT_BLUEPRINT.md`.
+- Catálogo inicial de 10 eventos anunciados públicamente, URL y última revisión; sin importar fotos protegidas.
+- Primera interfaz de desarrollo: `lib/event-passport.ts`, `components/event-passport-app.tsx`, `components/event-tour.tsx`, `app/event-passport.css`; flujo guardado → participación declarada → dorsal sin QR oficial → checklist.
+- Detección y solución de falsa falla de test: compilación test TypeScript a ES5 vaciaba `[...new Set(...)]`; se fijó target ES2022, correspondiente al entorno moderno de ejecución.
+- PR #12 en borrador. QA de iPhone/CI y revisión de fuentes/Safari antes de fusionar; producción no modificada.

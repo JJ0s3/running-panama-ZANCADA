@@ -1,3 +1,18 @@
+# Diseño activo — ZANCADA Event Passport 1.0 (2026-11-03)
+
+**Estado:** nueva dirección aplicada únicamente en rama/PR de prueba. [ADR-0006](docs/decisions/ADR-0006-eventos-pasaporte.md). Los apartados previos de este archivo son decisiones **históricas**, no la paleta activa.
+
+- Referencia visual proporcionada: Stitch «Panamá Tactile Light», analizada en [revisión técnica](docs/design/STITCH_2026_EVENT_PASSPORT_REVIEW.md).
+- Identidad **propia** de material deportivo, dorsal y pasaporte. Táctil, con superficies claras `#F5F7FC`, navy `#14243A`, carmesí `#BC1939` y arena `#ECCB8E`. No copiar contenidos de referencia.
+- Tipografía: Space Grotesk títulos/números y Hanken Grotesk cuerpo, con fallbacks de sistema; no combinar familias adicionales por pestaña. Revisar peso de webfonts y Safari.
+- Home dominada por siguiente evento y preparación; métricas GPS/kilómetros secundarias.
+- Mi Dorsal tiene geometría propia (perforaciones, gran número, bandas), sin QR de control, federación o código oficial.
+- Eventos presentan fuentes; desconocido = «Por confirmar». No usar fotos sin permiso.
+- Fasty conserva símbolo geométrico violeta de las versiones previas pero cambia su rol a asistente de carreras, logística y checklist.
+- Mobile-first: 375/390px, controles ≥44px, contraste, área segura inferior, tour con foco transparente y reducido movimiento.
+
+---
+
 # ZANCADA — Design System 0.2
 
 ## Decisiones aprobadas
