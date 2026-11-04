@@ -1,6 +1,6 @@
 'use client';
 import {useCallback,useEffect,useMemo,useState} from 'react';
-import {Route,ArrowLeft,ArrowRight,ArrowUpRight,Bookmark,CalendarDays,Check,CheckCircle2,ChevronRight,ClipboardCheck,Clock3,Compass,ExternalLink,Flag,Footprints,Info,MapPin,Search,Send,Ticket,UserRound,X,House,Activity} from 'lucide-react';
+import {Route,ArrowLeft,ArrowRight,ArrowUpRight,Bookmark,CalendarDays,Check,CheckCircle2,ChevronRight,ClipboardCheck,Clock3,Compass,ExternalLink,Flag,Footprints,Info,MapPin,Search,Send,Ticket,UserRound,X,House,Activity,Sun,Moon} from 'lucide-react';
 import {events,eventById,emptyPassport,STORAGE_KEY,dateLabel,daysToEvent,distanceLabel,eventChecklist,participationFor,recordParticipation,sanitizedPassport,toggleChecklist,toggleSaved} from '../lib/event-passport';
 import type {EventRecord,PassportState,Participation} from '../lib/event-passport';
 import EventTour from './event-tour';
@@ -43,6 +43,7 @@ function EventCard({event,index,selected,onOpen,onSave}:{event:EventRecord;index
 }
 export default function EventPassportApp(){
  const [tab,setTab]=useState<EventTab>('inicio');
+ const [theme,setTheme]=useState<'dark'|'light'>('dark');
  const [detailId,setDetailId]=useState<string|null>(null);
  const [contextEventId,setContextEventId]=useState<string|null>(null);
  const [store,setStore]=useState<PassportState>(emptyPassport);
@@ -62,6 +63,8 @@ export default function EventPassportApp(){
  const [toast,setToast]=useState('');
  useEffect(()=>{
   try{
+   const storedTheme=localStorage.getItem('zancada-theme-v1');
+   if(storedTheme==='light'||storedTheme==='dark')setTheme(storedTheme);
    const p=localStorage.getItem(STORAGE_KEY);if(p)setStore(sanitizedPassport(JSON.parse(p)));
    const ownName=localStorage.getItem('zancada-event-name-v1');
    const legacy=localStorage.getItem('zancada-demo-v1');
@@ -71,6 +74,7 @@ export default function EventPassportApp(){
   setReady(true);
  },[]);
  useEffect(()=>{if(ready)try{localStorage.setItem(STORAGE_KEY,JSON.stringify(store))}catch{}},[store,ready]);
+ useEffect(()=>{if(ready)try{localStorage.setItem('zancada-theme-v1',theme)}catch{}},[theme,ready]);
  useEffect(()=>{if(ready)try{localStorage.setItem('zancada-event-name-v1',name)}catch{}},[name,ready]);
  const notify=(s:string)=>{setToast(s);window.setTimeout(()=>setToast(''),3500)};
  const goto=useCallback((next:EventTab,eventId?:string)=>{setTab(next);setDetailId(eventId??null);if(eventId)setContextEventId(eventId);window.scrollTo({top:0,behavior:'instant'})},[]);
@@ -107,8 +111,8 @@ export default function EventPassportApp(){
   setAnswer('Te ayudo con eventos, inscripción externa, dorsales personales, kit, ruta, fechas y preparación. Puedes preguntar «¿Cuándo retiro el kit?» o «¿Cuánto falta para mi carrera?».');
  };
  const sourceLink=(e:EventRecord,label='Consultar fuente original')=><a href={e.sourceUrl} target="_blank" rel="noopener noreferrer">{label} <ExternalLink size={15}/></a>;
- return <div className="ep-app">
-  <header className="ep-top"><button type="button" onClick={()=>goto('inicio')} className="ep-logo" aria-label="ZANCADA Inicio"><span>ZANCADA</span><b>PTY</b><i/></button><div className="ep-top-right"><span className="ep-top-edition">EL PASAPORTE DEL CORREDOR</span><button type="button" className="ep-profile-button" aria-label="Abrir perfil" onClick={()=>setProfile(true)}><UserRound size={21}/></button></div></header>
+ return <div className="ep-app" data-theme={theme}>
+  <header className="ep-top"><button type="button" onClick={()=>goto('inicio')} className="ep-logo" aria-label="ZANCADA Inicio"><span>ZANCADA</span><b>PTY</b><i/></button><div className="ep-top-right"><span className="ep-top-edition">EL PASAPORTE DEL CORREDOR</span><button type="button" className="zp-theme-switch" aria-label={theme==='dark'?'Cambiar al tema claro':'Cambiar al tema oscuro'} title={theme==='dark'?'Activar modo claro':'Activar modo oscuro'} aria-pressed={theme==='light'} onClick={()=>setTheme(t=>t==='dark'?'light':'dark')}>{theme==='dark'?<Sun size={19}/>:<Moon size={19}/>}<span>{theme==='dark'?'Claro':'Oscuro'}</span></button><button type="button" className="ep-profile-button" aria-label="Abrir perfil" onClick={()=>setProfile(true)}><UserRound size={21}/></button></div></header>
   <div className="ep-desktop-shell"><aside className="ep-sidebar" aria-label="Navegación principal"><p>TU ESPACIO</p>{views.map(([key,label,Icon])=><button type="button" key={key} className={key===tab?'active':''} onClick={()=>goto(key)}><Icon size={20}/>{label}</button>)}<div className="ep-side-note"><strong>Tu próximo reto empieza aquí.</strong><span>Eventos, rutas y recuerdos en un mismo lugar.</span></div></aside>
   <div className="ep-page">
   {tab==='inicio'&&<main className="ep-home">
