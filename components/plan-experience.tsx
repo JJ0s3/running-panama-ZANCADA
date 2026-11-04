@@ -37,9 +37,9 @@ export default function PlanExperience({goal,activities,sessions,completed,week,
     <div className="zi-progress-bottom"><span>{completedWeek} completadas esta semana</span><span>Plan orientativo · 4 semanas</span></div>
   </section>
 
-  <section className="zi-week" data-tour-id="calendar">
+  <section className="zi-week">
     <div className="zi-week-header"><div><span className="zi-eyebrow">VISTA SEMANAL</span><h2>{formatRange(week)}</h2></div><div className="zi-week-arrows"><button onClick={()=>onWeek(-1)} aria-label="Semana anterior"><ChevronLeft size={19}/></button><button onClick={()=>onWeek(1)} aria-label="Semana siguiente"><ChevronRight size={19}/></button></div></div>
-    <div className="zi-week-days" role="group" aria-label="Elegir día">{week.map((d,i)=><button key={d.key} onClick={()=>onSelect(d.key)} aria-pressed={selected===d.key} className={(selected===d.key?'active ':'')+(d.complete?'done':'')}><span>{shortDay[i]}</span><strong>{d.day}</strong><i>{d.complete?<Check size={11}/>:d.training?'•':'·'}</i></button>)}</div>
+    <div data-tour-id="calendar" className="zi-week-days" role="group" aria-label="Elegir día">{week.map((d,i)=><button key={d.key} onClick={()=>onSelect(d.key)} aria-pressed={selected===d.key} className={(selected===d.key?'active ':'')+(d.complete?'done':'')}><span>{shortDay[i]}</span><strong>{d.day}</strong><i>{d.complete?<Check size={11}/>:d.training?'•':'·'}</i></button>)}</div>
     <div className="zi-chart-heading"><div><h3>Tus kilómetros</h3><p>Distancia registrada · no estimada</p></div><strong>{weekKm.toLocaleString('es-PA',{maximumFractionDigits:1})}<small> km</small></strong></div>
     <div className="zi-bars" role="img" aria-label={'Distancias registradas por día: '+dailyKm.map((km,i)=>shortDay[i]+': '+km+' km').join(', ')}>{dailyKm.map((km,i)=><div key={week[i].key} className="zi-bar-column"><div className="zi-bar-region"><span className={'zi-bar '+(km>0?'filled':'empty')+(selected===week[i].key?' selected':'')} style={{height:(km>0?Math.max(14,km/maxKm*100):10)+'%'}}/></div><small>{shortDay[i]}</small></div>)}</div>
     <div className="zi-week-bottom"><span><i className="zi-key-dot violet"/>Actividad real</span><span><i className="zi-key-dot muted"/>Sin registro</span></div>
