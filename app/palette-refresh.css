@@ -319,3 +319,36 @@ body:has(.ep-app){background:var(--z-paper)!important;color:var(--z-ink)!importa
 @media(max-width:960px){
  .ep-app .ep-top{background:rgba(250,247,240,.94)!important}
 }
+
+
+/* Final consistency review against actual 390px and 1280px screenshots:
+   replace remaining lavender from legacy button/number states. */
+.ep-app .ep-logo{
+ font-family:var(--z-archivo)!important;
+ font-weight:850!important;
+ font-variation-settings:'wdth' 112;
+}
+.ep-app .ep-logo b{font-family:var(--z-mono)!important;font-weight:500!important}
+.ep-app .ep-calendar-tags button{
+ background:var(--z-pacific-soft)!important;
+ border-color:var(--z-sand)!important;
+ color:var(--z-pacific)!important;
+}
+.ep-app .ep-calendar-tags button svg,
+.ep-app .ep-home-event>svg,
+.ep-app .za-step-top small,
+.ep-app .za-step-top>small{color:var(--z-pacific)!important}
+.ep-app .ep-history-stamp{
+ background:var(--z-pacific-soft)!important;
+ color:var(--z-pacific)!important;
+}
+.ep-app .za-race-guide-status>svg{color:var(--z-pacific)!important}
+.ep-app .za-race-guide-link:hover{
+ background:#FF884F!important;
+ color:var(--z-ink)!important;
+}
+.ep-app .st-tour-chapters button:not(.active){
+ background:var(--z-pacific-soft)!important;
+ color:var(--z-ink)!important;
+ border-color:var(--z-sand)!important;
+}
