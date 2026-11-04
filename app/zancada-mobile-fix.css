@@ -1,0 +1,137 @@
+﻿/* ZANCADA v2 — Mobile visual polish */
+
+.ep-app {
+  background-color: #f4f6fa;
+  background-image:
+    radial-gradient(ellipse at 0% 5%,
+      rgba(13,29,56,.14), transparent 60%),
+    radial-gradient(ellipse at 100% 20%,
+      rgba(215,38,56,.12), transparent 62%),
+    radial-gradient(ellipse at 75% 90%,
+      rgba(217,144,26,.10), transparent 65%),
+    linear-gradient(155deg,
+      #edf3ff 0%, #f7f8fc 55%, #fff8f6 100%) !important;
+}
+
+.ep-app .ep-desktop-shell,
+.ep-app .ep-page {
+  background: transparent !important;
+}
+
+/* Escritorio: sin barra inferior duplicada */
+@media (min-width: 961px) {
+  .ep-app .ep-bottom-nav {
+    display: none !important;
+  }
+
+  .ep-app .ep-sidebar {
+    display: flex !important;
+  }
+}
+
+/* Móvil y tablet */
+@media (max-width: 960px) {
+
+  /* Header y marca centrada */
+  .ep-app .ep-top {
+    height: 66px;
+    position: sticky;
+    padding: 0 15px;
+    background: rgba(255,255,255,.91) !important;
+    backdrop-filter: blur(18px);
+  }
+
+  .ep-app .ep-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 22px;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  .ep-app .ep-logo b {
+    font-size: 15px;
+  }
+
+  .ep-app .ep-top-right {
+    margin-left: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ep-app .ep-top-edition {
+    display: none;
+  }
+
+  /* Cinco botones estables */
+  .ep-app .ep-bottom-nav {
+    display: grid !important;
+    grid-template-columns: repeat(5,minmax(0,1fr)) !important;
+    position: fixed !important;
+    left: 8px !important;
+    right: 8px !important;
+    bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+    height: 78px !important;
+    padding: 6px !important;
+    gap: 4px;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,.96) !important;
+    border: 1px solid #d9e1ed;
+    box-shadow: 0 10px 32px rgba(13,29,56,.20);
+    backdrop-filter: blur(20px);
+  }
+
+  .ep-app .ep-bottom-nav button {
+    width: 100%;
+    height: 64px;
+    min-width: 0;
+    min-height: 0;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 1px !important;
+    border-radius: 13px !important;
+    background: transparent;
+    color: #52647e;
+    font-size: clamp(8px,2.1vw,10px);
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .ep-app .ep-bottom-nav button svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+  }
+
+  .ep-app .ep-bottom-nav button span {
+    display: block;
+    max-width: 100%;
+    text-wrap: balance;
+  }
+
+  .ep-app .ep-bottom-nav button.active {
+    background: #fce5e9 !important;
+    color: #b6102e !important;
+    box-shadow: inset 0 0 0 1px #e9bdc5;
+  }
+
+  .ep-app .ep-page {
+    padding-bottom:
+      calc(128px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ep-app .ep-bottom-nav button {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,65 @@
+/* ZANCADA · Guía original de evento, pensada para móvil y la paleta violeta/amarilla. */
+.ep-app .za-detail-photo-cover {background:#211534;isolation:isolate}
+.ep-app .za-detail-photo-cover::before {display:none}
+.ep-app .za-detail-photo-cover .za-detail-event-photo {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 42%;filter:saturate(.86) contrast(1.08);z-index:0}
+.ep-app .za-detail-photo-cover .za-detail-photo-scrim {position:absolute;inset:0;background:linear-gradient(180deg,#150a2e99 0%,#29194346 35%,#150a31eb 100%);z-index:1}
+.ep-app .za-detail-photo-cover>span:not(.za-detail-photo-scrim) {position:relative;z-index:2;text-shadow:0 2px 8px #211234;font-weight:800}
+.ep-app .za-detail-photo-cover>strong {position:relative;z-index:2;color:#fff;font-family:var(--za-display,'Archivo Black',sans-serif);font-size:clamp(38px,5.2vw,68px);line-height:1.05;letter-spacing:-.055em;text-shadow:0 4px 18px #150b2e}
+.ep-app .za-detail-photo-cover .za-detail-photo-credit {font-size:9px;letter-spacing:.02em;line-height:1.4}
+.ep-app .za-race-guide {display:grid;gap:20px;min-width:0;padding:23px;border:1px solid #dbd0f2;border-radius:20px;background:linear-gradient(140deg,#f6f0ff 0%,#fffdf4 100%);color:#211b37}
+.ep-app .za-race-guide-heading {display:grid;gap:8px}
+.ep-app .za-race-guide-eyebrow {display:inline-flex;align-items:center;gap:8px;color:#5e399d;font:900 11px/1.4 var(--ep-space,'Nunito Sans',sans-serif);letter-spacing:.03em}
+.ep-app .za-race-guide-heading h2 {font-family:var(--za-display,'Archivo Black',sans-serif);font-weight:400;font-size:clamp(23px,3vw,31px);line-height:1.17;letter-spacing:-.042em}
+.ep-app .za-race-guide-heading h2 em {color:#7550d5;font-style:normal}
+.ep-app .za-race-guide-heading>p {font-size:13px;line-height:1.55;max-width:72ch;color:#5a526e}
+.ep-app .za-race-guide-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ep-app .za-race-guide-step {display:flex;flex-direction:column;gap:11px;min-width:0;padding:17px;background:#fff;border:1px solid #e4def0;border-radius:15px;box-shadow:0 3px 0 #e3d8f4}
+.ep-app .za-race-guide-step-top {display:flex;align-items:start;justify-content:space-between;gap:10px}
+.ep-app .za-race-guide-icon {display:grid;place-items:center;width:46px;height:46px;flex:0 0 auto;border-radius:13px;background:#ede5ff;color:#5c39a2}
+.ep-app .za-race-guide-icon-yellow {background:#fff0bc;color:#574018}
+.ep-app .za-race-guide-number {font:400 20px/1 var(--za-display,'Archivo Black',sans-serif);color:#c5b7e1}
+.ep-app .za-race-guide-step h3 {font-size:18px;line-height:1.2;letter-spacing:-.02em;font-family:var(--ep-space,'Nunito Sans',sans-serif);font-weight:900}
+.ep-app .za-race-guide-step>p {color:#5a526e;font-size:12px;line-height:1.55;flex:1}
+.ep-app .za-race-guide-status {display:flex;gap:6px;align-items:flex-start;color:#645678;font-size:10px;line-height:1.5;font-weight:800}
+.ep-app .za-race-guide-status>svg {flex:0 0 auto;margin-top:1px;color:#6946b0}
+.ep-app .za-race-guide-link {display:inline-flex;align-items:center;justify-content:space-between;gap:9px;width:100%;min-height:42px;border-radius:10px;padding:10px 12px;background:#7550d5;color:#fff!important;border:1px solid #6541b7;text-decoration:none;font:900 11px/1.25 var(--ep-space,'Nunito Sans',sans-serif);cursor:pointer;text-align:left;transition:transform .15s ease,background .15s ease}
+.ep-app .za-race-guide-link:hover {background:#533597;transform:translateY(-1px)}
+.ep-app .za-race-guide-link:focus-visible {outline:3px solid #ffce46;outline-offset:3px}
+.ep-app .za-race-guide-link svg {flex:0 0 auto}
+.ep-app .za-race-guide-brief {display:grid;gap:13px;background:#fff;border:1px solid #ddd5ed;border-radius:16px;padding:18px}
+.ep-app .za-race-guide-brief-heading {display:flex;align-items:center;gap:10px;color:#332655}
+.ep-app .za-race-guide-brief-heading svg {color:#7550d5}
+.ep-app .za-race-guide-brief-heading strong {font-size:16px;font-weight:900}
+.ep-app .za-race-guide-brief-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.ep-app .za-race-guide-brief-grid>div {display:flex;gap:10px;align-items:flex-start;min-width:0;background:#faf8ff;border:1px solid #ede7f5;border-radius:11px;padding:12px}
+.ep-app .za-race-guide-brief-icon {display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;border-radius:10px;background:#e9e1fa;color:#5c3ba6}
+.ep-app .za-race-guide-brief-grid>div:nth-child(2) .za-race-guide-brief-icon {background:#fff2be;color:#594516}
+.ep-app .za-race-guide-brief-grid>div>div {min-width:0}
+.ep-app .za-race-guide-brief-grid strong {font-size:12px;color:#32254e;font-weight:900;line-height:1.4}
+.ep-app .za-race-guide-brief-grid p {font-size:11px;color:#635971;line-height:1.5;overflow-wrap:anywhere;margin:4px 0 0}
+.ep-app .za-race-guide-caveat {display:flex;align-items:flex-start;gap:8px;color:#62567a;font-size:11px;line-height:1.55;padding:10px 12px;background:#f6f1ff;border-radius:11px}
+.ep-app .za-race-guide-caveat svg {flex:0 0 auto;margin-top:1px;color:#7550d5}
+@media (max-width:800px) {
+ .ep-app .za-race-guide {padding:17px}
+ .ep-app .za-race-guide-steps {grid-template-columns:1fr}
+ .ep-app .za-race-guide-step {display:grid;grid-template-columns:47px minmax(0,1fr);grid-template-rows:auto auto auto auto;gap:5px 13px;padding:14px}
+ .ep-app .za-race-guide-step-top {grid-column:1;grid-row:1/5}
+ .ep-app .za-race-guide-number {display:none}
+ .ep-app .za-race-guide-step h3 {grid-column:2;grid-row:1;font-size:17px}
+ .ep-app .za-race-guide-step>p {grid-column:2;grid-row:2;font-size:12px}
+ .ep-app .za-race-guide-status {grid-column:2;grid-row:3;margin-top:4px}
+ .ep-app .za-race-guide-link {grid-column:2;grid-row:4;justify-content:center;min-height:40px;margin-top:7px}
+ .ep-app .za-race-guide-brief-grid {grid-template-columns:1fr}
+}
+@media (max-width:430px) {
+ .ep-app .za-detail-photo-cover {min-height:215px}
+ .ep-app .za-detail-photo-cover>strong {font-size:clamp(28px,8vw,44px);overflow-wrap:break-word}
+ .ep-app .za-detail-photo-cover>span:not(.za-detail-photo-scrim) {font-size:9px}
+ .ep-app .za-race-guide-heading h2 {font-size:25px}
+ .ep-app .za-race-guide-step {grid-template-columns:42px minmax(0,1fr);gap:5px 10px}
+ .ep-app .za-race-guide-icon {width:41px;height:41px}
+ .ep-app .za-race-guide-brief {padding:13px}
+}
+@media (prefers-reduced-motion:reduce) {
+ .ep-app .za-race-guide-link {transition:none;transform:none!important}
+}

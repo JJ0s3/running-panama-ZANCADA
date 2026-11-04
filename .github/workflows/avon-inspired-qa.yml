@@ -1,0 +1,54 @@
+name: ZANCADA AVON-Inspired Mobile QA
+on:
+  push:
+    branches:
+      - design/zancada-carrera-avon-inspiration
+    paths:
+      - scripts/avon-inspired-qa.mjs
+      - .github/workflows/avon-inspired-qa.yml
+      - app/avon-inspiration.css
+      - app/event-passport.css
+      - components/event-passport-app.tsx
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Verify app
+        run: |
+          npm test
+          npm run build
+      - name: Start Next.js
+        run: |
+          nohup npm run start -- -p 3000 > /tmp/za-app.log 2>&1 &
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/za-app.log
+          exit 1
+      - name: Inspect 390 and 375px layouts
+        run: |
+          node scripts/avon-inspired-qa.mjs
+          node scripts/event-passport-qa.mjs
+        env:
+          QA_INLINE: '1'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zancada-avon-inspired-screens
+          path: qa/*.jpg
+          if-no-files-found: ignore
