@@ -12,4 +12,5 @@ import './tactile-overhaul.css';
 import './results-v2.css';
 import './zancada-mobile-fix.css';
 import './performance-dark.css';
+import './performance-themes.css';
 export default function Home(){ return <EventPassportApp/>; }
