@@ -1,6 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import type {CSSProperties} from 'react';
+import {clipTourFocus} from '../lib/tour-geometry';
 
 type Section='inicio'|'plan'|'explorar'|'asistente';
 type Stop={id:string;page:Section;title:string;message:string};
@@ -47,12 +48,8 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
     window.scrollTo({top:destination,behavior:'instant'});
     return;
    }
-   const availableBottom=mobile?topOfPanel-15:height-18;
-   if(pos.top>availableBottom-24){setRect(null);return}
-   const top=Math.max(8,pos.top-7);
-   const left=Math.max(7,pos.left-7);
-   const bottom=Math.min(pos.bottom+7,availableBottom);
-   const result={top,left,width:Math.max(18,Math.min(width-left-7,pos.width+14)),height:Math.max(18,bottom-top)};
+   const result=clipTourFocus({top:pos.top,left:pos.left,width:pos.width,height:pos.height},{width,height,panelTop:topOfPanel,mobile});
+   if(!result){setRect(null);return}
    setRect(old=>old&&Math.abs(old.top-result.top)<1&&Math.abs(old.left-result.left)<1&&Math.abs(old.width-result.width)<1&&Math.abs(old.height-result.height)<1?old:result);
   };
   const update=()=>{window.cancelAnimationFrame(frame);frame=window.requestAnimationFrame(measure)};
