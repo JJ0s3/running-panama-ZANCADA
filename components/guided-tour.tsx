@@ -23,26 +23,39 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
  const heading=useRef<HTMLHeadingElement>(null);
  const current=stops[index];
  const end=()=>{try{localStorage.setItem('zancada-tour-v2','done')}catch{}onClose()};
- useEffect(()=>{onNavigate(current.page)},[index,current.page,onNavigate]);
- useLayoutEffect(()=>{
+ // Navigation is only triggered when the tour changes section, never on every step.
+ useEffect(()=>{onNavigate(current.page)},[current.page,onNavigate]);
+ useEffect(()=>{
   let alive=true;
-  const update=()=>{
-    const width=window.innerWidth,height=window.innerHeight;
-    setView({width,height});
-    const el=current.id==='welcome'||current.id==='finish'?null:document.querySelector<HTMLElement>(`[data-zt-id="${current.id}"]`);
-    if(!el){setRect(null);return}
+  let scrolled=false;
+  let checks=0;
+  let lastFrame=0;
+  setRect(null);
+  const measure=()=>{
+   if(!alive)return;
+   const width=window.innerWidth,height=window.innerHeight;
+   setView({width,height});
+   const el=current.id==='welcome'||current.id==='finish'?null:document.querySelector<HTMLElement>(`[data-tour-id="${current.id}"]`);
+   if(!el){setRect(null);return}
+   if(!scrolled){
+    scrolled=true;
     const r=el.getBoundingClientRect();
-    setRect({top:Math.max(5,r.top-6),left:Math.max(5,r.left-6),width:Math.min(width-10,r.width+12),height:r.height+12});
+    const y=Math.max(0,window.scrollY+r.top-(width<680?88:120));
+    window.scrollTo({top:y,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+   }
+   const r=el.getBoundingClientRect();
+   const panelRoom=width<680?Math.min(350,height*.49)+32:0;
+   const heightLimit=width<680?Math.max(80,height-panelRoom-Math.max(0,r.top)-14):height;
+   const top=Math.max(8,Math.min(height-35,r.top-5));
+   const bottom=Math.max(top+20,Math.min(height-panelRoom-6,r.bottom+5));
+   setRect({top,left:Math.max(7,r.left-5),width:Math.min(width-14,r.width+10),height:width<680?Math.max(20,Math.min(heightLimit,bottom-top)):Math.min(height-top-8,r.height+10)});
   };
-  const frame=window.requestAnimationFrame(()=>{
-    const el=document.querySelector<HTMLElement>(`[data-zt-id="${current.id}"]`);
-    if(el){el.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center',inline:'nearest'})}
-    update();
-  });
-  const delayed=window.setTimeout(()=>{if(alive)update()},380);
-  window.addEventListener('resize',update);
+  const timer=window.setInterval(()=>{checks++;measure();if(checks>24)window.clearInterval(timer)},90);
+  const update=()=>{window.cancelAnimationFrame(lastFrame);lastFrame=window.requestAnimationFrame(measure)};
   window.addEventListener('scroll',update,true);
-  return()=>{alive=false;window.cancelAnimationFrame(frame);window.clearTimeout(delayed);window.removeEventListener('resize',update);window.removeEventListener('scroll',update,true)}
+  window.addEventListener('resize',update);
+  const raf=window.requestAnimationFrame(measure);
+  return()=>{alive=false;window.clearInterval(timer);window.cancelAnimationFrame(raf);window.cancelAnimationFrame(lastFrame);window.removeEventListener('scroll',update,true);window.removeEventListener('resize',update)}
  },[index,current.id,current.page]);
  useEffect(()=>{heading.current?.focus()},[index]);
  useEffect(()=>{const key=(e:KeyboardEvent)=>{if(e.key==='Escape')end();if(e.key==='ArrowRight')setIndex(n=>Math.min(stops.length-1,n+1));if(e.key==='ArrowLeft')setIndex(n=>Math.max(0,n-1))};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[]);
