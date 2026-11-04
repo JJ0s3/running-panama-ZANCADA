@@ -7,8 +7,9 @@ const theme=read('app/tactile-overhaul.css');
 const page=read('app/page.tsx');
 const base=read('app/event-passport.css');
 const model=read('lib/event-passport.ts');
-test('Stitch Tactile Light is the active theme and preserves event-first design',()=>{
+test('The original event-first foundation is preserved under the active performance skin',()=>{
  assert.ok(page.indexOf("import './tactile-overhaul.css'")>page.indexOf("import './avon-inspiration.css'"));
+ assert.ok(page.indexOf("import './performance-dark.css'")>page.indexOf("import './tactile-overhaul.css'"));
  assert.match(base,/Space\+Grotesk/);
  assert.match(base,/Hanken\+Grotesk/);
  assert.match(theme,/#D72638/);
@@ -27,7 +28,7 @@ test('Actual GPS routes appear inside the app, not external-only redirection',()
 test('Fasty remains focused within preparation, not elevated in the home',()=>{
  assert.match(app,/import PreparationHub/);
  assert.match(app,/<PreparationHub event=\{eventForFasty\}/);
- assert.match(app,/\['fasty','Preparación',Footprints\]/);
+ assert.match(app,/\['fasty','Preparación',Activity\]/);
  assert.doesNotMatch(app,/className="ep-fasty-strip"/);
 });
 test('Photos are still illustrative and registration remains external',()=>{
