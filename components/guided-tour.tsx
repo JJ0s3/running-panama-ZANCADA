@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
+import type {CSSProperties} from 'react';
 
 type Section='inicio'|'plan'|'explorar'|'asistente';
 type Stop={id:string;page:Section;title:string;message:string};
@@ -66,7 +67,7 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
  const mobile=view.width<680,cardWidth=Math.min(380,view.width-28);
  const top=mobile?Math.max(10,view.height-310):rect?Math.max(15,Math.min(view.height-300,rect.top>300?rect.top-284:rect.top+rect.height+18)):Math.max(18,(view.height-292)/2);
  const left=mobile?14:rect?Math.max(14,Math.min(view.width-cardWidth-14,rect.left)):Math.max(14,(view.width-cardWidth)/2);
- const shade=(style:React.CSSProperties,key:string)=><div className="zt-shade" style={style} key={key} aria-hidden="true"/>;
+ const shade=(style:CSSProperties,key:string)=><div className="zt-shade" style={style} key={key} aria-hidden="true"/>;
  return <div className="zt-root" role="dialog" aria-modal="true" aria-labelledby="fasty-zt-title" aria-describedby="fasty-zt-copy">
   {!rect&&<div className="zt-dim" aria-hidden="true"/>}
   {rect&&<>
