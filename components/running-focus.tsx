@@ -33,7 +33,3 @@ export function RunningHero({sessionName,minutes,onPlan,onFasty}:{sessionName:st
   <div className="run-hero-bottom"><span>01 / ENTRENA SIN PRISA</span><span>HECHO PARA CORREDORES, NO PARA ATLETAS PERFECTOS</span></div>
  </section>
 }
-
-export function RunningWeekLine({distance,activities,goal,children}:{distance:number;activities:number;goal:number}){
- return <div className="run-ledger-title"><div><span>REGISTRO DEL CORREDOR</span><h2>Tus kilómetros cuentan<span>.</span></h2></div><p>{activities} {activities===1?'salida registrada':'salidas registradas'} · Objetivo {goal}K</p></div>
-}
