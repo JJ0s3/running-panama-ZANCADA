@@ -38,3 +38,11 @@ Por commit: fecha, problema, decisión, archivos, pruebas ejecutadas, resultado 
 - Compatibilidad con `zancada-demo-v1` y `zancada-tour-v2` para preservar datos y onboarding.
 - Datos sintéticos identificados, sin inventar telemetría o inscripciones reales.
 - Revisión pendiente: pruebas CI, preview y evaluación visual en móvil antes de fusionar.
+
+## 2026-11-03 — ZANCADA 0.4: Mi Plan iOS
+- Cambio solicitado: tipografía menos tecnológica y mayor semejanza conceptual con la planificación semanal de referencia; diferenciarse claramente de RB Fitness.
+- Rama: `feat/zancada-plan-ios-v04` desde la propuesta ultravioleta Stitch.
+- Componente nuevo `components/plan-experience.tsx`: semanas navegables, gráfica de kilómetros por día calculada de `activities`, duración total, sesiones marcadas, objetivo, detalle Fasty y ajustes.
+- Estilos nuevos `app/plan-ios.css`: pila de fuentes del sistema, superficies menos brillantes, alta legibilidad y barras propias; se elimina import de fuentes web anterior.
+- La métrica de sesiones es una marca manual del usuario; se diferencia de la distancia real guardada.
+- Antes de fusionar: revisar CI, preview Vercel y pruebas visuales Safari/iPhone, 360 px y escritorio.
