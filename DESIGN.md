@@ -47,3 +47,14 @@ Monograma Z final (cinco conceptos documentados) y avatar Fasty final (tres conc
 - **Interacción:** navegación entre semanas, selección de días, sesión completada explícitamente, configuración de objetivo y disponibilidad.
 - **Estados:** días sin actividad muestran indicador vacío (no barra inventada), y progreso del plan cuenta solo sesiones marcadas, no es una puntuación fisiológica.
 - El estilo se encapsula en `app/plan-ios.css` y la pantalla en `components/plan-experience.tsx`, para evitar reescribir el resto de ZANCADA.
+
+## 0.5 — Spatial Running Edition (DesignMD 3D & Hyperrealism)
+- Referencia: https://designmd.app/library/3d-hyperrealism (consultada 2026-11-03).
+- El documento **no prescribe una tipografía comercial exclusiva**: declara `-apple-system, sans-serif` (display 700, cuerpo 400, 16px/1.6). ZANCADA adopta ese principio, evitando combinaciones de múltiples familias que rompan Safari iPhone.
+- Principios adaptados: profundidad en capas, iluminación material, sombras múltiples, jerarquía editorial, composición asimétrica, toques táctiles de corto recorrido y control de movimiento reducido.
+- Color: se conservan ultravioleta oscuro y amarillo de ZANCADA. Se usan tonos metálicos arena/plateados en la ilustración Z, sin asumir la paleta literal navy/verde/burdeos del ejemplo.
+- En Inicio, el objeto `Z` se construye con gradientes, transformaciones 3D CSS y capas — **no existe un modelo 3D/WebGL cargado**. Esta decisión protege el peso de la demo móvil. No describir la pieza como hiperrealismo 3D de producción.
+- Fasty tiene una figura táctil/pseudovolumétrica independiente, ya integrada en Inicio y en su pantalla. No se presenta como avatar final aprobado.
+- Diferenciación de RB: portada de revista de running y arte de marca, sin titular de gimnasio, sin tres tarjetas iguales, sin electrocardiograma inventado; métricas en una banda editorial continua.
+- El tour mantiene los IDs `data-tour-id` de Inicio/Fasty después de extraer los componentes.
+- Pendiente: revisar contraste, Safari iPhone y calidad artística; valorar escena 3D real solo si justifica el rendimiento.
