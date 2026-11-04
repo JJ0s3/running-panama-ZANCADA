@@ -66,18 +66,29 @@ try{
  const pt=await intro.newPage();
  await pt.goto(base,{waitUntil:'networkidle'});
  await pt.locator('.ep-tour-panel').waitFor();
- await pt.locator('.ep-tour-outline').waitFor({timeout:7000});
- const visible=await pt.evaluate(()=>{
-  const p=document.querySelector('.ep-tour-panel')?.getBoundingClientRect();
-  const f=document.querySelector('.ep-tour-outline')?.getBoundingClientRect();
-  return{panel:p?.top,focus:f?.bottom};
- });
- console.log('TOUR_GEOMETRY',JSON.stringify(visible));
- assert.ok(visible.focus<=visible.panel-4,'Onboarding spotlight overlaps its panel');
- await shot(pt,'events-tour-intro');
- await pt.getByRole('button',{name:/Seguir/i}).click();
- await pt.locator('.ep-tour-outline').waitFor({timeout:7000});
- await shot(pt,'events-tour-upcoming');
+ const targets=['intro','upcoming','catalog','event-detail','save-event','register-event','bib','preparation','calendar','fasty'];
+ for(let step=0;step<targets.length;step++){
+  if(step)await pt.getByRole('button',{name:/Seguir/i}).click();
+  const target=targets[step];
+  await pt.waitForFunction((name)=>{
+   const focus=document.querySelector('.ep-tour-outline')?.getBoundingClientRect();
+   const t=document.querySelector('[data-ep-tour="'+name+'"]')?.getBoundingClientRect();
+   return Boolean(focus&&t&&Math.abs(focus.top-t.top)<20);
+  },target,{timeout:6500});
+  const state=await pt.evaluate((name)=>{
+   const panel=document.querySelector('.ep-tour-panel')?.getBoundingClientRect();
+   const focus=document.querySelector('.ep-tour-outline')?.getBoundingClientRect();
+   const t=document.querySelector('[data-ep-tour="'+name+'"]')?.getBoundingClientRect();
+   return{step:name,panelTop:panel?.top,focusTop:focus?.top,focusBottom:focus?.bottom,targetTop:t?.top};
+  },target);
+  console.log('TOUR_STEP',JSON.stringify(state));
+  assert.ok(state.focusBottom<=state.panelTop-3,'Spotlight overlaps Fasty panel: '+target);
+  if(step===0)await shot(pt,'events-tour-intro');
+  if(step===1)await shot(pt,'events-tour-upcoming');
+  if(step===5)await shot(pt,'events-tour-participation');
+  if(step===6)await shot(pt,'events-tour-bib');
+  if(step===9)await shot(pt,'events-tour-fasty');
+ }
  await intro.close();
  console.log('EVENT_PASSPORT_MOBILE_QA_PASSED');
 }finally{await browser.close()}
