@@ -22,20 +22,20 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
  const [view,setView]=useState({width:1200,height:800});
  const heading=useRef<HTMLHeadingElement>(null);
  const current=stops[index];
- const end=()=>{try{localStorage.setItem('zancada-tour-v2','done')}catch{}onClose()};
+ const end=()=>{try{localStorage.setItem('zancada-zt-v2','done')}catch{}onClose()};
  useEffect(()=>{onNavigate(current.page)},[index,current.page,onNavigate]);
  useLayoutEffect(()=>{
   let alive=true;
   const update=()=>{
     const width=window.innerWidth,height=window.innerHeight;
     setView({width,height});
-    const el=current.id==='welcome'||current.id==='finish'?null:document.querySelector<HTMLElement>(`[data-tour-id="${current.id}"]`);
+    const el=current.id==='welcome'||current.id==='finish'?null:document.querySelector<HTMLElement>(`[data-zt-id="${current.id}"]`);
     if(!el){setRect(null);return}
     const r=el.getBoundingClientRect();
     setRect({top:Math.max(5,r.top-6),left:Math.max(5,r.left-6),width:Math.min(width-10,r.width+12),height:r.height+12});
   };
   const frame=window.requestAnimationFrame(()=>{
-    const el=document.querySelector<HTMLElement>(`[data-tour-id="${current.id}"]`);
+    const el=document.querySelector<HTMLElement>(`[data-zt-id="${current.id}"]`);
     if(el){el.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center',inline:'nearest'})}
     update();
   });
@@ -49,17 +49,17 @@ export default function GuidedTour({onNavigate,onClose}:{onNavigate:(page:Sectio
  const mobile=view.width<680;
  const cardWidth=Math.min(380,view.width-32);
  const above=rect && rect.top>270;
- const top=mobile?Math.max(12,view.height-275):rect?Math.max(15,Math.min(view.height-295,above?rect.top-278:rect.top+rect.height+22)):Math.max(20,(view.height-290)/2);
+ const top=mobile?Math.max(12,view.height-300):rect?Math.max(15,Math.min(view.height-295,above?rect.top-278:rect.top+rect.height+22)):Math.max(20,(view.height-290)/2);
  const left=mobile?16:rect?Math.max(16,Math.min(view.width-cardWidth-16,rect.left)):Math.max(16,(view.width-cardWidth)/2);
- return <div className="tour-root" role="dialog" aria-modal="true" aria-labelledby="fasty-tour-title" aria-describedby="fasty-tour-copy">
-  {!rect&&<div className="tour-dim" aria-hidden="true"/>}
-  {rect&&<div className="tour-spotlight" aria-hidden="true" style={{top:rect.top,left:rect.left,width:rect.width,height:rect.height}}/>}
-  <section className="tour-panel" style={{top,left,width:cardWidth}}>
-   <div className="tour-top"><div className="tour-fasty" aria-hidden="true">F<span>•</span></div><div><span className="tour-eyebrow">FASTY TE GUÍA</span><div className="tour-count">PASO {index+1} / {stops.length}</div></div><button className="tour-close" onClick={end} aria-label="Cerrar recorrido">×</button></div>
-   <div className="tour-track" aria-label={`Progreso del recorrido: ${index+1} de ${stops.length}`}><div style={{width:`${(index+1)/stops.length*100}%`}}/></div>
-   <h2 id="fasty-tour-title" ref={heading} tabIndex={-1}>{current.title}</h2>
-   <p id="fasty-tour-copy">{current.message}</p>
-   <div className="tour-controls"><button type="button" className="tour-skip" onClick={end}>Omitir</button><div className="tour-buttons"><button type="button" className="tour-back" disabled={index===0} onClick={()=>setIndex(i=>Math.max(0,i-1))}>Atrás</button><button type="button" className="tour-next" onClick={()=>index===stops.length-1?end():setIndex(i=>Math.min(stops.length-1,i+1))}>{index===stops.length-1?'Empezar':'Continuar'} <span aria-hidden="true">↗</span></button></div></div>
+ return <div className="zt-root" role="dialog" aria-modal="true" aria-labelledby="fasty-zt-title" aria-describedby="fasty-zt-copy">
+  {!rect&&<div className="zt-dim" aria-hidden="true"/>}
+  {rect&&<div className="zt-spotlight" aria-hidden="true" style={{top:rect.top,left:rect.left,width:rect.width,height:rect.height}}/>}
+  <section className="zt-panel" style={{top,left,width:cardWidth}}>
+   <div className="zt-top"><div className="zt-fasty" aria-hidden="true"><span className="zt-symbol">F</span><span>✦</span></div><div><span className="zt-eyebrow">FASTY TE GUÍA</span><div className="zt-count">PASO {index+1} / {stops.length}</div></div><button className="zt-close" onClick={end} aria-label="Cerrar recorrido">×</button></div>
+   <div className="zt-track" aria-label={`Progreso del recorrido: ${index+1} de ${stops.length}`}><div style={{width:`${(index+1)/stops.length*100}%`}}/></div>
+   <h2 id="fasty-zt-title" ref={heading} tabIndex={-1}>{current.title}</h2>
+   <p id="fasty-zt-copy">{current.message}</p>
+   <div className="zt-controls"><button type="button" className="zt-skip" onClick={end}>Omitir</button><div className="zt-buttons"><button type="button" className="zt-back" disabled={index===0} onClick={()=>setIndex(i=>Math.max(0,i-1))}>Atrás</button><button type="button" className="zt-next" onClick={()=>index===stops.length-1?end():setIndex(i=>Math.min(stops.length-1,i+1))}>{index===stops.length-1?'Empezar':'Continuar'} <span aria-hidden="true">↗</span></button></div></div>
   </section>
  </div>
 }
