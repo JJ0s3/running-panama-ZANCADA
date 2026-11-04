@@ -5,17 +5,17 @@ const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const tour=read('components/guided-tour.tsx');
 const app=read('components/ultraviolet-runner.tsx');
 const plan=read('components/plan-experience.tsx');
-const spatial=read('components/spatial-zancada.tsx');
+const running=read('components/running-focus.tsx');
 const layout=read('app/layout.tsx');
 const mobile=read('app/iphone-polish.css');
 const stops=['today','fasty','goal','register','progress','calendar','coach','profile'];
 test('the guide queries real ZANCADA anchors rather than the renamed CSS prefix',()=>{
  assert.match(tour,/data-tour-id=/);
  assert.doesNotMatch(tour,/data-zt-id=/);
- for(const id of stops)assert.ok((app+plan+spatial).includes('data-tour-id="'+id+'"'),'Missing visible tour anchor: '+id);
+ for(const id of stops)assert.ok((app+plan+running).includes('data-tour-id="'+id+'"'),'Missing visible tour anchor: '+id);
  assert.match(app,/data-tour-id=\{i===0\?"events":undefined\}/,'Only the first event action row should be the tour target');
- assert.match(spatial,/<div data-tour-id="today" className="sp-session">/);
- assert.match(spatial,/<div data-tour-id="fasty" className="sp-fasty-content">/);
+ assert.match(running,/data-tour-id="today" className="run-session-detail"/);
+ assert.match(app,/data-tour-id="fasty" className="run-coach"/);
  assert.match(plan,/data-tour-id="calendar" className="zi-week-days"/);
 });
 test('tour keeps measuring after tab navigation',()=>{
