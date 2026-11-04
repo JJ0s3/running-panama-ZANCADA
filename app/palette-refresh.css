@@ -1,0 +1,354 @@
+/* ZANCADA · Papel / Mango / Pacífico (revisión fiel de v2)
+   Solo cambia color, tipografía y tratamiento de iconos.
+   La estructura, las imágenes, la guía original y sus interacciones son las de main.
+   Referencia: ZANCADA-guia-rediseno.pdf, p. 2-3. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@500&display=swap');
+:root{
+ --z-paper:#F5F1E8;
+ --z-white:#FFFFFF;
+ --z-mango:#FF6B2C;
+ --z-mango-soft:#FFE4D7;
+ --z-pacific:#1E4FD8;
+ --z-pacific-soft:#E8EDFB;
+ --z-ink:#15171C;
+ --z-stone:#5F6168;
+ --z-sand:#E9E3D6;
+ --z-archivo:'Archivo','Space Grotesk',system-ui,sans-serif;
+ --z-mono:'DM Mono',ui-monospace,monospace;
+ --ep-bg:var(--z-paper);
+ --ep-navy:var(--z-ink);
+ --ep-red:var(--z-mango);
+ --ep-red-dark:var(--z-ink);
+ --ep-amber:var(--z-mango);
+ --ep-muted:var(--z-stone);
+ --ep-line:var(--z-sand);
+ --za-violet:var(--z-pacific);
+ --za-violet-dark:var(--z-ink);
+ --za-ink:var(--z-ink);
+ --za-yellow:var(--z-mango);
+}
+/* Keep original gradient geometry and layout, with warmer palette. */
+body:has(.ep-app){background:var(--z-paper)!important;color:var(--z-ink)!important}
+.ep-app{
+ background-color:var(--z-paper)!important;
+ background-image:
+  radial-gradient(ellipse at 0% 5%,rgba(30,79,216,.09),transparent 60%),
+  radial-gradient(ellipse at 100% 20%,rgba(255,107,44,.09),transparent 62%),
+  radial-gradient(ellipse at 75% 90%,rgba(233,227,214,.42),transparent 65%),
+  linear-gradient(155deg,#F5F1E8 0%,#FAF7F0 55%,#F5F1E8 100%)!important;
+ color:var(--z-ink)!important;
+}
+/* Preserve the transparent surfaces from the existing mobile fix. */
+.ep-app .ep-desktop-shell,.ep-app .ep-page{background:transparent!important;color:var(--z-ink)}
+.ep-app .ep-top{
+ background:rgba(250,247,240,.94)!important;
+ border-bottom-color:var(--z-sand)!important;
+ box-shadow:0 3px 14px rgba(21,23,28,.06)!important;
+}
+.ep-app .ep-sidebar{background:var(--z-white)!important;border-color:var(--z-sand)!important}
+.ep-app .ep-sidebar>button.active{background:var(--z-mango-soft)!important;color:var(--z-ink)!important}
+.ep-app .ep-sidebar>button.active svg{color:var(--z-pacific)!important;stroke-width:2.2}
+.ep-app .ep-sidebar>button:hover:not(.active){background:var(--z-pacific-soft)!important}
+.ep-app .ep-side-note{background:var(--z-pacific-soft)!important;border-color:var(--z-sand)!important}
+.ep-app .ep-side-note strong{color:var(--z-ink)!important}
+.ep-app .ep-logo{color:var(--z-ink)!important}
+.ep-app .ep-logo b{color:var(--z-pacific)!important}
+.ep-app .ep-logo i{background:var(--z-mango)!important}
+.ep-app .ep-profile-button{background:var(--z-ink)!important;color:var(--z-white)!important}
+.ep-app .ep-top-edition{color:var(--z-stone)!important}
+/* Display typography: distinctive, localized and not applied indiscriminately to body. */
+.ep-app .ep-home-heading h1,
+.ep-app .ep-list-heading h1,
+.ep-app .ep-fasty-header h1,
+.ep-app .ep-bib-view>h1,
+.ep-app .ep-detail-text h1,
+.ep-app .zr-hero h1{
+ font-family:var(--z-archivo)!important;
+ font-weight:850!important;
+ font-variation-settings:'wdth' 112;
+ letter-spacing:-.055em!important;
+}
+.ep-app .ep-next-info h2,
+.ep-app .za-journey-heading h2,
+.ep-app .ep-section-heading h2,
+.ep-app .za-event-card h3,
+.ep-app .zr-filter-head h2,
+.ep-app .za-race-guide-heading h2{
+ font-family:var(--z-archivo)!important;
+ font-weight:800!important;
+ font-variation-settings:'wdth' 108;
+ letter-spacing:-.035em!important;
+}
+.ep-app .ep-bib-number,
+.ep-app .ep-next-event .ep-hero-distance,
+.ep-app .st-home-metrics button strong,
+.ep-app .zr-hero-foot strong{
+ font-family:var(--z-archivo)!important;
+ font-weight:900!important;
+ font-variation-settings:'wdth' 72;
+ font-variant-numeric:tabular-nums;
+}
+.ep-app .ep-home-date,
+.ep-app .ep-small-date,
+.ep-app .za-hero-photo-label,
+.ep-app .zr-date-chip,
+.ep-app .zr-home-date,
+.ep-app .ep-event-meta,
+.ep-app .za-detail-photo-credit{
+ font-family:var(--z-mono)!important;
+}
+/* Paper cards; preserve their dimensions, shadows and photography. */
+.ep-app .ep-next-event,
+.ep-app .ep-event-card,
+.ep-app .ep-event-detail,
+.ep-app .ep-calendar-teaser,
+.ep-app .ep-bib-object,
+.ep-app .ep-prep,
+.ep-app .ep-fasty-chat,
+.ep-app .ep-empty,.ep-app .ep-empty-bib,
+.ep-app .za-journey,
+.ep-app .za-detail-sections section,
+.ep-app .st-prep-intro,.ep-app .st-prep-choice,
+.ep-app .st-prep-next,.ep-app .st-resource-card,
+.ep-app .zr-filter-card,.ep-app .zr-card,
+.ep-app .zr-home-preview,.ep-app .zr-home-item{
+ background-color:var(--z-white)!important;
+ border-color:var(--z-sand)!important;
+}
+.ep-app .ep-next-info{background:var(--z-white)!important}
+.ep-app .ep-next-info h2,
+.ep-app .ep-countdown,
+.ep-app .ep-bib-number,
+.ep-app .ep-event-card h3,
+.ep-app .ep-detail-text h1,
+.ep-app .ep-home-heading h1,
+.ep-app .ep-list-heading h1{color:var(--z-ink)!important}
+.ep-app .ep-home-heading h1 em,
+.ep-app .ep-list-heading h1 em,
+.ep-app .ep-fasty-header h1 em,
+.ep-app .ep-bib-view>h1 span{color:var(--z-pacific)!important}
+.ep-app .ep-home-heading>p,
+.ep-app .ep-list-heading>p,
+.ep-app .ep-lead,
+.ep-app .ep-detail-text>p,
+.ep-app .za-journey-step>span:nth-child(3),
+.ep-app .zr-hero-foot small{color:var(--z-stone)!important}
+.ep-app .ep-kicker,
+.ep-app .za-section-eyebrow,
+.ep-app .za-race-guide-eyebrow,
+.ep-app .za-kicker-icon,
+.ep-app .ep-section-heading>div>span,
+.ep-app .ep-section-heading>button,
+.ep-app .za-step-action{color:var(--z-pacific)!important}
+.ep-app .ep-next-meta svg,
+.ep-app .ep-event-meta svg,
+.ep-app .ep-detail-facts svg,
+.ep-app .st-home-metrics button svg{color:var(--z-pacific)!important}
+.ep-app .ep-tag{
+ background:var(--z-pacific-soft)!important;
+ border-color:var(--z-sand)!important;
+ color:var(--z-stone)!important;
+}
+.ep-app .ep-primary,
+.ep-app .ep-fasty-form button,
+.ep-app .ep-tour-next,
+.ep-app .st-tour-panel .ep-tour-next,
+.ep-app .ep-detail-sections a.ep-external-primary,
+.ep-app .st-prep-next button,
+.ep-app .zr-card-footer button,
+.ep-app .zr-home-open,
+.ep-app .zr-empty button{
+ background:var(--z-mango)!important;
+ color:var(--z-ink)!important;
+ border-color:var(--z-mango)!important;
+ box-shadow:inset 0 -2px 0 rgba(21,23,28,.17),0 5px 14px rgba(255,107,44,.15)!important;
+}
+.ep-app .ep-primary:hover,
+.ep-app .ep-fasty-form button:hover,
+.ep-app .ep-tour-next:hover,
+.ep-app .st-prep-next button:hover,
+.ep-app .zr-card-footer button:hover,
+.ep-app .zr-home-open:hover{background:#FF884F!important;color:var(--z-ink)!important}
+.ep-app .ep-primary:active,
+.ep-app .ep-tour-next:active{box-shadow:inset 0 1px 1px rgba(21,23,28,.15)!important}
+.ep-app .ep-secondary,
+.ep-app .ep-event-footer button{
+ background:var(--z-white)!important;
+ color:var(--z-ink)!important;
+ border-color:var(--z-sand)!important;
+}
+.ep-app .ep-secondary:hover,
+.ep-app .ep-event-footer button:hover{background:var(--z-pacific-soft)!important}
+.ep-app .ep-home-date,
+.ep-app .ep-small-date{background:var(--z-pacific-soft)!important;color:var(--z-pacific)!important}
+.ep-app .ep-home-event{border-color:var(--z-sand)!important}
+.ep-app .za-journey-step{
+ background:var(--z-white)!important;
+ border-color:var(--z-sand)!important;
+ box-shadow:inset 0 1px 0 #fff,0 3px 0 var(--z-sand)!important;
+ color:var(--z-ink)!important;
+}
+.ep-app .za-journey-step:hover{box-shadow:0 5px 0 #D8D0BF!important}
+.ep-app .za-step-icon,.ep-app .za-journey-step:nth-child(2) .za-step-icon,
+.ep-app .za-detail-icon,
+.ep-app .st-prep-choice-icon{background:var(--z-pacific-soft)!important;color:var(--z-pacific)!important;border-color:var(--z-sand)!important}
+.ep-app .ep-hero-seal{background:var(--z-mango)!important;color:var(--z-ink)!important;border-color:#FFD8C7!important}
+/* Photos remain unchanged; only the old navy-tinted overlay becomes neutral ink. */
+.ep-app .za-hero-visual,
+.ep-app .za-event-card .ep-event-art,
+.ep-app .za-detail-photo-cover{background:var(--z-ink)!important}
+.ep-app .za-hero-photo-mask{
+ background:linear-gradient(180deg,rgba(21,23,28,.55) 0%,rgba(21,23,28,.07) 45%,rgba(21,23,28,.88) 100%)!important;
+}
+.ep-app .za-photo-mask{
+ background:linear-gradient(180deg,rgba(21,23,28,.60),rgba(21,23,28,.12) 42%,rgba(21,23,28,.86))!important;
+}
+.ep-app .za-detail-photo-cover .za-detail-photo-scrim{
+ background:linear-gradient(0deg,rgba(21,23,28,.84),rgba(21,23,28,.12))!important;
+}
+.ep-app .ep-hero-caption{background:rgba(21,23,28,.73)!important}
+.ep-app .ep-detail-cover{background:linear-gradient(135deg,var(--z-ink),var(--z-pacific))!important}
+.ep-app .ep-detail-facts{border-color:var(--z-sand)!important}
+.ep-app .ep-detail-facts small{color:var(--z-stone)!important}
+.ep-app .za-detail-sections section:nth-child(2) .za-detail-icon{background:#FFF2E8!important;color:var(--z-ink)!important}
+.ep-app .ep-detail-sections a:not(.ep-external-primary),
+.ep-app .st-map-footer>a,
+.ep-app .st-map-footer>button,
+.ep-app .st-resource-cta{color:var(--z-pacific)!important}
+.ep-app .ep-chips button.selected{
+ background:var(--z-pacific)!important;
+ border-color:var(--z-pacific)!important;
+ color:var(--z-white)!important;
+}
+.ep-app .ep-event-footer button.ep-saved{background:var(--z-pacific-soft)!important;color:var(--z-pacific)!important}
+.ep-app .ep-search{border-color:var(--z-sand)!important;background:var(--z-white)!important}
+.ep-app .ep-search svg{color:var(--z-pacific)!important}
+.ep-app .ep-fasty-strip,.ep-app .st-prepare-teaser{
+ background:var(--z-pacific-soft)!important;
+ border-color:var(--z-sand)!important;
+ color:var(--z-ink)!important;
+}
+.ep-app .st-prepare-icon{color:var(--z-pacific)!important;border-color:var(--z-sand)!important}
+.ep-app .st-prepare-teaser span{color:var(--z-stone)!important}
+.ep-app .st-prepare-teaser button{color:var(--z-pacific)!important;border-color:var(--z-sand)!important}
+.ep-app .st-prep-choice.selected{border-color:var(--z-pacific)!important;background:var(--z-pacific-soft)!important}
+.ep-app .st-eyebrow,.ep-app .st-map-info svg,
+.ep-app .st-resource-card>svg,.ep-app .st-resource-note svg{color:var(--z-pacific)!important}
+.ep-app .ep-checkrow.checked .ep-checkmark{
+ background:var(--z-pacific)!important;border-color:var(--z-pacific)!important;
+}
+.ep-app .ep-bib-top,.ep-app .ep-bib-foot{background:var(--z-ink)!important}
+.ep-app .ep-bib-caption{color:var(--z-pacific)!important}
+.ep-app .ep-bib-disclaimer{background:var(--z-pacific-soft)!important;border-color:var(--z-sand)!important;color:var(--z-ink)!important}
+.ep-app .ep-fasty-header{
+ background:radial-gradient(circle at 50% -45%,#FDE5D6 0%,#F3ECE3 54%,#FFFFFF 100%)!important;
+ border-color:var(--z-sand)!important;
+}
+.ep-app .ep-fasty-header .ep-avatar,
+.ep-app .ep-fasty-bubble .ep-avatar{background:var(--z-ink)!important}
+.ep-app .ep-fasty-options button svg{color:var(--z-pacific)!important}
+/* Original tour intact, just new theme colors. */
+.ep-app .ep-tour-progress span{background:var(--z-mango)!important}
+.ep-app .ep-tour-outline{
+ border-color:var(--z-mango)!important;
+ box-shadow:0 0 0 4px rgba(255,107,44,.30),0 0 17px rgba(255,107,44,.37)!important;
+}
+.ep-app .st-tour-panel .ep-tour-head strong{color:var(--z-pacific)!important}
+.ep-app .st-tour-chapters button.active{
+ background:var(--z-pacific)!important;color:#fff!important;border-color:var(--z-pacific)!important;
+}
+.ep-app :is(button,a,input,select):focus-visible{outline:3px solid var(--z-pacific)!important;outline-offset:3px}
+/* All results sections use the palette, while layout and filters remain unchanged. */
+.ep-app .zr-screen{color:var(--z-ink)!important}
+.ep-app .zr-eyebrow{color:var(--z-pacific)!important}
+.ep-app .zr-hero{background:linear-gradient(120deg,var(--z-ink),#202B4E)!important}
+.ep-app .zr-hero .zr-eyebrow{color:#DDE7FF!important}
+.ep-app .zr-hero h1{font-family:var(--z-archivo)!important;color:#fff!important}
+.ep-app .zr-hero h1 em{color:#FF9A6B!important}
+.ep-app .zr-hero-art>svg{background:var(--z-mango)!important;color:var(--z-ink)!important}
+.ep-app .zr-hero-foot strong{color:#fff!important}
+.ep-app .zr-counter{background:var(--z-pacific-soft)!important;color:var(--z-ink)!important}
+.ep-app .zr-search{background:var(--z-paper)!important;border-color:var(--z-sand)!important;color:var(--z-pacific)!important}
+.ep-app .zr-search:focus-within{border-color:var(--z-pacific)!important;box-shadow:0 0 0 3px rgba(30,79,216,.10)!important}
+.ep-app .zr-search input{color:var(--z-ink)!important}
+.ep-app .zr-filters select{border-color:var(--z-sand)!important;color:var(--z-ink)!important}
+.ep-app .zr-filters select:focus-visible{outline-color:var(--z-pacific)!important}
+.ep-app .zr-filter-foot button{color:var(--z-pacific)!important}
+.ep-app .zr-location svg,.ep-app .zr-detail h4 svg,
+.ep-app .zr-empty svg,.ep-app .zr-disclosure>svg,.ep-app .zr-home-item>svg{color:var(--z-pacific)!important}
+.ep-app .zr-card-footer button:hover,
+.ep-app .zr-home-open:hover{background:#FF884F!important}
+.ep-app .zr-status-published{background:var(--z-pacific-soft)!important;color:var(--z-pacific)!important}
+.ep-app .zr-source-link,
+.ep-app .zr-disclosure a{color:var(--z-pacific)!important}
+/* Race-day guide: keep steps, images, and all links. Replace residual purple. */
+.ep-app .za-race-guide{
+ background:linear-gradient(140deg,#F5F1E8,#FFFDF8)!important;
+ color:var(--z-ink)!important;border-color:var(--z-sand)!important;
+}
+.ep-app .za-race-guide-heading h2 em{color:var(--z-pacific)!important}
+.ep-app .za-race-guide-eyebrow,
+.ep-app .za-race-guide-brief-heading svg,
+.ep-app .za-race-guide-caveat svg{color:var(--z-pacific)!important}
+.ep-app .za-race-guide-heading>p{color:var(--z-stone)!important}
+.ep-app .za-race-guide-step{border-color:var(--z-sand)!important;box-shadow:0 3px 0 var(--z-sand)!important}
+.ep-app .za-race-guide-icon{background:var(--z-pacific-soft)!important;color:var(--z-pacific)!important}
+.ep-app .za-race-guide-icon-yellow{background:#FFE4D7!important;color:var(--z-ink)!important}
+.ep-app .za-race-guide-link{
+ background:var(--z-mango)!important;border-color:var(--z-mango)!important;color:var(--z-ink)!important;
+}
+.ep-app .za-race-guide-link svg{color:var(--z-ink)!important}
+/* Legacy purple event specifics are constrained to the new palette. */
+.ep-app .za-race-guide-steps [class*='note'],
+.ep-app .za-race-guide-steps [class*='caveat']{border-color:var(--z-sand)!important}
+.ep-app .za-detail-icon{color:var(--z-pacific)!important}
+/* Keep previous bottom navigation sizing, position and labels exactly. */
+.ep-app .ep-bottom-nav{
+ background:rgba(255,255,255,.96)!important;
+ border-color:var(--z-sand)!important;
+ box-shadow:0 10px 32px rgba(21,23,28,.12)!important;
+}
+.ep-app .ep-bottom-nav button{color:var(--z-stone)!important}
+.ep-app .ep-bottom-nav button.active{
+ background:var(--z-mango-soft)!important;
+ color:var(--z-ink)!important;
+ box-shadow:inset 0 0 0 1px #FFB990!important;
+}
+.ep-app .ep-bottom-nav button.active svg{color:var(--z-pacific)!important;stroke-width:2.2}
+/* Responsive placement remains in zancada-mobile-fix.css; only its colors change. */
+@media(max-width:960px){
+ .ep-app .ep-top{background:rgba(250,247,240,.94)!important}
+}
+
+
+/* Final consistency review against actual 390px and 1280px screenshots:
+   replace remaining lavender from legacy button/number states. */
+.ep-app .ep-logo{
+ font-family:var(--z-archivo)!important;
+ font-weight:850!important;
+ font-variation-settings:'wdth' 112;
+}
+.ep-app .ep-logo b{font-family:var(--z-mono)!important;font-weight:500!important}
+.ep-app .ep-calendar-tags button{
+ background:var(--z-pacific-soft)!important;
+ border-color:var(--z-sand)!important;
+ color:var(--z-pacific)!important;
+}
+.ep-app .ep-calendar-tags button svg,
+.ep-app .ep-home-event>svg,
+.ep-app .za-step-top small,
+.ep-app .za-step-top>small{color:var(--z-pacific)!important}
+.ep-app .ep-history-stamp{
+ background:var(--z-pacific-soft)!important;
+ color:var(--z-pacific)!important;
+}
+.ep-app .za-race-guide-status>svg{color:var(--z-pacific)!important}
+.ep-app .za-race-guide-link:hover{
+ background:#FF884F!important;
+ color:var(--z-ink)!important;
+}
+.ep-app .st-tour-chapters button:not(.active){
+ background:var(--z-pacific-soft)!important;
+ color:var(--z-ink)!important;
+ border-color:var(--z-sand)!important;
+}
