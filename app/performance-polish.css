@@ -143,3 +143,6 @@
 .ep-app .ep-tour-panel .ep-tour-next{background:var(--zp-accent)!important;color:var(--zp-accent-contrast)!important;border-color:var(--zp-accent)!important}
 .ep-app .ep-tour-panel .ep-tour-next svg{color:inherit!important}
 .ep-app .ep-tour-panel .ep-tour-head button{min-width:44px;min-height:44px}
+
+/* The legacy dock used left:50% + translateX(-50%); neutralize it for the inset layout. */
+@media(max-width:960px){.ep-app .ep-bottom-nav{transform:none!important;inset-inline:12px!important;width:auto!important;max-width:none!important;margin-inline:0!important}}
