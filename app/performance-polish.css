@@ -149,3 +149,9 @@
 
 /* Fasty avatar is the guide identity instead of a generic compass icon. */
 .ep-app .st-tour-symbol .ep-avatar{width:32px!important;height:32px!important;min-width:32px!important;transform:scale(.8);transform-origin:center}
+
+/* Explicitly outrank legacy light-theme heading selectors inside the intentionally dark pass. */
+.ep-app[data-theme="light"] .ep-bib-object .ep-bib-body h2,
+.ep-app[data-theme="light"] .ep-bib-object .ep-bib-details strong{color:#F4F8FF!important}
+.ep-app[data-theme="light"] .ep-bib-object .ep-bib-caption{color:#C2D3E6!important}
+.ep-app[data-theme="light"] .ep-bib-object .ep-bib-details span{color:#C0D2E7!important}
