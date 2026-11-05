@@ -39,6 +39,18 @@ try{
   if(width===390){
    await page.locator('.ep-bottom-nav button').filter({hasText:'Eventos'}).click();
    await page.locator('.za-race-photo').first().waitFor();
+   // Regression: the GRID selection must visibly become two cards per row on iPhone.
+   await page.getByRole('button',{name:'Vista de cuadrícula destacada'}).click();
+   const cards=page.locator('.ep-events-grid.zp-events-grid .ep-event-card');
+   await cards.nth(1).waitFor();
+   const boxes=await Promise.all([cards.nth(0).boundingBox(),cards.nth(1).boundingBox()]);
+   if(!boxes[0]||!boxes[1]||Math.abs(boxes[0].y-boxes[1].y)>8)
+    throw Error('Mobile grid does not show two event cards in the same row');
+   if(boxes[0].width>220||boxes[1].width>220)
+    throw Error('Mobile grid cards are still full-sized');
+   await page.screenshot({path:'qa/performance-390-grid-compact.png',fullPage:true});
+   await page.getByRole('button',{name:'Vista de lista compacta'}).click();
+
    await page.locator('.ep-event-footer button').first().click();
    await page.locator('.ep-event-detail').waitFor();
    await page.locator('#st-event-route').waitFor();
@@ -49,6 +61,9 @@ try{
    await page.locator('.zr-card').first().waitFor();
    const disclosure=await styles(page.locator('.zr-disclosure'));
    if(disclosure.bg!=='rgb(21, 36, 58)')throw Error('Results disclosure light-theme leak: '+JSON.stringify(disclosure));
+
+   const darkTitle=await page.locator('.zr-hero h1').evaluate(el=>getComputedStyle(el).color);
+   if(darkTitle!=='rgb(248, 251, 255)')throw Error('Results title lacks inverse contrast in dark theme: '+darkTitle);
    await page.screenshot({path:'qa/performance-390-resultados.png',fullPage:true});
    await page.locator('.ep-bottom-nav button').filter({hasText:'Preparación'}).click();
    await page.locator('.st-prep-hub').waitFor();
@@ -65,6 +80,11 @@ try{
    await page.getByRole('button',{name:/Repetir recorrido/}).click();
    await page.locator('.ep-tour-panel').waitFor();
    await page.getByText('PARADA 1 DE 10').waitFor({state:'visible',timeout:9000});
+
+   // Tour controls cannot be white-on-white or washed out in the dark view.
+   const tourClose=await page.getByRole('button',{name:'Cerrar recorrido'}).evaluate(el=>({background:getComputedStyle(el).backgroundColor,color:getComputedStyle(el).color}));
+   if(tourClose.background==='rgb(255, 255, 255)'||tourClose.color==='rgb(255, 255, 255)'&&tourClose.background==='rgb(240, 243, 248)')
+    throw Error('Tour close control has insufficient dark-theme contrast');
    await page.screenshot({path:'qa/performance-390-guia.png',fullPage:true});
    await page.getByRole('button',{name:'Cerrar recorrido'}).click();
    await page.locator('.ep-tour-layer').waitFor({state:'detached'});
@@ -100,6 +120,9 @@ try{
   if(width===390){
    await page.locator('.ep-bottom-nav button').filter({hasText:'Resultados'}).click();
    await page.locator('.zr-card').first().waitFor();
+
+   const lightTitle=await page.locator('.zr-hero h1').evaluate(el=>getComputedStyle(el).color);
+   if(lightTitle!=='rgb(248, 251, 255)')throw Error('Results title unreadable on navy hero in light mode: '+lightTitle);
    await page.screenshot({path:'qa/performance-390-light-resultados.png',fullPage:true});
    await page.locator('.ep-bottom-nav button').filter({hasText:'Preparación'}).click();
    await page.locator('.st-prep-hub').waitFor();
