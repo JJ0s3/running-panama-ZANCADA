@@ -24,7 +24,7 @@ try{
    if(!await page.locator('.ep-bottom-nav').isVisible())throw Error('Dock missing at '+width);
    if(await page.locator('.ep-sidebar').isVisible())throw Error('Mobile sidebar visible at '+width);
    const navHeight=await page.locator('.ep-bottom-nav').evaluate(el=>Math.round(el.getBoundingClientRect().height));
-   if(navHeight!==80)throw Error('Dock not 80 px '+width+': '+navHeight);
+   if(navHeight<64||navHeight>76)throw Error('Compact dock outside target range '+width+': '+navHeight);
    const activeIcon=await page.locator('.ep-bottom-nav button.active svg').evaluate(el=>getComputedStyle(el).backgroundImage);
    if(!activeIcon.includes('gradient'))throw Error('Active orange circular icon missing '+width+': '+activeIcon);
    const rect=await page.locator('.ep-logo').boundingBox();
