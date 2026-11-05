@@ -306,3 +306,20 @@
   max-height:32px!important;
  }
 }
+
+
+/* Logo color is now handled by two transparent SVG variants.
+   No pale badge/plate in dark mode; the brand belongs to the header surface. */
+.ep-app .ep-logo.zp-brand-wordmark,
+.ep-app[data-theme="dark"] .ep-logo.zp-brand-wordmark,
+.ep-app[data-theme="light"] .ep-logo.zp-brand-wordmark{
+ background:transparent!important;
+ border:0!important;
+ border-radius:0!important;
+ box-shadow:none!important;
+ padding:4px 0!important;
+}
+.ep-app .ep-logo.zp-brand-wordmark .zp-wordmark-dark{display:block!important}
+.ep-app .ep-logo.zp-brand-wordmark .zp-wordmark-light{display:none!important}
+.ep-app[data-theme="light"] .ep-logo.zp-brand-wordmark .zp-wordmark-dark{display:none!important}
+.ep-app[data-theme="light"] .ep-logo.zp-brand-wordmark .zp-wordmark-light{display:block!important}
