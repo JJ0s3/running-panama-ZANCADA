@@ -38,8 +38,8 @@ Next.js/React + TypeScript. Primera iteración de eventos con catálogo curado t
 ## Criterio de terminado
 Un usuario completa el flujo sin confundir información curada con información oficial ni un dorsal personal con credencial de acceso; QA móvil en 375/390px, accesibilidad, pruebas y build pasan; documentación, fuentes y límites actualizados.
 
-## Próxima entrega
-I0: documentación y catálogo. I1: Home/Evento/Detalle/Guardados. I2: registro de participación, dorsal personal, checklist. I3: Fasty y tour adaptados. I4: QA Safari y revisión antes de merge.
+## Estado de entrega
+ZANCADA Performance (v2.2.0) fue integrada a `main` el 4 de noviembre de 2026 mediante PR #16 y publicada en Vercel. La aplicación mantiene las cinco secciones del pasaporte, los temas claro/oscuro, Fasty, fuentes y guía de diez pasos. Las próximas entregas deben registrarse en el [CHANGELOG](CHANGELOG.md) y seguir el [procedimiento de despliegue](docs/deployment/README.md).
 
 ## Historial
 Hasta la v0.6, ZANCADA era una demo funcional de plan y registro. Se conservan las ramas y el registro de decisiones anteriores; el giro a eventos ocurre explícitamente con ADR-0006.

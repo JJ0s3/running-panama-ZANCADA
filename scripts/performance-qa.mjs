@@ -13,9 +13,11 @@ try{
   await page.goto(base,{waitUntil:'domcontentloaded'});
   await page.locator('.za-hero-photo').waitFor({state:'visible'});
   if(width===390){
-   const headerLogo=page.locator('.ep-logo.zp-brand-wordmark img');
+   const headerLogo=page.locator('.ep-logo.zp-brand-wordmark .zp-wordmark-dark');
    await headerLogo.waitFor({state:'visible'});
-   if(!await headerLogo.evaluate(img=>img.complete&&img.naturalWidth>0))throw Error('ZANCADA header wordmark unavailable');
+   if(!await headerLogo.evaluate(img=>img.complete&&img.naturalWidth>0))throw Error('ZANCADA dark wordmark unavailable');
+   const plate=await page.locator('.ep-logo.zp-brand-wordmark').evaluate(el=>({bg:getComputedStyle(el).backgroundColor,border:getComputedStyle(el).borderTopWidth}));
+   if(plate.bg!=='rgba(0, 0, 0, 0)'||plate.border!=='0px')throw Error('Dark logo has unwanted light plate: '+JSON.stringify(plate));
    for(const route of ['/apple-icon','/icon']){
     const response=await page.request.get(base+route);
     if(!response.ok())throw Error(route+' fails to serve iPhone app icon: '+response.status());
@@ -111,6 +113,10 @@ try{
   // New requirement: user can switch between real light/dark themes on every viewport.
   const switcher=page.getByRole('button',{name:'Cambiar al tema claro'});
   await switcher.click();
+  if(width===390){
+   if(!await page.locator('.zp-wordmark-light').isVisible())throw Error('Light wordmark not shown in light theme');
+   if(await page.locator('.zp-wordmark-dark').isVisible())throw Error('Dark wordmark leaking into light theme');
+  }
   if(await page.locator('.ep-app').getAttribute('data-theme')!=='light')throw Error('Light theme not active '+width);
   const light=await styles(page.locator('.ep-app'));
   if(light.bg!=='rgb(245, 247, 251)')throw Error('Light background is incorrect '+width+': '+JSON.stringify(light));
