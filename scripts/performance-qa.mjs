@@ -1,0 +1,161 @@
+import {chromium} from 'playwright';
+import {mkdir} from 'node:fs/promises';
+
+const base=process.env.QA_BASE_URL??'http://127.0.0.1:3000';
+await mkdir('qa',{recursive:true});
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const styles=async locator=>locator.evaluate(el=>{const s=getComputedStyle(el);return {bg:s.backgroundColor,image:s.backgroundImage,font:s.fontFamily,color:s.color}});
+try{
+ for(const width of [320,390,430,768,1280]){
+  const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.addInitScript(()=>localStorage.setItem('zancada-event-tour-v1','done'));
+  await page.goto(base,{waitUntil:'domcontentloaded'});
+  await page.locator('.za-hero-photo').waitFor({state:'visible'});
+  if(width===390){
+   const headerLogo=page.locator('.ep-logo.zp-brand-wordmark img');
+   await headerLogo.waitFor({state:'visible'});
+   if(!await headerLogo.evaluate(img=>img.complete&&img.naturalWidth>0))throw Error('ZANCADA header wordmark unavailable');
+   for(const route of ['/apple-icon','/icon']){
+    const response=await page.request.get(base+route);
+    if(!response.ok())throw Error(route+' fails to serve iPhone app icon: '+response.status());
+    const type=response.headers()['content-type']||'';
+    if(!type.includes('image/png'))throw Error(route+' is not PNG ('+type+')');
+    const bytes=await response.body();
+    if(bytes.length<1000||bytes[0]!==137||bytes[1]!==80||bytes[2]!==78||bytes[3]!==71)throw Error(route+' has no valid PNG signature');
+   }
+   const manifest=await page.request.get(base+'/manifest.webmanifest');
+   if(!manifest.ok())throw Error('Installable manifest unavailable');
+   const data=await manifest.json();
+   if(data.short_name!=='ZANCADA'||data.display!=='standalone')throw Error('iPhone installed app branding incorrect');
+  }
+
+  await page.locator('.st-home-metrics button').first().waitFor();
+  if(await page.locator('.st-home-metrics button').count()!==3)throw Error('Dashboard metrics changed at '+width);
+  if(await page.locator('.za-journey-step').count()!==3)throw Error('Original step cards changed at '+width);
+  if(await page.locator('.ep-bottom-nav button').count()!==5)throw Error('Navigation count changed at '+width);
+  const body=await styles(page.locator('.ep-app'));
+  if(body.bg!=='rgb(8, 13, 21)')throw Error('Dark identity missing '+width+': '+JSON.stringify(body));
+  const logo=await styles(page.locator('.ep-logo'));
+  if(!logo.font.includes('Fugaz One'))throw Error('Sport logo type missing '+width+': '+logo.font);
+  if(width<=960){
+   if(!await page.locator('.ep-bottom-nav').isVisible())throw Error('Dock missing at '+width);
+   if(await page.locator('.ep-sidebar').isVisible())throw Error('Mobile sidebar visible at '+width);
+   const navHeight=await page.locator('.ep-bottom-nav').evaluate(el=>Math.round(el.getBoundingClientRect().height));
+   if(navHeight<64||navHeight>76)throw Error('Compact dock outside target range '+width+': '+navHeight);
+   const activeIcon=await page.locator('.ep-bottom-nav button.active svg').evaluate(el=>getComputedStyle(el).backgroundImage);
+   if(!activeIcon.includes('gradient'))throw Error('Active orange circular icon missing '+width+': '+activeIcon);
+   const rect=await page.locator('.ep-logo').boundingBox();
+   if(!rect||Math.abs(rect.x+rect.width/2-width/2)>21)throw Error('Logo not centered at '+width);
+  }else{
+   if(!await page.locator('.ep-sidebar').isVisible())throw Error('Desktop sidebar hidden');
+   if(await page.locator('.ep-bottom-nav').isVisible())throw Error('Duplicate dock on desktop');
+  }
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+  if(overflow>6)throw Error('Horizontal overflow '+width+': '+overflow);
+  await page.screenshot({path:'qa/performance-'+width+'-home.png',fullPage:true});
+  if(width===390){
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Eventos'}).click();
+   await page.locator('.za-race-photo').first().waitFor();
+   // Regression: the GRID selection must visibly become two cards per row on iPhone.
+   await page.getByRole('button',{name:'Vista de cuadrícula destacada'}).click();
+   const cards=page.locator('.ep-events-grid.zp-events-grid .ep-event-card');
+   await cards.nth(1).waitFor();
+   const boxes=await Promise.all([cards.nth(0).boundingBox(),cards.nth(1).boundingBox()]);
+   if(!boxes[0]||!boxes[1]||Math.abs(boxes[0].y-boxes[1].y)>8)
+    throw Error('Mobile grid does not show two event cards in the same row');
+   if(boxes[0].width>220||boxes[1].width>220)
+    throw Error('Mobile grid cards are still full-sized');
+   await page.screenshot({path:'qa/performance-390-grid-compact.png',fullPage:true});
+   await page.getByRole('button',{name:'Vista de lista compacta'}).click();
+
+   await page.locator('.ep-event-footer button').first().click();
+   await page.locator('.ep-event-detail').waitFor();
+   await page.locator('#st-event-route').waitFor();
+   const routeShell=await styles(page.locator('.st-route-section'));
+   if(!routeShell.image.includes('gradient'))throw Error('Map shell is not in dark performance theme');
+   await page.screenshot({path:'qa/performance-390-evento.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Resultados'}).click();
+   await page.locator('.zr-card').first().waitFor();
+   const disclosure=await styles(page.locator('.zr-disclosure'));
+   if(disclosure.bg!=='rgb(21, 36, 58)')throw Error('Results disclosure light-theme leak: '+JSON.stringify(disclosure));
+
+   const darkTitle=await page.locator('.zr-hero h1').evaluate(el=>getComputedStyle(el).color);
+   if(darkTitle!=='rgb(248, 251, 255)')throw Error('Results title lacks inverse contrast in dark theme: '+darkTitle);
+   await page.screenshot({path:'qa/performance-390-resultados.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Preparación'}).click();
+   await page.locator('.st-prep-hub').waitFor();
+   await page.locator('.ep-fasty-header .ep-avatar').waitFor();
+   const resource=await styles(page.locator('.st-resource-org').first());
+   if(resource.color!=='rgb(0, 200, 255)')throw Error('Fasty resources still use old colors: '+JSON.stringify(resource));
+   const fasty=await styles(page.locator('.ep-fasty-header .ep-avatar'));
+   if(!fasty.image.includes('gradient'))throw Error('Fasty recolor missing: '+JSON.stringify(fasty));
+   await page.screenshot({path:'qa/performance-390-fasty.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Mi dorsal'}).click();
+   await page.locator('.ep-bib-object').waitFor();
+   await page.screenshot({path:'qa/performance-390-dorsal.png',fullPage:true});
+   await page.locator('.ep-profile-button').click();
+   await page.getByRole('button',{name:/Repetir recorrido/}).click();
+   await page.locator('.ep-tour-panel').waitFor();
+   await page.getByText('PARADA 1 DE 10').waitFor({state:'visible',timeout:9000});
+
+   // Tour controls cannot be white-on-white or washed out in the dark view.
+   const tourClose=await page.getByRole('button',{name:'Cerrar recorrido'}).evaluate(el=>({background:getComputedStyle(el).backgroundColor,color:getComputedStyle(el).color}));
+   if(tourClose.background==='rgb(255, 255, 255)'||tourClose.color==='rgb(255, 255, 255)'&&tourClose.background==='rgb(240, 243, 248)')
+    throw Error('Tour close control has insufficient dark-theme contrast');
+   await page.screenshot({path:'qa/performance-390-guia.png',fullPage:true});
+   await page.getByRole('button',{name:'Cerrar recorrido'}).click();
+   await page.locator('.ep-tour-layer').waitFor({state:'detached'});
+   await page.locator('.st-home-metrics button').first().waitFor();
+  }
+  // New requirement: user can switch between real light/dark themes on every viewport.
+  const switcher=page.getByRole('button',{name:'Cambiar al tema claro'});
+  await switcher.click();
+  if(await page.locator('.ep-app').getAttribute('data-theme')!=='light')throw Error('Light theme not active '+width);
+  const light=await styles(page.locator('.ep-app'));
+  if(light.bg!=='rgb(245, 247, 251)')throw Error('Light background is incorrect '+width+': '+JSON.stringify(light));
+  if(await page.evaluate(()=>localStorage.getItem('zancada-theme-v1'))!=='light')throw Error('Theme preference not saved '+width);
+  const heading=await styles(page.locator('.ep-app h1').first());
+  if(!heading.font.includes('Saira Semi Condensed'))throw Error('Refined athletic headline font missing '+width+': '+heading.font);
+  if((await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth))>6)throw Error('Light theme horizontal overflow '+width);
+  // Contrast regressions raised in screenshot review: light metrics and navy dossier.
+  const contrast=(a,b)=>{const lum=hex=>{const nums=hex.match(/\d+/g)?.slice(0,3).map(Number);if(!nums||nums.length<3)return 0;const linear=nums.map(v=>{const x=v/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4});return linear[0]*.2126+linear[1]*.7152+linear[2]*.0722};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+  if(width===390||width===1280){
+   const number=page.locator('.st-home-metrics button strong').first();
+   const nc=await number.evaluate(el=>getComputedStyle(el).color);
+   const nb=await page.locator('.st-home-metrics button').first().evaluate(el=>getComputedStyle(el).backgroundColor);
+   if(contrast(nc,nb)<4.5)throw Error('Light dashboard metric unreadable '+width+' '+nc+' on '+nb);
+   await page.locator(width===390?'.ep-bottom-nav button:has-text("Mi dorsal")':'.ep-sidebar button:has-text("Mi dorsal")').click();
+   await page.locator('.ep-bib-body h2').waitFor();
+   const textColor=await page.locator('.ep-bib-body h2').evaluate(el=>getComputedStyle(el).color);
+   if(!textColor.includes('244, 248, 255'))throw Error('Bib name must be readable on dark pass: '+textColor);
+   const dateColor=await page.locator('.ep-bib-details strong').first().evaluate(el=>getComputedStyle(el).color);
+   if(!dateColor.includes('244, 248, 255'))throw Error('Bib details low contrast '+dateColor);
+   await page.screenshot({path:'qa/performance-'+width+'-light-dorsal-contrast.png',fullPage:true});
+   await page.locator(width===390?'.ep-bottom-nav button:has-text("Inicio")':'.ep-sidebar button:has-text("Inicio")').click();
+  }
+  await page.screenshot({path:'qa/performance-'+width+'-light-home.png',fullPage:true});
+  if(width===390){
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Resultados'}).click();
+   await page.locator('.zr-card').first().waitFor();
+
+   const lightTitle=await page.locator('.zr-hero h1').evaluate(el=>getComputedStyle(el).color);
+   if(lightTitle!=='rgb(248, 251, 255)')throw Error('Results title unreadable on navy hero in light mode: '+lightTitle);
+   await page.screenshot({path:'qa/performance-390-light-resultados.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Preparación'}).click();
+   await page.locator('.st-prep-hub').waitFor();
+   await page.screenshot({path:'qa/performance-390-light-fasty.png',fullPage:true});
+   await page.locator('.ep-bottom-nav button').filter({hasText:'Mi dorsal'}).click();
+   await page.locator('.ep-bib-object').waitFor();
+   await page.screenshot({path:'qa/performance-390-light-dorsal.png',fullPage:true});
+  }
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>document.querySelector('.ep-app')?.getAttribute('data-theme')==='light',{timeout:5000});
+  await page.getByRole('button',{name:'Cambiar al tema oscuro'}).click();
+  if(await page.locator('.ep-app').getAttribute('data-theme')!=='dark')throw Error('Dark theme cannot be restored '+width);
+  if(await page.evaluate(()=>localStorage.getItem('zancada-theme-v1'))!=='dark')throw Error('Dark theme preference not saved '+width);
+  if(errors.length)throw Error('JS runtime error '+width+': '+errors.join('; '));
+  console.log('QA OK '+width+'px: sports skin, original UX and layout');
+  await page.close();
+ }
+}finally{await browser.close()}

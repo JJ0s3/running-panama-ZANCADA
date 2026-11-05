@@ -15,7 +15,7 @@ const steps:Step[]=[
  {target:'bib',tab:'dorsal',title:'Tu dorsal de recuerdo',copy:'Conserva tu historial y el número que tú introduzcas. No es una acreditación oficial.'},
  {target:'preparation',tab:'dorsal',title:'Todo listo para salir',copy:'Marca tu checklist y vuelve a consultar la ficha del evento cuando falten detalles.'},
  {target:'calendar',tab:'inicio',title:'Organiza las fechas',copy:'Puedes guardar eventos y consultar tu agenda sin perderte en un registro de entrenamientos.'},
- {target:'fasty',tab:'fasty',title:'Fasty vive en Preparación',copy:'Aquí puedes pedir orientación sobre cómo prepararte, revisar fuentes útiles y abrir el mapa de tu próxima carrera.'}
+ {target:'fasty',tab:'fasty',title:'Fasty te acompaña',copy:'Soy Fasty, tu copiloto de carrera. Puedes preguntarme desde aquí, revisar tus fechas y conocer los recursos para prepararte.'}
 ];
 const chapters=[{at:0,label:'Inicio',Icon:Compass},{at:2,label:'Explorar',Icon:Flag},{at:3,label:'Ficha y mapa',Icon:Map},{at:6,label:'Mi dorsal',Icon:Ticket},{at:9,label:'Preparación',Icon:ShieldCheck}];
 export default function EventTour({onNavigate,onClose}:{onNavigate:(tab:EventTab,eventId?:string)=>void;onClose:()=>void}){
@@ -70,7 +70,7 @@ export default function EventTour({onNavigate,onClose}:{onNavigate:(tab:EventTab
    <div className="ep-tour-outline" style={focus} aria-hidden="true"/>
   </>}
   <section ref={panel} className="ep-tour-panel st-tour-panel">
-   <div className="ep-tour-head"><div className="st-tour-symbol"><Compass size={22}/></div><div><strong>RECORRIDO INTERACTIVO</strong><small>{moving?'DESPLAZANDO HACIA LA SECCIÓN':`PARADA ${index+1} DE ${steps.length}`}</small></div><button aria-label="Cerrar recorrido" type="button" onClick={close}><X size={20}/></button></div>
+   <div className="ep-tour-head"><div className="st-tour-symbol"><span className="ep-avatar" aria-hidden="true"><i/><i/><b/></span></div><div><strong>FASTY TE GUÍA</strong><small>{moving?'DESPLAZANDO HACIA LA SECCIÓN':`PARADA ${index+1} DE ${steps.length}`}</small></div><button aria-label="Cerrar recorrido" type="button" onClick={close}><X size={20}/></button></div>
    <nav className="st-tour-chapters" aria-label="Saltar entre capítulos">
     {chapters.map(({at,label,Icon})=><button key={label} type="button" aria-pressed={index===at} className={index===at?'active':''} onClick={()=>setIndex(at)}><Icon size={15}/><span>{label}</span></button>)}
    </nav>
