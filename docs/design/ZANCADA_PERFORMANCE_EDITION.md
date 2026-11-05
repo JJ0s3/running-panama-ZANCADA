@@ -1,3 +1,5 @@
+> **Histórico:** diseño planteado antes de la publicación. Para el resultado vigente consulte [README](../../README.md), [CHANGELOG](../../CHANGELOG.md) y [arquitectura](../architecture/OVERVIEW.md).
+
 # ZANCADA · Performance Edition — guía de diseño y validación
 
 **Fecha:** 04/11/2026 · **Estado:** propuesta de estilo, separada de producción  
