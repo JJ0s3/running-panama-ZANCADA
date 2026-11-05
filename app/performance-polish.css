@@ -274,3 +274,35 @@
   display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;
  }
 }
+
+
+/* Brand master: preserve the supplied artwork's navy, orange and cyan.
+   A light plate in the dark header keeps the original navy letters readable. */
+.ep-app .ep-logo.zp-brand-wordmark{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:5px 11px!important;border:1px solid rgba(14,28,52,.08)!important;
+ background:#F6F8F9!important;border-radius:11px!important;
+ color:inherit!important;box-shadow:0 2px 14px rgba(0,0,0,.07)!important;
+ width:auto!important;height:auto!important;min-height:43px!important;
+}
+.ep-app .ep-logo.zp-brand-wordmark img{
+ display:block!important;width:clamp(140px,14vw,192px)!important;height:auto!important;
+ max-height:38px!important;object-fit:contain!important;
+}
+.ep-app .ep-logo.zp-brand-wordmark:focus-visible{
+ outline:3px solid var(--zp-accent)!important;outline-offset:3px!important;
+}
+.ep-app[data-theme="light"] .ep-logo.zp-brand-wordmark{
+ background:transparent!important;border-color:transparent!important;
+ box-shadow:none!important;
+}
+@media(max-width:680px){
+ .ep-app .ep-logo.zp-brand-wordmark{
+  padding:4px 6px!important;min-height:36px!important;border-radius:8px!important;
+  max-width:calc(100vw - 200px)!important;
+ }
+ .ep-app .ep-logo.zp-brand-wordmark img{
+  width:clamp(108px,33vw,154px)!important;max-width:100%!important;
+  max-height:32px!important;
+ }
+}
