@@ -12,6 +12,24 @@ try{
   await page.addInitScript(()=>localStorage.setItem('zancada-event-tour-v1','done'));
   await page.goto(base,{waitUntil:'domcontentloaded'});
   await page.locator('.za-hero-photo').waitFor({state:'visible'});
+  if(width===390){
+   const headerLogo=page.locator('.ep-logo.zp-brand-wordmark img');
+   await headerLogo.waitFor({state:'visible'});
+   if(!await headerLogo.evaluate(img=>img.complete&&img.naturalWidth>0))throw Error('ZANCADA header wordmark unavailable');
+   for(const route of ['/apple-icon','/icon']){
+    const response=await page.request.get(base+route);
+    if(!response.ok())throw Error(route+' fails to serve iPhone app icon: '+response.status());
+    const type=response.headers()['content-type']||'';
+    if(!type.includes('image/png'))throw Error(route+' is not PNG ('+type+')');
+    const bytes=await response.body();
+    if(bytes.length<1000||bytes[0]!==137||bytes[1]!==80||bytes[2]!==78||bytes[3]!==71)throw Error(route+' has no valid PNG signature');
+   }
+   const manifest=await page.request.get(base+'/manifest.webmanifest');
+   if(!manifest.ok())throw Error('Installable manifest unavailable');
+   const data=await manifest.json();
+   if(data.short_name!=='ZANCADA'||data.display!=='standalone')throw Error('iPhone installed app branding incorrect');
+  }
+
   await page.locator('.st-home-metrics button').first().waitFor();
   if(await page.locator('.st-home-metrics button').count()!==3)throw Error('Dashboard metrics changed at '+width);
   if(await page.locator('.za-journey-step').count()!==3)throw Error('Original step cards changed at '+width);
