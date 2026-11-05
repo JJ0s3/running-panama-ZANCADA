@@ -121,3 +121,25 @@
 @media(prefers-reduced-motion:reduce){
  .ep-app .zp-fasty-nudge,.ep-app .zp-view-switch button{transition:none!important}
 }
+
+/* Onboarding overlays: ensure actionable controls remain visible on dark and light backgrounds. */
+.ep-app .ep-tour-panel .ep-tour-actions button:disabled{
+ opacity:.42!important;cursor:not-allowed!important;
+ background:var(--zp-surface-elevated)!important;
+ color:var(--zp-text-secondary)!important;
+ border:1px solid var(--zp-border-default)!important;
+ box-shadow:none!important;
+}
+.ep-app .ep-tour-panel .ep-tour-actions button:not(:disabled){
+ min-height:42px!important;
+}
+.ep-app .st-tour-panel .ep-tour-head strong{color:var(--zp-accent)!important}
+.ep-app .st-tour-panel .st-tour-symbol{background:var(--zp-soft)!important;color:var(--zp-accent)!important;border:1px solid var(--zp-border-default)!important}
+.ep-app .st-tour-panel .st-tour-chapters button{background:var(--zp-surface-elevated)!important;border-color:var(--zp-border-default)!important;color:var(--zp-text-primary)!important}
+.ep-app .st-tour-panel .st-tour-chapters button.active{background:var(--zp-accent)!important;border-color:var(--zp-accent)!important;color:var(--zp-accent-contrast)!important}
+.ep-app .st-tour-panel .st-tour-hint{color:var(--zp-text-secondary)!important}
+.ep-app .ep-tour-panel .ep-tour-skip{color:var(--zp-on-navy)!important}
+.ep-app[data-theme="light"] .ep-tour-panel .ep-tour-skip{color:#172337!important}
+.ep-app .ep-tour-panel .ep-tour-next{background:var(--zp-accent)!important;color:var(--zp-accent-contrast)!important;border-color:var(--zp-accent)!important}
+.ep-app .ep-tour-panel .ep-tour-next svg{color:inherit!important}
+.ep-app .ep-tour-panel .ep-tour-head button{min-width:44px;min-height:44px}
