@@ -1,0 +1,123 @@
+/* ZANCADA visual refinement: scoped semantic layers; preserves the approved silhouette. */
+.ep-app {
+ --zp-text-primary:var(--zp-ink);
+ --zp-text-secondary:var(--zp-muted);
+ --zp-surface-primary:var(--zp-card);
+ --zp-surface-elevated:var(--zp-card2);
+ --zp-border-default:var(--zp-line);
+ --zp-accent:var(--zp-mango);
+ --zp-accent-contrast:#0A1522;
+ --zp-on-navy:#F5F8FF;
+ --zp-on-navy-secondary:#C3D4E8;
+ --zp-on-navy-heading:#FFFFFF;
+ --zp-compact-gap:14px;
+}
+.ep-app[data-theme="light"] {
+ --zp-accent-contrast:#FFFFFF;
+ --zp-on-navy:#F5F8FF;
+ --zp-on-navy-secondary:#CBDCEF;
+}
+/* Reusable text treatments and legible interaction surfaces */
+.ep-app .ep-bib-brief{background:var(--zp-surface-primary)!important;border:1px solid var(--zp-border-default)!important;color:var(--zp-text-primary)!important}
+.ep-app .ep-bib-brief strong{color:var(--zp-text-primary)!important}
+.ep-app .ep-bib-brief span{color:var(--zp-text-secondary)!important}
+.ep-app .ep-bib-brief button{color:var(--zp-accent)!important}
+.ep-app .ep-history-row{background:var(--zp-surface-elevated)!important;color:var(--zp-text-primary)!important;border-color:var(--zp-border-default)!important}
+.ep-app .ep-history-row strong{color:var(--zp-text-primary)!important}
+.ep-app .ep-history-row small{color:var(--zp-text-secondary)!important}
+.ep-app .ep-history-row .ep-history-stamp{background:var(--zp-soft)!important;color:var(--zp-text-primary)!important}
+.ep-app[data-theme="light"] .ep-history-row .ep-history-stamp{background:#DCEAF9!important;color:#133351!important}
+.ep-app .ep-bib-details strong,.ep-app .ep-bib-body h2{color:var(--zp-on-navy)!important}
+.ep-app .ep-bib-details span{color:var(--zp-on-navy-secondary)!important}
+.ep-app .ep-bib-event{color:#7EDBFF!important}
+.ep-app .ep-bib-caption{color:#C2D3E6!important}
+.ep-app .ep-bib-top,.ep-app .ep-bib-foot{color:#FFFFFF!important}
+.ep-app .zr-hero h1,.ep-app .zr-hero-foot strong{color:var(--zp-on-navy-heading)!important}
+.ep-app .zr-hero>p,.ep-app .zr-hero-foot small{color:var(--zp-on-navy-secondary)!important}
+.ep-app .zr-hero .zr-eyebrow{color:#82DBFF!important}
+.ep-app .zr-hero h1 em{color:#FF832B!important}
+.ep-app[data-theme="light"] :is(.ep-bib-number,.ep-bib-body strong){text-shadow:none!important}
+.ep-app .ep-checkrow:has(input:disabled){opacity:.7}
+.ep-app .ep-checkrow:has(input:disabled) span{color:var(--zp-text-secondary)!important}
+/* Compact row mode: visual image becomes a thumbnail while metadata stays readable. */
+.ep-app .zp-view-switch{display:flex;align-items:center;gap:6px;justify-content:flex-end;flex-wrap:wrap;margin-top:-8px}
+.ep-app .zp-view-switch>span{margin-right:auto;color:var(--zp-text-secondary);font:700 12px var(--zp-body)}
+.ep-app .zp-view-switch button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 12px;min-height:42px;
+ background:var(--zp-surface-primary)!important;color:var(--zp-text-secondary)!important;
+ border:1px solid var(--zp-border-default)!important;border-radius:12px;font:700 12px var(--zp-body)!important;cursor:pointer}
+.ep-app .zp-view-switch button.active{background:var(--zp-soft)!important;color:var(--zp-text-primary)!important;border-color:var(--zp-accent)!important}
+.ep-app .zp-events-list{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
+.ep-app .zp-events-list .ep-event-card{display:grid!important;grid-template-columns:clamp(118px,19vw,174px) minmax(0,1fr)!important;
+ gap:6px 15px!important;padding:10px!important;align-items:start!important;min-height:154px!important}
+.ep-app .zp-events-list .ep-event-art{grid-column:1;grid-row:1 / span 4;width:100%!important;height:100%!important;min-height:130px!important;border-radius:12px!important}
+.ep-app .zp-events-list .ep-event-art>strong{font-size:clamp(28px,4vw,46px)!important}
+.ep-app .zp-events-list .ep-event-meta{grid-column:2;grid-row:1;min-width:0;flex-wrap:wrap;font-size:12px!important}
+.ep-app .zp-events-list .ep-event-card h3{grid-column:2;grid-row:2;margin:0!important;font-size:clamp(17px,1.8vw,23px)!important;line-height:1.18!important}
+.ep-app .zp-events-list .ep-event-card>p{grid-column:2;grid-row:3;margin:0!important;font-size:12px!important;line-height:1.4!important}
+.ep-app .zp-events-list .ep-event-footer{grid-column:2;grid-row:4;margin-top:4px!important;align-self:end}
+.ep-app .zp-events-list .ep-event-footer button:first-child{min-height:36px!important}
+.ep-app .zp-events-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))!important;gap:16px!important}
+.ep-app .zp-events-grid .ep-event-card{min-width:0}
+.ep-app .zp-events-grid .ep-event-art{height:160px!important}
+/* Fasty is a first-class destination: put input at top, not beneath resource cards. */
+.ep-app .ep-fasty-page{gap:14px!important}
+.ep-app .ep-fasty-header{padding:20px 22px!important;gap:9px!important}
+.ep-app .ep-fasty-header .ep-avatar{flex-shrink:0}
+.ep-app .ep-fasty-header h1{font-size:clamp(28px,3vw,40px)!important;margin:0!important}
+.ep-app .ep-fasty-header>p{font-size:14px!important;line-height:1.5!important}
+.ep-app .zp-fasty-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ep-app .zp-fasty-shortcuts button{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;min-height:42px; border-radius:999px;
+ background:var(--zp-surface-elevated)!important;color:var(--zp-text-primary)!important;border:1px solid var(--zp-border-default)!important;font:700 12px var(--zp-body)!important}
+.ep-app .ep-fasty-chat{padding:18px!important;gap:11px!important}
+.ep-app .ep-fasty-options{display:flex!important;flex-wrap:wrap;gap:8px!important}
+.ep-app .ep-fasty-options button{width:auto!important;min-height:40px!important;padding:9px 12px!important;font-size:12px!important}
+.ep-app .ep-fasty-form{margin-top:4px}
+.ep-app .ep-fasty-form input{min-width:0;font-size:16px!important}
+.ep-app .st-prep-hub{margin-top:20px}
+.ep-app .zp-fasty-nudge{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:13px 15px;
+ background:var(--zp-surface-elevated)!important;border:1px solid var(--zp-border-default)!important;
+ border-left:3px solid var(--zp-accent)!important;border-radius:14px;color:var(--zp-text-primary)!important}
+.ep-app .zp-fasty-nudge .ep-avatar{width:38px!important;height:38px!important;flex:0 0 38px}
+.ep-app .zp-fasty-nudge>span:nth-child(2){flex:1;min-width:0;display:grid;gap:3px}
+.ep-app .zp-fasty-nudge strong{color:var(--zp-text-primary)!important;font:800 13px var(--zp-body)!important}
+.ep-app .zp-fasty-nudge small{color:var(--zp-text-secondary)!important;font:500 12px/1.35 var(--zp-body)!important}
+.ep-app .zp-fasty-nudge>svg{flex:0 0 auto;color:var(--zp-accent)!important}
+/* More compact mobile dock with reliable safe-area clearance. */
+@media(max-width:960px){
+ .ep-app .ep-page{padding-bottom:calc(115px + env(safe-area-inset-bottom))!important}
+ .ep-app .ep-bottom-nav{min-height:65px!important;height:70px!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;
+  left:12px!important;right:12px!important;padding:7px 5px!important;max-width:720px;margin-inline:auto}
+ .ep-app .ep-bottom-nav button{min-width:0!important;flex:1!important;padding:3px 2px!important;gap:3px!important;min-height:54px!important;
+ font-size:clamp(9px,1.5vw,11px)!important;line-height:1.1!important}
+ .ep-app .ep-bottom-nav button svg{width:19px!important;height:19px!important}
+ .ep-app .ep-bottom-nav button span{white-space:normal!important;text-align:center!important}
+ .ep-app .ep-tour-panel{bottom:calc(100px + env(safe-area-inset-bottom))!important;
+  max-height:min(53dvh,390px)!important;overflow:auto!important;overscroll-behavior:contain}
+ .ep-app .ep-tour-layer{isolation:isolate}
+ .ep-app .ep-tour-panel .ep-tour-actions{gap:8px!important}
+ .ep-app .ep-tour-panel .ep-tour-actions button{min-height:40px!important}
+}
+@media(max-width:560px){
+ .ep-app .ep-fasty-header{padding:18px!important}
+ .ep-app .zp-fasty-shortcuts{display:grid;grid-template-columns:1fr 1fr}
+ .ep-app .zp-fasty-shortcuts button{justify-content:space-between;padding:10px}
+ .ep-app .zp-fasty-shortcuts button:first-child{grid-column:1/-1}
+ .ep-app .zp-events-list .ep-event-card{grid-template-columns:100px minmax(0,1fr)!important;gap:4px 10px!important}
+ .ep-app .zp-events-list .ep-event-art{min-height:126px!important}
+ .ep-app .zp-events-list .ep-event-art>strong{font-size:28px!important}
+ .ep-app .zp-events-list .ep-art-caption,.ep-app .zp-events-list .ep-art-label{display:none!important}
+ .ep-app .zp-events-list .ep-event-meta{font-size:10px!important}
+ .ep-app .zp-events-list .ep-event-card h3{font-size:16px!important}
+ .ep-app .zp-events-list .ep-event-card>p{font-size:11px!important}
+ .ep-app .zp-events-list .ep-event-footer button:first-child{font-size:11px!important;padding:7px!important}
+ .ep-app .ep-bib-top,.ep-app .ep-bib-foot{font-size:9px!important;gap:8px}
+ .ep-app .ep-bib-object{min-width:0}
+ .ep-app .ep-bib-details strong{font-size:clamp(15px,4vw,22px)!important}
+ .ep-app .ep-fasty-options{display:grid!important;grid-template-columns:1fr 1fr}
+ .ep-app .ep-fasty-options button{font-size:11px!important}
+ .ep-app .ep-fasty-options button:last-child{grid-column:1/-1}
+ .ep-app .ep-top{min-height:62px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .ep-app .zp-fasty-nudge,.ep-app .zp-view-switch button{transition:none!important}
+}
