@@ -146,3 +146,6 @@
 
 /* The legacy dock used left:50% + translateX(-50%); neutralize it for the inset layout. */
 @media(max-width:960px){.ep-app .ep-bottom-nav{transform:none!important;inset-inline:12px!important;width:auto!important;max-width:none!important;margin-inline:0!important}}
+
+/* Fasty avatar is the guide identity instead of a generic compass icon. */
+.ep-app .st-tour-symbol .ep-avatar{width:32px!important;height:32px!important;min-width:32px!important;transform:scale(.8);transform-origin:center}
