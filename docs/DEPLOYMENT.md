@@ -1,3 +1,5 @@
+> **Histórico:** procedimiento de la primera demo. Para operación vigente consulte [docs/deployment/README.md](deployment/README.md).
+
 # Despliegue y revisión de preview — ZANCADA
 
 ## Estado de la primera entrega
