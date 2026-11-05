@@ -70,7 +70,7 @@ export default function EventTour({onNavigate,onClose}:{onNavigate:(tab:EventTab
    <div className="ep-tour-outline" style={focus} aria-hidden="true"/>
   </>}
   <section ref={panel} className="ep-tour-panel st-tour-panel">
-   <div className="ep-tour-head"><div className="st-tour-symbol"><Compass size={22}/></div><div><strong>FASTY TE GUÍA</strong><small>{moving?'DESPLAZANDO HACIA LA SECCIÓN':`PARADA ${index+1} DE ${steps.length}`}</small></div><button aria-label="Cerrar recorrido" type="button" onClick={close}><X size={20}/></button></div>
+   <div className="ep-tour-head"><div className="st-tour-symbol"><span className="ep-avatar" aria-hidden="true"><i/><i/><b/></span></div><div><strong>FASTY TE GUÍA</strong><small>{moving?'DESPLAZANDO HACIA LA SECCIÓN':`PARADA ${index+1} DE ${steps.length}`}</small></div><button aria-label="Cerrar recorrido" type="button" onClick={close}><X size={20}/></button></div>
    <nav className="st-tour-chapters" aria-label="Saltar entre capítulos">
     {chapters.map(({at,label,Icon})=><button key={label} type="button" aria-pressed={index===at} className={index===at?'active':''} onClick={()=>setIndex(at)}><Icon size={15}/><span>{label}</span></button>)}
    </nav>
