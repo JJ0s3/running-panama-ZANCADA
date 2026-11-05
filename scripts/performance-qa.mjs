@@ -66,6 +66,9 @@ try{
    await page.locator('.ep-tour-panel').waitFor();
    await page.getByText('PARADA 1 DE 10').waitFor({state:'visible',timeout:9000});
    await page.screenshot({path:'qa/performance-390-guia.png',fullPage:true});
+   await page.getByRole('button',{name:'Cerrar recorrido'}).click();
+   await page.locator('.ep-tour-layer').waitFor({state:'detached'});
+   await page.locator('.st-home-metrics button').first().waitFor();
   }
   // New requirement: user can switch between real light/dark themes on every viewport.
   const switcher=page.getByRole('button',{name:'Cambiar al tema claro'});
