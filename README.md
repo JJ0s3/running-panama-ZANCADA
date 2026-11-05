@@ -1,40 +1,94 @@
-# ZANCADA · Pasaporte del corredor 🇵🇦
+# ZANCADA 🏁
 
-**Descubre la carrera. Conoce la ruta. Prepárate. Guarda tu historia.**
+**El pasaporte digital del corredor en Panamá.**
 
-ZANCADA v2 es una aplicación web *mobile-first* para descubrir carreras en Panamá, consultar rutas y referencias de resultados, organizar preparativos y conservar un pasaporte personal del corredor.
+Descubre carreras, consulta sus rutas y resultados en las fuentes originales, prepara tu participación con Fasty y conserva tus experiencias en un pasaporte personal. Diseñada para **iPhone, móviles y escritorio**, con modos claro y oscuro.
 
-> **Estado:** versión v2 validada en la PC del proyecto, aún **sin publicar desde la rama local** `chore/zancada-quality-gates`. Esta rama documental no contiene los nuevos componentes de la aplicación.
+[**🌐 Abrir ZANCADA**](https://runningpanamajj.vercel.app) · [**📖 Guía de usuario**](docs/GUIA_USUARIO_ZANCADA_V2.md) · [**🧪 Pruebas**](docs/testing/TEST-PLAN.md) · [**🚀 Despliegue**](docs/deployment/README.md)
 
-## Cinco espacios
+> **Estado:** publicada en producción mediante Vercel desde `main`. Última entrega de identidad deportiva: [PR #16](https://github.com/JJ0s3/running-panama-ZANCADA/pull/16), fusionado el 4 de noviembre de 2026. Las futuras correcciones se registran mediante PR y el [CHANGELOG](CHANGELOG.md).
 
-| Sección | Qué puedes hacer |
-|---|---|
-| **Inicio** | Ver la carrera destacada, tus guardados y accesos relevantes |
-| **Eventos** | Buscar eventos, filtrar distancias, revisar su ficha y consultar mapas integrados |
-| **Resultados** | Filtrar referencias de carreras y abrir sus resultados en la fuente |
-| **Preparación** | Consultar con Fasty, revisar checklist y recursos para el día de carrera |
-| **Mi dorsal** | Registrar una participación declarada y tu número, si lo conoces |
+## Qué puedes hacer
 
-**Importante:** ZANCADA no cobra inscripciones, no certifica resultados, no emite dorsales oficiales y no realiza seguimiento GPS. Las fuentes externas se atribuyen y pueden cambiar. Los datos del pasaporte se guardan en tu navegador, no en una cuenta.
+| Sección | Función |
+| --- | --- |
+| **Inicio** | Próxima carrera, métricas del catálogo y accesos rápidos |
+| **Eventos** | Catálogo curado, búsqueda y filtros; vista de lista o cuadrícula; fichas, mapas y enlaces externos |
+| **Resultados** | Referencias de resultados publicados por terceros, con filtros y atribución |
+| **Preparación · Fasty** | Orientación contextual, checklist y recursos para el día de carrera |
+| **Mi Dorsal** | Carreras guardadas, participación autodeclarada y pasaporte personal |
 
-## Identidad visual
+**Importante:** ZANCADA **no inscribe en carreras, no acredita participaciones, no genera dorsales oficiales, no cronometra y no proporciona seguimiento GPS**. La inscripción y los resultados oficiales se consultan con cada organizador. El estado personal se guarda localmente en el navegador; **no existe cuenta ni sincronización en la nube** en esta versión. Fasty es asistencia contextual de preparación; no se debe presentar como un servicio de IA remota.
 
-Paleta deportiva panameña: marino `#0D1D38`, rojo `#D72638`, dorado `#D9901A`, azul claro `#E6EEFF` y superficies `#F4F6FA`. La versión móvil tiene marca centrada, cinco tarjetas de navegación estables y fondo difuminado. Referencias: Stitch suministrado por el proyecto y [Papaya25 Resultados](https://papaya25.info/resultados.php), sin afiliación.
+## Experiencia visual
 
-## Desarrollo
+- Tema **oscuro Performance** (grafito, naranja y azul eléctrico) y **claro**, con preferencia local persistente.
+- Identidad ZANCADA en la cabecera y símbolo Z para el acceso de pantalla de inicio de iOS.
+- Cinco destinos visibles; navegación lateral en escritorio y barra inferior compacta en móvil.
+- Fotografías editoriales identificadas como ilustrativas; mapas GPX cuando existe ruta documentada.
+- Guía interactiva de **10 paradas**, presentada con Fasty.
 
-- Next.js 16 / React 19 / TypeScript / CSS; Lucide.
-- Mapas integrados con Leaflet y OpenStreetMap; rutas GPX mediante una API del proyecto.
-- Node.js 22.x usado en CI/Vercel (en desarrollo local se comprobó con Node.js 26).
-- Pruebas: `npm run typecheck`, `npm test`, `npm run build`.
+## Stack técnico
+
+| Capa | Tecnologías |
+| --- | --- |
+| Aplicación | Next.js 16 (App Router), React 19, TypeScript |
+| Estilos y UI | CSS por capas, Lucide, fuentes deportivas y modos de color |
+| Eventos y estado | Catálogo tipado y `localStorage` (sin backend de cuentas) |
+| Mapas | Leaflet, OpenStreetMap, GPX y endpoint interno de rutas |
+| Calidad | Node test runner, TypeScript, Playwright en GitHub Actions |
+| Distribución | Vercel, dominio público estable, manifest PWA y Apple touch icon |
+
+## Ejecutar localmente
+
+Requiere **Node.js 22** y npm.
 
 ```bash
-npm install
+git clone https://github.com/JJ0s3/running-panama-ZANCADA.git
+cd running-panama-ZANCADA
+npm ci
 npm run dev
 ```
 
-**Documentación:** [Especificación v2](docs/product/ZANCADA_V2_ESPECIFICACION.md) · [Guía de usuario](docs/GUIA_USUARIO_ZANCADA_V2.md) · [Publicación](docs/RELEASE_ZANCADA_V2.md) · [Cambios](CHANGELOG.md).
+Abrir `http://localhost:3000`. Para validar:
 
-**Código:** [JJ0s3/running-panama-ZANCADA](https://github.com/JJ0s3/running-panama-ZANCADA)  
-**Publicación prevista:** https://runningpanamajj.vercel.app — verificar SHA desplegada; un enlace existente no acredita que v2 esté en producción.
+```bash
+npm run typecheck
+npm test
+npm run build
+```
+
+No se requieren credenciales para el flujo actual. Ver `package.json` y `.env.example` para las opciones efectivamente soportadas.
+
+## Organización del código
+
+```text
+app/                 App Router, estilos, manifest, iconos y API de rutas
+components/          Pantallas, Fasty, guía, visor de rutas y resultados
+lib/                 Catálogo, dominio, GPX, resultados y lógica pura
+public/branding/     Logotipos y símbolo oficiales en formato vectorial
+tests/               Pruebas de regresión
+scripts/             QA visual automatizado y auditorías
+.github/workflows/   CI, build y revisiones de UI
+docs/                Producto, arquitectura, decisiones y publicación
+```
+
+La pantalla principal activa es `components/event-passport-app.tsx`. Se conservan componentes y CSS históricos de etapas anteriores; su presencia no significa que sean rutas o servicios activos. Consultar [arquitectura vigente](docs/architecture/OVERVIEW.md).
+
+## Publicación y control de cambios
+
+1. Crear rama desde `main` (por ejemplo, `fix/`, `feat/` o `docs/`).
+2. Mantener el cambio limitado, documentarlo y abrir un pull request.
+3. Revisar `npm run typecheck`, `npm test`, `npm run build` y QA visual cuando corresponda.
+4. Usar la URL temporal de **Preview** para validar; fusionar únicamente al aprobarse.
+5. El merge en `main` activa el despliegue **Production** de Vercel en [runningpanamajj.vercel.app](https://runningpanamajj.vercel.app); verificar el SHA del deployment.
+
+No confundir un enlace temporal `runningpanamajj-<id>-lossims.vercel.app` con la URL pública estable.
+
+### Documentación
+
+[Visión del producto](PROJECT.md) · [Especificación v2](docs/product/ZANCADA_V2_ESPECIFICACION.md) · [Arquitectura](docs/architecture/OVERVIEW.md) · [Diseño Performance](docs/design/ZANCADA_PERFORMANCE_EDITION.md) · [Historial](CHANGELOG.md) · [Guía de despliegue](docs/deployment/README.md).
+
+---
+
+**Estado actual:** aplicación web publicada, centrada en carreras y pasaporte personal. Las extensiones de cuentas, inscripción, pagos o resultados oficiales son propuestas futuras, no funciones existentes.
